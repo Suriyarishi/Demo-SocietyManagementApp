@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Shield, Lock, CheckCircle2, ChevronRight, Phone, Info, ArrowLeft } from 'lucide-react';
+import { Shield, Lock, CheckCircle2, ChevronRight, Phone, Info, ArrowLeft, Sparkles } from 'lucide-react';
 import { Button, Input, Badge } from '../../components/UIComponents';
+import { ShieldKey3D } from '../../components/3d/Vector3DElements';
 
 interface WelcomeMobileScreenProps {
   onContinue: (phone: string) => void;
@@ -77,26 +78,39 @@ export const WelcomeMobileScreen: React.FC<WelcomeMobileScreenProps> = ({
           </Badge>
         </div>
 
-        {/* Hero Value Prop Banner */}
-        <div className="mt-2 p-5 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/80 dark:border-obsidian-800 shadow-ambient">
-          <div className="w-9 h-9 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 text-cobalt-600 dark:text-cobalt-400 flex items-center justify-center mb-3">
-            <Lock size={18} strokeWidth={2.2} />
-          </div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
-            High-trust residential gate access & community living.
-          </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
-            Zero advertising clutter. Instant gate clearance, verified daily staff check-ins, and accountable society management.
-          </p>
+        {/* Hero Value Prop Banner with 3D Graphic Visual */}
+        <div className="mt-2 p-5 rounded-3xl bg-gradient-to-br from-white via-white to-blue-50/40 dark:from-obsidian-900 dark:via-obsidian-900 dark:to-cobalt-950/20 border border-slate-200/90 dark:border-obsidian-800 shadow-ambient relative overflow-hidden">
+          {/* Subtle Ambient Radial Highlight */}
+          <div className="absolute top-0 right-0 w-44 h-44 bg-cobalt-500/10 dark:bg-cobalt-500/15 rounded-full blur-2xl pointer-events-none" />
 
-          <div className="mt-4 pt-4 border-t border-slate-100 dark:border-obsidian-800 flex items-center justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+          <div className="flex items-start justify-between gap-3 relative z-10">
+            <div className="flex-1 pr-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 border border-cobalt-200/60 dark:border-cobalt-800/40 text-cobalt-600 dark:text-cobalt-400 text-[10px] font-extrabold uppercase tracking-wider mb-2.5">
+                <Sparkles size={11} className="text-cobalt-500" />
+                <span>Next-Gen Security</span>
+              </div>
+              <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-snug">
+                High-trust residential gate access & living.
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                Zero advertising clutter. Instant gate clearance, verified daily staff check-ins, and accountable society management.
+              </p>
+            </div>
+
+            {/* 3D Isometric Holographic Shield Vector */}
+            <div className="shrink-0 flex flex-col items-center justify-center pt-1">
+              <ShieldKey3D size={80} />
+            </div>
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-slate-100 dark:border-obsidian-800/80 flex items-center justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-400 relative z-10">
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Sub-second gate alerts
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 font-mono text-[10px]">
               <span className="w-1.5 h-1.5 rounded-full bg-cobalt-500" />
-              AES-256 encrypted
+              AES-256 GCM
             </span>
           </div>
         </div>

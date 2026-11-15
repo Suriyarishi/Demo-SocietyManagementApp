@@ -48,6 +48,7 @@ import {
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { FlatEntity } from './MultiFlatSelectorSheet';
+import { TowerResidence3D, GateBarrier3D, SmartMeter3D } from '../../components/3d/Vector3DElements';
 
 interface HomeScreenProps {
   activeFlat: FlatEntity;
@@ -133,9 +134,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <button
             type="button"
             onClick={onOpenFlatSwitcher}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-obsidian-800 hover:bg-slate-200 dark:hover:bg-obsidian-750 transition-colors border border-slate-200 dark:border-obsidian-700 text-left flex-1 min-w-0 press-scale"
+            className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-obsidian-800 hover:bg-slate-200 dark:hover:bg-obsidian-750 transition-colors border border-slate-200 dark:border-obsidian-700 text-left flex-1 min-w-0 press-scale"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+            <TowerResidence3D size={22} glow={false} className="shrink-0" />
             <div className="min-w-0 flex-1 truncate">
               <span className="text-xs font-bold text-slate-900 dark:text-white block leading-tight truncate">
                 {activeFlat.unit}
@@ -216,8 +217,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           }`}>
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-2xl bg-cobalt-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-cobalt-600/30">
-                  <Package size={20} />
+                <div className="shrink-0">
+                  <GateBarrier3D size={48} />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
@@ -885,16 +886,21 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </span>
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
-            <div>
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Maintenance Due</span>
-              <span className="text-xl font-extrabold font-mono text-white">₹4,250</span>
-              <span className="text-[11px] text-slate-300 block mt-0.5">Water, Sinking, Guard AMC</span>
+          <div className="mt-3 flex items-center justify-between gap-2 pt-3 border-t border-white/10">
+            <div className="flex-1 grid grid-cols-2 gap-2">
+              <div>
+                <span className="text-[10px] text-slate-400 uppercase block font-semibold">Maintenance Due</span>
+                <span className="text-xl font-extrabold font-mono text-white">₹4,250</span>
+                <span className="text-[11px] text-slate-300 block mt-0.5">Water, Sinking, Guard</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-slate-400 uppercase block font-semibold">Smart EB Meter</span>
+                <span className="text-xl font-extrabold font-mono text-emerald-400">₹840.50</span>
+                <span className="text-[11px] text-slate-300 block mt-0.5">~4 Days Power</span>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Smart EB Meter</span>
-              <span className="text-xl font-extrabold font-mono text-emerald-400">₹840.50</span>
-              <span className="text-[11px] text-slate-300 block mt-0.5">~4 Days Power remaining</span>
+            <div className="shrink-0 pl-1">
+              <SmartMeter3D size={54} />
             </div>
           </div>
 

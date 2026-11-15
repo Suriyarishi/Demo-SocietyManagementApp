@@ -14,6 +14,7 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { Badge, Button, Input } from '../../components/UIComponents';
+import { DigitalLock3D } from '../../components/3d/Vector3DElements';
 
 interface SmartDoorLockScreenProps {
   onBack: () => void;
@@ -94,18 +95,25 @@ export const SmartDoorLockScreen: React.FC<SmartDoorLockScreenProps> = ({ onBack
             </Badge>
           </div>
 
-          {/* Interactive Lock Button */}
+          {/* 3D Digital Keypad Deadbolt Vector */}
+          <div className="my-2 cursor-pointer press-scale" onClick={handleToggleLock} title="Tap to toggle lock">
+            <DigitalLock3D size={84} glow={true} />
+          </div>
+
           <button
             type="button"
             onClick={handleToggleLock}
-            className={`w-28 h-28 rounded-full flex items-center justify-center transition-all my-3 press-scale shadow-2xl border-2 ${
+            className={`px-4 py-1.5 rounded-full flex items-center justify-center gap-1.5 transition-all mb-2 press-scale shadow-lg border ${
               isLocked
-                ? 'bg-emerald-600/20 text-emerald-400 border-emerald-500/50 shadow-emerald-600/30'
-                : 'bg-amber-600/20 text-amber-400 border-amber-500/50 shadow-amber-600/30'
+                ? 'bg-emerald-600/30 text-emerald-300 border-emerald-500/50'
+                : 'bg-amber-600/30 text-amber-300 border-amber-500/50'
             }`}
             title="Tap to Lock/Unlock"
           >
-            {isLocked ? <Lock size={44} /> : <Unlock size={44} />}
+            {isLocked ? <Lock size={15} /> : <Unlock size={15} />}
+            <span className="text-xs font-bold font-mono uppercase tracking-wider">
+              {isLocked ? 'Deadbolt Secured' : 'Unlocked (Tap to Bolt)'}
+            </span>
           </button>
 
           <h3 className="text-base font-extrabold text-white">

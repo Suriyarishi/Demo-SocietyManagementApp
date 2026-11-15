@@ -16,6 +16,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
+import { ExpressToolbox3D } from '../../components/3d/Vector3DElements';
 
 export interface MaintenanceTicket {
   id: string;
@@ -209,27 +210,25 @@ export const HelpdeskHubScreen: React.FC<HelpdeskHubScreenProps> = ({
         </div>
 
         {/* ========================================================
-            3. EXPRESS SERVICES MINI PROMO BANNER
+            3. EXPRESS SERVICES MINI PROMO BANNER WITH 3D TOOLBOX
             ======================================================== */}
         <div className="px-4">
           <div
             onClick={onOpenExpressServices}
-            className="p-3.5 rounded-2xl glass-card hover:border-cobalt-500/60 transition-all cursor-pointer flex items-center justify-between gap-3 press-scale shadow-sm"
+            className="p-3.5 rounded-3xl glass-card hover:border-amber-500/60 transition-all cursor-pointer flex items-center justify-between gap-3 press-scale shadow-sm relative overflow-hidden"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-cobalt-500 text-white flex items-center justify-center shrink-0 shadow-md shadow-cobalt-500/30">
-                <Wrench size={18} strokeWidth={2.4} />
-              </div>
+              <ExpressToolbox3D size={52} />
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-bold text-slate-900 dark:text-white">
+                  <span className="text-xs font-extrabold text-slate-900 dark:text-white">
                     Need Private Flat Repairs?
                   </span>
                   <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-amber-500/20 text-amber-600 dark:text-amber-400 font-bold font-mono">
                     15 MINS
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                   Pre-vetted society plumbers, electricians & carpenters with fixed rate card.
                 </p>
               </div>

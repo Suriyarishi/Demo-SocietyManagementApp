@@ -18,6 +18,7 @@ import {
   LifeBuoy
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
+import { EmergencyBeacon3D } from '../../components/3d/Vector3DElements';
 
 export type EmergencyType = 'medical' | 'fire' | 'lift' | 'intruder' | 'animal';
 
@@ -120,26 +121,24 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
           </div>
         </div>
 
-        {/* Location Dispatch Banner */}
-        <div className="p-3.5 rounded-2xl bg-gradient-to-r from-crimson-600/10 via-rose-500/5 to-amber-500/10 border border-crimson-500/30 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-crimson-600 text-white flex items-center justify-center shrink-0 shadow-sm">
-              <Building size={16} />
-            </div>
+        {/* Location Dispatch Banner with 3D Emergency Siren Beacon */}
+        <div className="p-4 rounded-3xl bg-gradient-to-r from-crimson-600/15 via-rose-500/10 to-amber-500/10 border border-crimson-500/30 flex items-center justify-between text-xs shadow-ambient relative overflow-hidden">
+          <div className="flex items-center gap-3 relative z-10">
+            <EmergencyBeacon3D size={52} />
             <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                DISPATCH ADDRESS
+              <span className="text-[10px] font-bold text-crimson-600 dark:text-crimson-400 uppercase tracking-wider block">
+                DISPATCH COORDINATES
               </span>
-              <h4 className="font-extrabold text-slate-900 dark:text-white text-xs">
+              <h4 className="font-extrabold text-slate-900 dark:text-white text-xs mt-0.5">
                 Tower 2 • Flat 1204 (Floor 12)
               </h4>
-              <p className="text-[10px] text-slate-500">
-                Prestige Lakeside Habitat, Gate 1 & 2
+              <p className="text-[11px] text-slate-500 mt-0.5">
+                Prestige Lakeside, Gate 1 & 2 Fast Response
               </p>
             </div>
           </div>
 
-          <Badge variant="crimson" size="sm">
+          <Badge variant="crimson" size="sm" className="relative z-10">
             High Priority
           </Badge>
         </div>

@@ -14,6 +14,7 @@ import {
   ShoppingBag
 } from 'lucide-react';
 import { Badge, Button, Input } from '../../components/UIComponents';
+import { MarketplaceBox3D } from '../../components/3d/Vector3DElements';
 
 export interface MarketplaceItem {
   id: string;
@@ -187,17 +188,21 @@ export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
           </button>
         </div>
 
-        {/* Zero-Brokerage Trust Banner */}
-        <div className="p-3.5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-teal-500/10 border border-emerald-500/30 text-xs flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
-              <ShieldCheck size={16} />
-            </div>
+        {/* Zero-Brokerage Trust Banner with 3D Marketplace Package */}
+        <div className="p-3.5 rounded-3xl bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-teal-500/10 border border-emerald-500/30 text-xs flex items-center justify-between shadow-sm relative overflow-hidden">
+          <div className="flex items-center gap-3">
+            <MarketplaceBox3D size={50} />
             <div>
-              <h4 className="font-extrabold text-slate-900 dark:text-white text-xs">
-                Zero Brokerage • 100% Verified Residents
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span className="text-[10px] font-extrabold text-emerald-700 dark:text-emerald-400 uppercase tracking-widest">
+                  100% Resident Verified
+                </span>
+              </div>
+              <h4 className="font-extrabold text-slate-900 dark:text-white text-xs leading-tight">
+                Zero Brokerage Marketplace
               </h4>
-              <p className="text-[11px] text-slate-600 dark:text-slate-300">
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">
                 Direct tower-to-tower handover or security desk drop-off
               </p>
             </div>

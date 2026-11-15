@@ -17,6 +17,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
+import { GateBarrier3D } from '../../components/3d/Vector3DElements';
 
 export interface VisitorRecord {
   id: string;
@@ -157,25 +158,29 @@ export const GateOverviewScreen: React.FC<GateOverviewScreenProps> = ({
           </div>
         </div>
 
-        {/* Guard Station Status Strip */}
+        {/* 3D Gate Barrier Station Status Card */}
         <div className="px-4">
-          <div className="p-3.5 rounded-2xl bg-slate-100/70 dark:bg-obsidian-900/60 border border-slate-200/60 dark:border-obsidian-800 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0">
-                <ShieldCheck size={16} />
-              </div>
+          <div className="p-4 rounded-3xl bg-gradient-to-br from-emerald-50 via-white to-slate-50 dark:from-emerald-950/30 dark:via-obsidian-900 dark:to-obsidian-900 border border-emerald-500/30 dark:border-emerald-600/30 flex items-center justify-between text-xs shadow-ambient relative overflow-hidden">
+            <div className="flex items-center gap-3">
+              <GateBarrier3D size={52} />
               <div>
-                <span className="font-bold text-slate-900 dark:text-white block leading-tight">
-                  Gate 1 & Gate 2 Armed
-                </span>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                    ARMED & SYNCED
+                  </span>
+                </div>
+                <h3 className="text-sm font-extrabold text-slate-900 dark:text-white mt-0.5 leading-tight">
+                  Gate 1 & Gate 2 Live
+                </h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                   On Duty: Guard Ratan & Guard Sunil
-                </span>
+                </p>
               </div>
             </div>
             <button
               onClick={onCallGuardKiosk}
-              className="text-xs font-bold text-cobalt-600 dark:text-cobalt-400 hover:underline px-1"
+              className="px-3 py-1.5 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 border border-cobalt-200 dark:border-cobalt-800 text-xs font-bold text-cobalt-600 dark:text-cobalt-400 hover:bg-cobalt-100 transition-colors press-scale shrink-0"
             >
               Intercom Call
             </button>

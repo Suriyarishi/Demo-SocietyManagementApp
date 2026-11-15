@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { FlatEntity } from '../module02-home/MultiFlatSelectorSheet';
+import { DigitalLock3D } from '../../components/3d/Vector3DElements';
 
 interface ProfileSettingsScreenProps {
   activeFlat: FlatEntity;
@@ -122,14 +123,17 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setShowQrModal(true)}
-              className="w-10 h-10 rounded-2xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors border border-white/15 press-scale shrink-0"
-              title="Show Resident QR Pass"
-            >
-              <QrCode size={18} />
-            </button>
+            <div className="flex items-center gap-2 shrink-0">
+              <DigitalLock3D size={46} glow={false} />
+              <button
+                type="button"
+                onClick={() => setShowQrModal(true)}
+                className="w-10 h-10 rounded-2xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors border border-white/15 press-scale shrink-0"
+                title="Show Resident QR Pass"
+              >
+                <QrCode size={18} />
+              </button>
+            </div>
           </div>
 
           {/* Quick Contact Line */}

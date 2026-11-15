@@ -16,6 +16,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
+import { RfidTurnstile3D } from '../../components/3d/Vector3DElements';
 
 export interface DomesticStaffMember {
   id: string;
@@ -153,26 +154,27 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
           </div>
         </div>
 
-        {/* Live In-Campus Summary Card */}
+        {/* Live In-Campus Summary Card with 3D RFID Turnstile */}
         <div className="px-4">
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-obsidian-900 to-obsidian-950 text-white border border-obsidian-800 shadow-elevated">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center">
-                  <UserCheck size={18} />
-                </div>
+          <div className="p-4 rounded-3xl bg-gradient-to-br from-obsidian-900 via-obsidian-950 to-black text-white border border-obsidian-800 shadow-elevated relative overflow-hidden">
+            <div className="flex items-center justify-between gap-3 relative z-10">
+              <div className="flex items-center gap-3">
+                <RfidTurnstile3D size={54} />
                 <div>
-                  <span className="text-xs font-bold text-white block leading-tight">
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest">
+                      Live Turnstile Sync
+                    </span>
+                  </div>
+                  <span className="text-sm font-extrabold text-white block leading-tight">
                     {activeInCampusCount} of {SAMPLE_HOUSEHOLD_STAFF.length} Staff on Campus
                   </span>
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-[11px] text-slate-400 mt-0.5 block">
                     Latest check-in: 08:15 AM at Gate 2
                   </span>
                 </div>
               </div>
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/40">
-                Live Turnstile Sync
-              </span>
             </div>
 
             <div className="mt-3.5 pt-3 border-t border-white/10 flex items-center justify-between text-xs">

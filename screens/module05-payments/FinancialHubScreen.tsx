@@ -15,6 +15,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
+import { SmartMeter3D } from '../../components/3d/Vector3DElements';
 
 interface FinancialHubScreenProps {
   onBack?: () => void;
@@ -135,19 +136,17 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
           </Button>
         </div>
 
-        {/* Smart Prepaid Sub-Meter Card */}
+        {/* Smart Prepaid Sub-Meter Card with 3D Smart Meter Visual */}
         <div className="px-4">
-          <div className="p-4 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/80 dark:border-obsidian-800 shadow-ambient flex flex-col gap-3">
+          <div className="p-4 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/80 dark:border-obsidian-800 shadow-ambient flex flex-col gap-3 relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-                  <Zap size={20} strokeWidth={2.4} />
-                </div>
+              <div className="flex items-center gap-3">
+                <SmartMeter3D size={54} />
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
+                  <h4 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight">
                     Smart EB & Water Meter
                   </h4>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                     Prepaid Sub-Meter #MTR-1204
                   </p>
                 </div>

@@ -12,6 +12,7 @@ import {
   X
 } from 'lucide-react';
 import { Badge, Button, Input } from '../../components/UIComponents';
+import { GateBarrier3D } from '../../components/3d/Vector3DElements';
 
 export interface ResidentVehicleItem {
   id: string;
@@ -147,17 +148,21 @@ export const VehicleRegistryScreen: React.FC<VehicleRegistryScreenProps> = ({ on
           </button>
         </div>
 
-        {/* RFID Fastag Live Banner */}
-        <div className="p-3.5 rounded-2xl bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-900/40 text-xs flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-sm">
-              <Radio size={16} />
-            </div>
+        {/* RFID Fastag Live Banner with 3D Gate Barrier */}
+        <div className="p-3.5 rounded-3xl bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-900/40 text-xs flex items-center justify-between shadow-sm relative overflow-hidden">
+          <div className="flex items-center gap-3">
+            <GateBarrier3D size={48} />
             <div>
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                <span className="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 uppercase tracking-widest">
+                  RFID Fastag Active
+                </span>
+              </div>
               <h4 className="font-extrabold text-slate-900 dark:text-white text-xs">
-                Optical OCR & RFID Auto-Lift Active
+                Optical OCR & Auto-Lift Active
               </h4>
-              <p className="text-[11px] text-slate-600 dark:text-slate-300">
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">
                 Gate 2 camera lifts barrier automatically within 1.5 seconds
               </p>
             </div>

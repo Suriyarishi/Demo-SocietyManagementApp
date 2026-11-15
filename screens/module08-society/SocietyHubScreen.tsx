@@ -24,6 +24,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
+import { Clubhouse3D } from '../../components/3d/Vector3DElements';
 
 interface SocietyHubScreenProps {
   onBack?: () => void;
@@ -326,19 +327,27 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
           </div>
         </div>
 
-        {/* Section 2: Amenities Slot Quick Booking */}
+        {/* Section 2: Clubhouse Amenities Live Slots with 3D Clubhouse */}
         <div className="px-4 flex flex-col gap-2.5">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Clubhouse Amenities Live Slots
-            </span>
+          <div className="p-3.5 rounded-3xl bg-gradient-to-r from-blue-50/70 via-indigo-50/40 to-white dark:from-obsidian-900 dark:via-obsidian-900 dark:to-obsidian-850 border border-blue-100 dark:border-obsidian-800 flex items-center justify-between gap-3 shadow-sm">
+            <div className="flex items-center gap-3">
+              <Clubhouse3D size={52} />
+              <div>
+                <span className="text-[10px] font-extrabold text-cobalt-600 dark:text-cobalt-400 uppercase tracking-widest block">
+                  Clubhouse & Sports
+                </span>
+                <h4 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight">
+                  Amenities Live Booking
+                </h4>
+                <span className="text-[11px] text-slate-500">Banquet, Olympic Pool & Courts</span>
+              </div>
+            </div>
             <button
               type="button"
               onClick={onOpenAmenities}
-              className="text-xs font-bold text-cobalt-600 dark:text-cobalt-400 hover:underline flex items-center gap-0.5"
+              className="px-3 py-1.5 rounded-xl bg-cobalt-600 text-white font-bold text-xs hover:bg-cobalt-700 transition-colors press-scale shrink-0"
             >
-              <span>Book Slot</span>
-              <ChevronRight size={13} />
+              Book Slot
             </button>
           </div>
 
