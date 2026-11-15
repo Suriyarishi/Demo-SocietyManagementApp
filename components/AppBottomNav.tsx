@@ -28,8 +28,8 @@ export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChan
             onClick={() => onTabChange(tab.id)}
             className={`flex-1 flex flex-col items-center justify-center gap-0.5 py-1 px-1 rounded-2xl transition-all press-scale ${
               isActive
-                ? 'bg-cobalt-50 text-cobalt-600 dark:bg-cobalt-950/80 dark:text-cobalt-400 font-extrabold shadow-sm'
-                : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-medium'
+                ? 'bg-cobalt-50 text-cobalt-600 dark:bg-cobalt-950/80 dark:text-cobalt-400 font-extrabold shadow-2xs'
+                : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 font-bold'
             }`}
           >
             <div className="relative flex items-center justify-center">
