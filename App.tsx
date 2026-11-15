@@ -347,19 +347,22 @@ export function App() {
         )}
 
         {/* ========================================================
-            MODULE 07: PROFILE & RESIDENT SETTINGS
+            MODULE 07 & MODULE 11: RESIDENT, HOUSEHOLD & SETTINGS HUB
             ======================================================== */}
-        {(currentScreenId === 'SCR_SETTING_01' || currentScreenId === 'SCR_SET_01') && (
-          <ProfileSettingsScreen
+        {(currentScreenId === 'SCR_SETT_01' || currentScreenId === 'SCR_SETTING_01' || currentScreenId === 'SCR_SET_01') && (
+          <HouseholdSettingsHubScreen
             activeFlat={activeFlat}
             onBack={goBack}
+            onOpenFamily={() => pushScreen('SCR_SETT_02')}
+            onOpenVehicles={() => pushScreen('SCR_SETT_03')}
+            onOpenWrongParking={() => pushScreen('SCR_SETT_04')}
+            onOpenSmartLock={() => pushScreen('SCR_SETT_05')}
+            onOpenNotifications={() => pushScreen('SCR_SETT_06')}
+            onOpenSecurityPreferences={() => pushScreen('SCR_SET_03')}
+            onOpenStaffHub={() => pushScreen('SCR_STAFF_01')}
+            onOpenBillsHub={() => resetTo('SCR_PAY_01')}
             onOpenFlatSwitcher={() => setShowFlatSheet(true)}
             onOpenActivityHistory={() => pushScreen('SCR_HOME_04')}
-            onOpenStaffHub={() => pushScreen('SCR_STAFF_01')}
-            onOpenGateHub={() => pushScreen('SCR_GATE_01')}
-            onOpenBillsHub={() => resetTo('SCR_PAY_01')}
-            onOpenHouseholdMembers={() => pushScreen('SCR_SET_02')}
-            onOpenSecurityPreferences={() => pushScreen('SCR_SET_03')}
           />
         )}
 
@@ -416,21 +419,8 @@ export function App() {
         )}
 
         {/* ========================================================
-            MODULE 11: HOUSEHOLD MANAGEMENT, VEHICLES & SETTINGS
+            MODULE 11: HOUSEHOLD SUB-SCREENS
             ======================================================== */}
-        {currentScreenId === 'SCR_SETT_01' && (
-          <HouseholdSettingsHubScreen
-            activeFlat={activeFlat}
-            onBack={goBack}
-            onOpenFamily={() => pushScreen('SCR_SETT_02')}
-            onOpenVehicles={() => pushScreen('SCR_SETT_03')}
-            onOpenWrongParking={() => pushScreen('SCR_SETT_04')}
-            onOpenSmartLock={() => pushScreen('SCR_SETT_05')}
-            onOpenNotifications={() => pushScreen('SCR_SETT_06')}
-            onOpenFlatSwitcher={() => setShowFlatSheet(true)}
-            onOpenActivityHistory={() => pushScreen('SCR_HOME_04')}
-          />
-        )}
 
         {currentScreenId === 'SCR_SETT_02' && (
           <FamilyTenantGovernanceScreen onBack={goBack} />

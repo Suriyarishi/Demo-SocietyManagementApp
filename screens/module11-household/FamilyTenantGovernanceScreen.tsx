@@ -264,7 +264,7 @@ export const FamilyTenantGovernanceScreen: React.FC<FamilyTenantGovernanceScreen
 
       {/* Add Member Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-800 shadow-2xl flex flex-col gap-4 text-left">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-obsidian-800 pb-2">
               <h3 className="font-extrabold text-sm text-slate-900 dark:text-white">

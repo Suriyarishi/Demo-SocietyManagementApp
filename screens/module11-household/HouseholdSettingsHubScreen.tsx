@@ -16,7 +16,11 @@ import {
   FileText,
   Sliders,
   Sparkles,
-  X
+  X,
+  CreditCard,
+  Smartphone,
+  LogOut,
+  Zap,
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { FlatEntity } from '../module02-home/MultiFlatSelectorSheet';
@@ -32,6 +36,9 @@ interface HouseholdSettingsHubScreenProps {
   onOpenNotifications: () => void;
   onOpenFlatSwitcher: () => void;
   onOpenActivityHistory: () => void;
+  onOpenSecurityPreferences?: () => void;
+  onOpenStaffHub?: () => void;
+  onOpenBillsHub?: () => void;
 }
 
 export const HouseholdSettingsHubScreen: React.FC<HouseholdSettingsHubScreenProps> = ({
@@ -44,9 +51,15 @@ export const HouseholdSettingsHubScreen: React.FC<HouseholdSettingsHubScreenProp
   onOpenNotifications,
   onOpenFlatSwitcher,
   onOpenActivityHistory,
+  onOpenSecurityPreferences,
+  onOpenStaffHub,
+  onOpenBillsHub,
 }) => {
   const [showQrModal, setShowQrModal] = useState<boolean>(false);
   const [toastMsg, setToastMsg] = useState<string>('');
+  const [gateKnockVoip, setGateKnockVoip] = useState<boolean>(true);
+  const [autoApproveDeliveries, setAutoApproveDeliveries] = useState<boolean>(true);
+  const [fastagAutoOpen, setFastagAutoOpen] = useState<boolean>(true);
 
   const showToast = (msg: string) => {
     setToastMsg(msg);
@@ -224,17 +237,53 @@ export const HouseholdSettingsHubScreen: React.FC<HouseholdSettingsHubScreenProp
               </div>
               <ChevronRight size={15} className="text-slate-400" />
             </button>
+
+            {/* 4. Daily Household Staff */}
+            {onOpenStaffHub && (
+              <button
+                type="button"
+                onClick={onOpenStaffHub}
+                className="w-full p-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-obsidian-850 transition-colors text-left"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                    <ShieldCheck size={18} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 dark:text-white">
+                      Household Staff Access (2 Active)
+                    </h4>
+                    <p className="text-[11px] text-slate-500">
+                      Lakshmi R (Cook), Ramesh K (Driver) • Pass attendance
+                    </p>
+                  </div>
+                </div>
+                <ChevronRight size={15} className="text-slate-400" />
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Section 2: Smart Home & Privacy Settings */}
+        {/* Section 2: Gate Clearance & Perimeter Rules */}
         <div className="flex flex-col gap-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 px-1">
-            Smart Home & App Controls
-          </span>
+          <div className="flex items-center justify-between px-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              Gate & Perimeter Clearance
+            </span>
+            {onOpenSecurityPreferences && (
+              <button
+                type="button"
+                onClick={onOpenSecurityPreferences}
+                className="text-[11px] font-bold text-cobalt-600 dark:text-cobalt-400 hover:underline flex items-center gap-0.5"
+              >
+                <span>Advanced Privacy</span>
+                <ChevronRight size={13} />
+              </button>
+            )}
+          </div>
 
           <div className="rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm overflow-hidden divide-y divide-slate-100 dark:divide-obsidian-800 text-xs">
-            {/* 4. Smart Door Lock */}
+            {/* Smart Door Lock */}
             <button
               type="button"
               onClick={onOpenSmartLock}
@@ -256,7 +305,94 @@ export const HouseholdSettingsHubScreen: React.FC<HouseholdSettingsHubScreenProp
               <ChevronRight size={15} className="text-slate-400" />
             </button>
 
-            {/* 5. Notification Sounds */}
+            {/* Toggle: VoIP Gate Intercom */}
+            <div className="p-3.5 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 text-cobalt-600 dark:text-cobalt-400 flex items-center justify-center shrink-0">
+                  <Bell size={16} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 dark:text-white">
+                    VoIP Gate Knock Intercom
+                  </h4>
+                  <p className="text-[11px] text-slate-500">
+                    High-priority ringing when guard checks in a guest
+                  </p>
+                </div>
+              </div>
+              <input
+                type="checkbox"
+                checked={gateKnockVoip}
+                onChange={(e) => {
+                  setGateKnockVoip(e.target.checked);
+                  showToast(e.target.checked ? 'VoIP Gate Intercom Enabled' : 'VoIP Intercom Muted');
+                }}
+                className="w-4 h-4 rounded text-cobalt-600 focus:ring-cobalt-500 border-slate-300 cursor-pointer"
+              />
+            </div>
+
+            {/* Toggle: 1-Tap Delivery Pass */}
+            <div className="p-3.5 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
+                  <Smartphone size={16} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 dark:text-white">
+                    Express 1-Tap Delivery Pass
+                  </h4>
+                  <p className="text-[11px] text-slate-500">
+                    Auto-clear Zepto, Blinkit & Swiggy within 30 mins
+                  </p>
+                </div>
+              </div>
+              <input
+                type="checkbox"
+                checked={autoApproveDeliveries}
+                onChange={(e) => {
+                  setAutoApproveDeliveries(e.target.checked);
+                  showToast(e.target.checked ? 'Express Delivery Auto-Pass Active' : 'Manual Approval Required');
+                }}
+                className="w-4 h-4 rounded text-cobalt-600 focus:ring-cobalt-500 border-slate-300 cursor-pointer"
+              />
+            </div>
+
+            {/* Toggle: Boom Barrier Fastag */}
+            <div className="p-3.5 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                  <Car size={16} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 dark:text-white">
+                    Boom Barrier RFID Fastag Auto-Lift
+                  </h4>
+                  <p className="text-[11px] text-slate-500 font-mono">
+                    KA-05-MQ-3819 • Auto-lift barrier at Gate 2
+                  </p>
+                </div>
+              </div>
+              <input
+                type="checkbox"
+                checked={fastagAutoOpen}
+                onChange={(e) => {
+                  setFastagAutoOpen(e.target.checked);
+                  showToast(e.target.checked ? 'RFID Fastag Auto-Lift Active' : 'Fastag Auto-Lift Disabled');
+                }}
+                className="w-4 h-4 rounded text-cobalt-600 focus:ring-cobalt-500 border-slate-300 cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Section 3: App Controls & Billing */}
+        <div className="flex flex-col gap-2">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 px-1">
+            App Controls & Billing
+          </span>
+
+          <div className="rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm overflow-hidden divide-y divide-slate-100 dark:divide-obsidian-800 text-xs">
+            {/* Notification Sounds */}
             <button
               type="button"
               onClick={onOpenNotifications}
@@ -278,7 +414,31 @@ export const HouseholdSettingsHubScreen: React.FC<HouseholdSettingsHubScreenProp
               <ChevronRight size={15} className="text-slate-400" />
             </button>
 
-            {/* 6. Audited Perimeter Log */}
+            {/* Maintenance Dues & UPI Auto-Pay */}
+            {onOpenBillsHub && (
+              <button
+                type="button"
+                onClick={onOpenBillsHub}
+                className="w-full p-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-obsidian-850 transition-colors text-left"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                    <CreditCard size={18} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 dark:text-white">
+                      Maintenance Dues & UPI Auto-Pay
+                    </h4>
+                    <p className="text-[11px] text-slate-500">
+                      PhonePe / BHIM • 0% Gateway surcharge • GST receipts
+                    </p>
+                  </div>
+                </div>
+                <ChevronRight size={15} className="text-slate-400" />
+              </button>
+            )}
+
+            {/* Audited Perimeter Log */}
             <button
               type="button"
               onClick={onOpenActivityHistory}
@@ -301,11 +461,54 @@ export const HouseholdSettingsHubScreen: React.FC<HouseholdSettingsHubScreenProp
             </button>
           </div>
         </div>
+
+        {/* Section 4: Residence & Session Management */}
+        <div className="flex flex-col gap-2 pt-1">
+          <button
+            type="button"
+            onClick={onOpenFlatSwitcher}
+            className="w-full p-3.5 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex items-center justify-between text-left press-scale hover:border-cobalt-500 transition-colors text-xs"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 text-cobalt-600 dark:text-cobalt-400 flex items-center justify-center shrink-0">
+                <Home size={16} />
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-900 dark:text-white">
+                  Switch Active Residence
+                </h4>
+                <p className="text-[11px] text-slate-500">
+                  Current: {activeFlat.unit} ({activeFlat.societyName.split(' ')[0]})
+                </p>
+              </div>
+            </div>
+            <ChevronRight size={15} className="text-slate-400" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => showToast('Session locked. Enter PIN to resume.')}
+            className="w-full p-3.5 rounded-2xl bg-crimson-50/60 dark:bg-crimson-950/30 border border-crimson-200/70 dark:border-crimson-800/40 text-crimson-600 dark:text-crimson-400 flex items-center justify-center gap-2 text-xs font-bold transition-all press-scale hover:bg-crimson-100/60"
+          >
+            <LogOut size={16} />
+            <span>Lock Session & Sign Out</span>
+          </button>
+        </div>
+
+        {/* Security OS Footnote */}
+        <div className="text-center py-2">
+          <p className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500">
+            HUNT LOCKDOOR RESIDENTIAL OS • BUILD 2026.4
+          </p>
+          <p className="text-[10px] text-slate-400 dark:text-slate-600 mt-0.5">
+            Zero brokerage • Perimeter isolated • AES-256 encrypted
+          </p>
+        </div>
       </div>
 
       {/* QR Code Pass Modal */}
       {showQrModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="w-full max-w-[340px] p-5 rounded-3xl bg-slate-900 border border-slate-800 text-white shadow-2xl flex flex-col items-center gap-4 text-center relative overflow-hidden">
             <div className="flex items-center justify-between w-full border-b border-white/10 pb-2">
               <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest">
