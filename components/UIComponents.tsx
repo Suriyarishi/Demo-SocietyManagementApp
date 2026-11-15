@@ -112,26 +112,26 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div className="w-full flex flex-col gap-1.5 text-left group">
       {label && (
-        <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1">
+        <label className="text-[11px] font-extrabold text-slate-700 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1.5">
           {label}
         </label>
       )}
       <div className={`
-        relative flex items-center h-[52px] rounded-2xl border transition-all duration-150 shadow-sm
+        relative flex items-center h-[54px] rounded-2xl border transition-all duration-150 shadow-2xs
         ${error 
-          ? 'border-crimson-500 bg-crimson-50/30 dark:bg-crimson-950/20 text-crimson-900 dark:text-crimson-200 focus-within:ring-4 focus-within:ring-crimson-500/15' 
-          : 'border-slate-200/90 dark:border-obsidian-750 bg-slate-50/80 dark:bg-obsidian-900/90 hover:bg-slate-100/60 dark:hover:bg-obsidian-850 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15'}
+          ? 'border-crimson-500 bg-crimson-50/40 dark:bg-crimson-950/20 text-crimson-900 dark:text-crimson-200 focus-within:ring-4 focus-within:ring-crimson-500/15' 
+          : 'border-slate-300/80 dark:border-obsidian-750 bg-slate-50/90 dark:bg-obsidian-900/90 hover:bg-slate-100/70 dark:hover:bg-obsidian-850 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15'}
         ${disabled ? 'opacity-60 cursor-not-allowed bg-slate-100 dark:bg-obsidian-850' : ''}
       `}>
         {prefixElement && (
-          <div className="w-11 h-full flex items-center justify-center text-slate-400 dark:text-slate-500 group-focus-within:text-cobalt-600 dark:group-focus-within:text-cobalt-400 shrink-0 pointer-events-none transition-colors">
+          <div className="w-9 h-9 rounded-xl bg-white dark:bg-obsidian-800 text-slate-500 dark:text-slate-400 border border-slate-200/90 dark:border-obsidian-700 shadow-2xs flex items-center justify-center shrink-0 ml-2 mr-2.5 group-focus-within:text-cobalt-600 dark:group-focus-within:text-cobalt-400 group-focus-within:border-cobalt-300 dark:group-focus-within:border-cobalt-600 pointer-events-none transition-colors">
             {prefixElement}
           </div>
         )}
         <input
           disabled={disabled}
           className={`
-            w-full h-full text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm font-semibold outline-none bg-transparent
+            w-full h-full text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm font-semibold outline-none bg-transparent
             ${prefixElement ? 'pl-0 pr-4' : 'px-4'}
             ${suffixElement ? 'pr-12' : ''}
             ${className}
@@ -182,7 +182,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   return (
     <div className="w-full flex flex-col gap-1.5 text-left group">
       {label && (
-        <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1">
+        <label className="text-[11px] font-extrabold text-slate-700 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1.5">
           {label}
         </label>
       )}
@@ -190,10 +190,10 @@ export const Textarea: React.FC<TextareaProps> = ({
         rows={rows}
         disabled={disabled}
         className={`
-          w-full p-3.5 rounded-2xl border transition-all duration-150 shadow-sm text-sm font-semibold outline-none resize-none
+          w-full p-3.5 rounded-2xl border transition-all duration-150 shadow-2xs text-sm font-semibold outline-none resize-none
           ${error
-            ? 'border-crimson-500 bg-crimson-50/30 dark:bg-crimson-950/20 text-crimson-900 dark:text-crimson-200 focus:ring-4 focus:ring-crimson-500/15'
-            : 'border-slate-200/90 dark:border-obsidian-750 bg-slate-50/80 dark:bg-obsidian-900/90 hover:bg-slate-100/60 dark:hover:bg-obsidian-850 focus:bg-white dark:focus:bg-obsidian-900 focus:border-cobalt-600 dark:focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/15 text-slate-900 dark:text-white placeholder:text-slate-400'}
+            ? 'border-crimson-500 bg-crimson-50/40 dark:bg-crimson-950/20 text-crimson-900 dark:text-crimson-200 focus:ring-4 focus:ring-crimson-500/15'
+            : 'border-slate-300/80 dark:border-obsidian-750 bg-slate-50/90 dark:bg-obsidian-900/90 hover:bg-slate-100/70 dark:hover:bg-obsidian-850 focus:bg-white dark:focus:bg-obsidian-900 focus:border-cobalt-600 dark:focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/15 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500'}
           ${disabled ? 'opacity-60 cursor-not-allowed bg-slate-100 dark:bg-obsidian-850' : ''}
           ${className}
         `}
@@ -236,26 +236,26 @@ export const Select: React.FC<SelectProps> = ({
   return (
     <div className="w-full flex flex-col gap-1.5 text-left group">
       {label && (
-        <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1">
+        <label className="text-[11px] font-extrabold text-slate-700 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1.5">
           {label}
         </label>
       )}
       <div className={`
-        relative flex items-center h-[52px] rounded-2xl border transition-all duration-150 shadow-sm
+        relative flex items-center h-[54px] rounded-2xl border transition-all duration-150 shadow-2xs
         ${error
-          ? 'border-crimson-500 bg-crimson-50/30 dark:bg-crimson-950/20 text-crimson-900 focus-within:ring-4 focus-within:ring-crimson-500/15'
-          : 'border-slate-200/90 dark:border-obsidian-750 bg-slate-50/80 dark:bg-obsidian-900/90 hover:bg-slate-100/60 dark:hover:bg-obsidian-850 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15'}
+          ? 'border-crimson-500 bg-crimson-50/40 dark:bg-crimson-950/20 text-crimson-900 focus-within:ring-4 focus-within:ring-crimson-500/15'
+          : 'border-slate-300/80 dark:border-obsidian-750 bg-slate-50/90 dark:bg-obsidian-900/90 hover:bg-slate-100/70 dark:hover:bg-obsidian-850 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15'}
         ${disabled ? 'opacity-60 cursor-not-allowed bg-slate-100 dark:bg-obsidian-850' : ''}
       `}>
         {prefixElement && (
-          <div className="w-11 h-full flex items-center justify-center text-slate-400 dark:text-slate-500 group-focus-within:text-cobalt-600 shrink-0 pointer-events-none">
+          <div className="w-9 h-9 rounded-xl bg-white dark:bg-obsidian-800 text-slate-500 dark:text-slate-400 border border-slate-200/90 dark:border-obsidian-700 shadow-2xs flex items-center justify-center shrink-0 ml-2 mr-2.5 group-focus-within:text-cobalt-600 dark:group-focus-within:text-cobalt-400 pointer-events-none transition-colors">
             {prefixElement}
           </div>
         )}
         <select
           disabled={disabled}
           className={`
-            w-full h-full text-slate-900 dark:text-slate-100 text-sm font-semibold outline-none bg-transparent cursor-pointer
+            w-full h-full text-slate-900 dark:text-white text-sm font-semibold outline-none bg-transparent cursor-pointer
             ${prefixElement ? 'pl-0 pr-8' : 'px-4 pr-8'}
             ${className}
           `}

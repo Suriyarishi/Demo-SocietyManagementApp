@@ -134,9 +134,9 @@ export const CommunityStaffDirectoryScreen: React.FC<CommunityStaffDirectoryScre
         </div>
 
         {/* Search Input */}
-        <div className="relative flex items-center h-[50px] rounded-2xl border border-slate-200/90 dark:border-obsidian-750 bg-slate-50/80 dark:bg-obsidian-900/90 hover:bg-slate-100/60 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15 shadow-sm transition-all group">
-          <div className="w-10 h-full flex items-center justify-center text-slate-400 dark:text-slate-500 group-focus-within:text-cobalt-600 shrink-0 pointer-events-none">
-            <Search size={18} />
+        <div className="relative flex items-center h-[54px] rounded-2xl border border-slate-300/80 dark:border-obsidian-750 bg-slate-50/90 dark:bg-obsidian-900/90 hover:bg-slate-100/70 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15 shadow-2xs transition-all group">
+          <div className="w-9 h-9 rounded-xl bg-white dark:bg-obsidian-800 text-slate-500 dark:text-slate-400 border border-slate-200/90 dark:border-obsidian-700 shadow-2xs flex items-center justify-center shrink-0 ml-2 mr-2.5 group-focus-within:text-cobalt-600 dark:group-focus-within:text-cobalt-400 pointer-events-none transition-colors">
+            <Search size={16} />
           </div>
           <input
             type="text"

@@ -131,10 +131,10 @@ export const WelcomeMobileScreen: React.FC<WelcomeMobileScreenProps> = ({
               </button>
             </div>
             <div className={`
-              relative flex items-center h-[54px] rounded-2xl border transition-all duration-150 shadow-sm
+              relative flex items-center h-[54px] rounded-2xl border transition-all duration-150 shadow-2xs
               ${errorText 
-                ? 'border-crimson-500 focus-within:ring-4 focus-within:ring-crimson-500/15 bg-crimson-50/30 dark:bg-crimson-950/20' 
-                : 'border-slate-200/90 dark:border-obsidian-750 bg-slate-50/80 dark:bg-obsidian-900/90 hover:bg-slate-100/60 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15'}
+                ? 'border-crimson-500 focus-within:ring-4 focus-within:ring-crimson-500/15 bg-crimson-50/40 dark:bg-crimson-950/20' 
+                : 'border-slate-300/80 dark:border-obsidian-750 bg-slate-50/90 dark:bg-obsidian-900/90 hover:bg-slate-100/70 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15'}
             `}>
               {/* Country Code Pill */}
               <div className="pl-4 pr-3 flex items-center gap-1.5 border-r border-slate-200 dark:border-obsidian-800 text-slate-700 dark:text-slate-200 font-bold text-sm select-none">

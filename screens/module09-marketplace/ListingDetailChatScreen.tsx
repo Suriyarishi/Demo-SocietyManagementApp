@@ -240,19 +240,19 @@ export const ListingDetailChatScreen: React.FC<ListingDetailChatScreenProps> = (
           </div>
 
           {/* Chat Input Bar */}
-          <form onSubmit={handleSendMessage} className="flex items-center gap-1.5 pt-1">
+          <form onSubmit={handleSendMessage} className="flex items-center gap-2 pt-1">
             <input
               type="text"
               placeholder="Type message to neighbor..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="flex-1 h-10 px-3.5 rounded-xl bg-white dark:bg-obsidian-800 border border-slate-200 dark:border-obsidian-750 text-xs font-medium text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cobalt-500"
+              className="flex-1 h-11 px-3.5 rounded-2xl bg-white dark:bg-obsidian-850 border border-slate-300 dark:border-obsidian-750 text-xs font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cobalt-500 shadow-2xs"
             />
             <button
               type="submit"
-              className="w-10 h-10 rounded-xl bg-cobalt-600 hover:bg-cobalt-700 text-white flex items-center justify-center shrink-0 shadow-sm transition-colors press-scale"
+              className="w-11 h-11 rounded-2xl bg-cobalt-600 hover:bg-cobalt-700 text-white flex items-center justify-center shrink-0 shadow-sm transition-colors press-scale"
             >
-              <Send size={15} />
+              <Send size={16} />
             </button>
           </form>
         </div>
@@ -260,7 +260,7 @@ export const ListingDetailChatScreen: React.FC<ListingDetailChatScreenProps> = (
 
       {/* Make Offer Modal */}
       {showOfferModal && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="w-full max-w-[320px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-800 shadow-2xl flex flex-col gap-4 text-left">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-obsidian-800 pb-2">
               <h3 className="font-extrabold text-sm text-slate-900 dark:text-white">

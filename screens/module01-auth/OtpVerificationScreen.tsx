@@ -156,7 +156,7 @@ export const OtpVerificationScreen: React.FC<OtpVerificationScreenProps> = ({
 
         {/* 6-Digit OTP Inputs */}
         <div className="mt-2 flex flex-col gap-4">
-          <div className="flex items-center justify-between gap-2" onPaste={handlePaste}>
+          <div className="flex items-center justify-between gap-1.5 sm:gap-2" onPaste={handlePaste}>
             {otp.map((digit, idx) => (
               <input
                 key={idx}
@@ -169,10 +169,10 @@ export const OtpVerificationScreen: React.FC<OtpVerificationScreenProps> = ({
                 onKeyDown={(e) => handleKeyDown(idx, e)}
                 disabled={isVerifying || isSuccess}
                 className={`
-                  w-12 h-14 sm:w-13 sm:h-16 text-center text-xl font-bold font-mono rounded-2xl border transition-all duration-150 outline-none
-                  ${digit ? 'border-cobalt-600 dark:border-cobalt-500 bg-cobalt-50/20 dark:bg-cobalt-950/30 text-slate-900 dark:text-white' : 'border-slate-300 dark:border-obsidian-700 bg-white dark:bg-obsidian-900 text-slate-900 dark:text-white'}
-                  ${errorMsg ? 'border-crimson-500 bg-crimson-50/20 dark:bg-crimson-950/20' : ''}
-                  focus:border-cobalt-600 dark:focus:border-cobalt-500 focus:ring-2 focus:ring-cobalt-500/20
+                  w-11 h-13 sm:w-12 sm:h-15 text-center text-xl font-bold font-mono rounded-2xl border transition-all duration-150 outline-none shadow-2xs
+                  ${digit ? 'border-cobalt-600 dark:border-cobalt-500 bg-cobalt-50/30 dark:bg-cobalt-950/40 text-slate-900 dark:text-white' : 'border-slate-300 dark:border-obsidian-700 bg-slate-50/70 dark:bg-obsidian-900 text-slate-900 dark:text-white'}
+                  ${errorMsg ? 'border-crimson-500 bg-crimson-50/30 dark:bg-crimson-950/20' : ''}
+                  focus:border-cobalt-600 dark:focus:border-cobalt-500 focus:ring-4 focus:ring-cobalt-500/15
                 `}
                 autoFocus={idx === 0}
               />
