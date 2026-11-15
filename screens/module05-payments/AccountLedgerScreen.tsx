@@ -122,7 +122,7 @@ export const AccountLedgerScreen: React.FC<AccountLedgerScreenProps> = ({ onBack
         {/* Summary Card */}
         <div className="p-5 rounded-3xl bg-gradient-to-br from-obsidian-900 to-obsidian-950 text-white border border-obsidian-800 shadow-elevated">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+            <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
               Financial Status
             </span>
             <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 uppercase">
@@ -132,11 +132,11 @@ export const AccountLedgerScreen: React.FC<AccountLedgerScreenProps> = ({ onBack
 
           <div className="mt-3 grid grid-cols-2 gap-3 pt-3 border-t border-white/10 text-xs text-slate-300">
             <div>
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Total Paid this Year</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Total Paid this Year</span>
               <span className="text-xl font-bold text-white font-mono">₹48,250</span>
             </div>
             <div>
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Current Balance</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Current Balance</span>
               <span className="text-xl font-bold text-emerald-400 font-mono">₹0.00</span>
             </div>
           </div>

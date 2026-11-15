@@ -227,7 +227,7 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
             <ShieldAlert size={26} className="animate-bounce" />
             <span>TRIGGER EMERGENCY SOS</span>
           </button>
-          <span className="text-[10px] text-slate-400 text-center block mt-1.5 font-medium">
+          <span className="text-[10px] text-slate-500 dark:text-slate-400 text-center block mt-1.5 font-medium">
             3-second abort window provided to prevent accidental alarms
           </span>
         </div>
@@ -249,7 +249,7 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
               </div>
               <div className="min-w-0">
                 <span className="font-bold text-slate-900 dark:text-white block truncate">Gate 1 Guard</span>
-                <span className="text-[10px] text-slate-400 font-mono">Ext. 101</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Ext. 101</span>
               </div>
             </button>
 
@@ -263,7 +263,7 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
               </div>
               <div className="min-w-0">
                 <span className="font-bold text-slate-900 dark:text-white block truncate">Hospital & Police</span>
-                <span className="text-[10px] text-slate-400 font-mono">Nearby 2.4 km</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Nearby 2.4 km</span>
               </div>
             </button>
           </div>

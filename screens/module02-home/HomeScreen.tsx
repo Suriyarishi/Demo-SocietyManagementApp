@@ -829,7 +829,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Inside (7:45 AM)
                 </span>
-                <span className="text-slate-400 font-mono">Gate 2</span>
+                <span className="text-slate-500 dark:text-slate-400 font-mono">Gate 2</span>
               </div>
             </div>
 
@@ -851,7 +851,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Inside (8:15 AM)
                 </span>
-                <span className="text-slate-400 font-mono">RFID Fastag</span>
+                <span className="text-slate-500 dark:text-slate-400 font-mono">RFID Fastag</span>
               </div>
             </div>
           </div>
@@ -872,12 +872,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="mt-3 flex items-center justify-between gap-2 pt-3 border-t border-white/10">
             <div className="flex-1 grid grid-cols-2 gap-2">
               <div>
-                <span className="text-[10px] text-slate-400 uppercase block font-semibold">Maintenance Due</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Maintenance Due</span>
                 <span className="text-xl font-extrabold font-mono text-white">₹4,250</span>
                 <span className="text-[11px] text-slate-300 block mt-0.5">Water, Sinking, Guard</span>
               </div>
               <div>
-                <span className="text-[10px] text-slate-400 uppercase block font-semibold">Smart EB Meter</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Smart EB Meter</span>
                 <span className="text-xl font-extrabold font-mono text-emerald-400">₹840.50</span>
                 <span className="text-[11px] text-slate-300 block mt-0.5">~4 Days Power</span>
               </div>
@@ -913,7 +913,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-400 uppercase">
                 Official Notice
               </span>
-              <span className="text-[10px] text-slate-400 font-medium">Tomorrow</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Tomorrow</span>
             </div>
             <h4 className="text-xs font-bold text-slate-900 dark:text-white mt-0.5 leading-snug">
               Scheduled Overhead Water Tank Cleaning (Tower 1 & 2)

@@ -123,7 +123,7 @@ export const FlatSelectionScreen: React.FC<FlatSelectionScreenProps> = ({
               Flats on {selectedFloor}th Floor ({selectedTower})
             </label>
             <div className="flex items-center gap-1 text-xs">
-              <span className="text-slate-400">Floor:</span>
+              <span className="text-slate-500 dark:text-slate-400">Floor:</span>
               <select
                 value={selectedFloor}
                 onChange={(e) => {

@@ -105,13 +105,13 @@ export const ProvisionalAccessScreen: React.FC<ProvisionalAccessScreenProps> = (
 
           <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs relative z-10">
             <div>
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Unit Allocation</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Unit Allocation</span>
               <span className="font-mono font-bold text-slate-100 text-sm">
                 {unitInfo.tower} - {unitInfo.flatNumber}
               </span>
             </div>
             <div className="text-right">
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Gate Security SLA</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Gate Security SLA</span>
               <span className="font-bold text-emerald-400 flex items-center gap-1 justify-end font-mono">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 Live Active

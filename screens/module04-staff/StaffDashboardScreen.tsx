@@ -170,7 +170,7 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
                   <span className="text-sm font-extrabold text-white block leading-tight">
                     {activeInCampusCount} of {SAMPLE_HOUSEHOLD_STAFF.length} Staff on Campus
                   </span>
-                  <span className="text-[11px] text-slate-400 mt-0.5 block">
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 block">
                     Latest check-in: 08:15 AM at Gate 2
                   </span>
                 </div>
@@ -202,7 +202,7 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
             <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
               My Household Roster (Flat 1204)
             </h3>
-            <span className="text-[11px] text-slate-400 font-medium">Auto-Synced</span>
+            <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Auto-Synced</span>
           </div>
 
           <div className="flex flex-col gap-3 max-h-[440px] overflow-y-auto no-scrollbar">
@@ -252,7 +252,7 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
                       <div className="flex items-center gap-1 justify-end mt-1 text-[11px] text-amber-500 font-bold">
                         <Star size={11} className="fill-current" />
                         <span>{staff.rating}</span>
-                        <span className="text-slate-400 font-normal">({staff.reviewsCount})</span>
+                        <span className="text-slate-500 dark:text-slate-400 font-normal">({staff.reviewsCount})</span>
                       </div>
                     </div>
                   </div>
@@ -265,7 +265,7 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
                         <span>Inside since {staff.entryTime}</span>
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1.5 text-slate-400">
+                      <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
                         <Clock size={12} />
                         <span>Expected at {staff.expectedTime}</span>
                       </span>

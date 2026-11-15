@@ -203,7 +203,7 @@ export const NotificationSoundScreen: React.FC<NotificationSoundScreenProps> = (
           {quietHoursActive && (
             <div className="pt-2 border-t border-slate-100 dark:border-obsidian-800 grid grid-cols-2 gap-2">
               <div>
-                <span className="text-[10px] font-bold text-slate-400 block mb-1">BEDTIME</span>
+                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1">BEDTIME</span>
                 <input
                   type="time"
                   value={quietStart}
@@ -212,7 +212,7 @@ export const NotificationSoundScreen: React.FC<NotificationSoundScreenProps> = (
                 />
               </div>
               <div>
-                <span className="text-[10px] font-bold text-slate-400 block mb-1">WAKE UP</span>
+                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1">WAKE UP</span>
                 <input
                   type="time"
                   value={quietEnd}

@@ -172,7 +172,7 @@ export const Module02Controller: React.FC<Module02ControllerProps> = ({
                 <span className="text-3xl font-mono font-extrabold text-crimson-400 block">
                   00:0{sosCountdown}
                 </span>
-                <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mt-1 block">
+                <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest mt-1 block">
                   Auto-Dispatching Gate Security
                 </span>
               </div>

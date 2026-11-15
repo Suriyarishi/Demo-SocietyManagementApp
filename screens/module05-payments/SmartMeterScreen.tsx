@@ -72,16 +72,16 @@ export const SmartMeterScreen: React.FC<SmartMeterScreenProps> = ({
             <span className="text-4xl font-extrabold font-mono text-white">
               ₹{balance.toFixed(2)}
             </span>
-            <span className="text-xs text-slate-400">credit balance</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">credit balance</span>
           </div>
 
           <div className="mt-4 pt-3 border-t border-white/10 grid grid-cols-2 gap-3 text-xs text-slate-300">
             <div>
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Estimated Runtime</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Estimated Runtime</span>
               <span className="text-sm font-bold text-emerald-400 font-mono">~4.2 Days</span>
             </div>
             <div>
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Current Active Load</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Current Active Load</span>
               <span className="text-sm font-bold text-white font-mono">1.8 kW</span>
             </div>
           </div>

@@ -158,7 +158,7 @@ export const ActivityTimelineScreen: React.FC<ActivityTimelineScreenProps> = ({ 
             return (
               <div key={group} className="flex flex-col gap-2.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     {group}
                   </span>
                   <div className="flex-1 h-px bg-slate-200 dark:bg-obsidian-800" />

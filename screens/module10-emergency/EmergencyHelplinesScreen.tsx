@@ -194,7 +194,7 @@ export const EmergencyHelplinesScreen: React.FC<EmergencyHelplinesScreenProps> =
                     <Badge variant={item.priority === 'high' ? 'crimson' : 'muted'} size="sm">
                       {item.is24x7 ? '24/7 Emergency' : 'Day Service'}
                     </Badge>
-                    <span className="text-[10px] font-bold text-slate-400 font-mono">
+                    <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 font-mono">
                       {item.distance}
                     </span>
                   </div>

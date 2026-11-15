@@ -310,7 +310,7 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                     <Badge variant={notice.priority === 'Urgent' ? 'crimson' : 'cobalt'} size="sm">
                       {notice.priority}
                     </Badge>
-                    <span className="text-[10px] text-slate-400 font-semibold truncate">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold truncate">
                       {notice.dept}
                     </span>
                   </div>
@@ -400,7 +400,7 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex items-start justify-between cursor-pointer hover:border-cobalt-300 dark:hover:border-cobalt-700 transition-all press-scale"
               >
                 <div className="flex-1 pr-2">
-                  <span className="text-[10px] text-slate-400 font-medium">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                     {post.author} • {post.time}
                   </span>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs leading-snug line-clamp-1 mt-0.5">

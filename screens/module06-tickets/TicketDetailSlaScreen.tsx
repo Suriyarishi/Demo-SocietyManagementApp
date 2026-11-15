@@ -99,7 +99,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
             <span className="text-3xl font-extrabold font-mono text-white tracking-tight">
               01h 28m 42s
             </span>
-            <span className="text-xs text-slate-400">remaining</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">remaining</span>
           </div>
 
           {/* SLA Elapsed Progress Bar */}
@@ -107,7 +107,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
             <div className="bg-emerald-500 h-full w-[65%] rounded-full" />
           </div>
 
-          <p className="text-[11px] text-slate-400 mt-2">
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
             Target Resolution by 01:00 PM today. Escalates to President automatically if breached.
           </p>
         </div>
@@ -127,7 +127,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-900 dark:text-white">Ticket Logged & Classified</span>
-                  <span className="font-mono text-[10px] text-slate-400">09:30 AM</span>
+                  <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">09:30 AM</span>
                 </div>
                 <p className="text-[11px] text-slate-500">Auto-assigned to Electrical & Plumbing desk</p>
               </div>
@@ -141,7 +141,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-900 dark:text-white">Technician Allocated</span>
-                  <span className="font-mono text-[10px] text-slate-400">10:15 AM</span>
+                  <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">10:15 AM</span>
                 </div>
                 <p className="text-[11px] text-slate-500">Assigned to Kishore Verma (Electrician)</p>
               </div>
@@ -169,7 +169,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-700 dark:text-slate-300">Resident Digital Signoff</span>
-                  <span className="font-mono text-[10px] text-slate-400">Awaiting</span>
+                  <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">Awaiting</span>
                 </div>
                 <p className="text-[11px] text-slate-500">Signoff required to close ticket in registry</p>
               </div>
@@ -231,7 +231,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Inside Tower 2 • Arriving in ~{ticket.technician.etaMinutes} mins</span>
               </span>
-              <span className="text-[11px] text-slate-400 font-mono">Turnstile Logged</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Turnstile Logged</span>
             </div>
           </div>
         )}

@@ -64,7 +64,7 @@ export const CabOverstayScreen: React.FC<CabOverstayScreenProps> = ({
           <button
             type="button"
             onClick={onBack}
-            className="text-xs font-semibold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
           >
             Cancel
           </button>
@@ -103,9 +103,9 @@ export const CabOverstayScreen: React.FC<CabOverstayScreenProps> = ({
                   <span className="bg-amber-400 text-black font-mono font-black px-2 py-0.5 rounded border border-amber-600/30 text-[11px] tracking-wider">
                     {activeCab.plate}
                   </span>
-                  <span className="text-[11px] text-slate-400">Boom Barrier Passed</span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">Boom Barrier Passed</span>
                 </div>
-                <p className="text-[11px] text-slate-400 mt-1.5">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1.5">
                   Entered {activeCab.entryTime} at {activeCab.gate} • Tower 2 Drop
                 </p>
               </div>

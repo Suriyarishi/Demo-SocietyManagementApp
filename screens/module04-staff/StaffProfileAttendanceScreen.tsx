@@ -95,14 +95,14 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
 
           <div className="pt-3 border-t border-slate-100 dark:border-obsidian-800 grid grid-cols-2 gap-3 text-xs">
             <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-obsidian-850">
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Turnstile Status</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Turnstile Status</span>
               <span className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 mt-0.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 {staff.status === 'in_campus' ? 'Inside Campus' : 'Outside'}
               </span>
             </div>
             <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-obsidian-850">
-              <span className="text-[10px] text-slate-400 uppercase block font-semibold">Monthly Salary</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-semibold">Monthly Salary</span>
               <span className="font-mono font-bold text-slate-900 dark:text-white mt-0.5 block">
                 ₹{staff.salaryPerMonth.toLocaleString()} / mo
               </span>
@@ -117,7 +117,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Monthly Attendance Log
               </h4>
-              <span className="text-[11px] text-slate-400 font-medium">November 2026 (24 of 26 Days)</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">November 2026 (24 of 26 Days)</span>
             </div>
             <button
               onClick={onOpenLedger}
@@ -130,7 +130,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           {/* Day Grid */}
           <div className="grid grid-cols-7 gap-1.5 pt-1 text-center">
             {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((dayName, idx) => (
-              <span key={idx} className="text-[10px] font-bold text-slate-400">
+              <span key={idx} className="text-[10px] font-bold text-slate-500 dark:text-slate-400">
                 {dayName}
               </span>
             ))}

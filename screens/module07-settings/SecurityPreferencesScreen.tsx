@@ -173,7 +173,7 @@ export const SecurityPreferencesScreen: React.FC<SecurityPreferencesScreenProps>
             {dndActive && (
               <div className="pt-2 border-t border-slate-100 dark:border-obsidian-800 grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-[10px] font-bold text-slate-400 block mb-1">START TIME</span>
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1">START TIME</span>
                   <input
                     type="time"
                     value={dndStart}
@@ -182,7 +182,7 @@ export const SecurityPreferencesScreen: React.FC<SecurityPreferencesScreenProps>
                   />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold text-slate-400 block mb-1">END TIME</span>
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1">END TIME</span>
                   <input
                     type="time"
                     value={dndEnd}
@@ -269,7 +269,7 @@ export const SecurityPreferencesScreen: React.FC<SecurityPreferencesScreenProps>
             <div className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 flex items-center justify-between">
               <div>
                 <span className="font-bold text-slate-900 dark:text-white block">Zepto ⚡</span>
-                <span className="text-[10px] text-slate-400">Auto-Pass</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">Auto-Pass</span>
               </div>
               <input
                 type="checkbox"
@@ -282,7 +282,7 @@ export const SecurityPreferencesScreen: React.FC<SecurityPreferencesScreenProps>
             <div className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 flex items-center justify-between">
               <div>
                 <span className="font-bold text-slate-900 dark:text-white block">Blinkit 🛍️</span>
-                <span className="text-[10px] text-slate-400">Auto-Pass</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">Auto-Pass</span>
               </div>
               <input
                 type="checkbox"
@@ -295,7 +295,7 @@ export const SecurityPreferencesScreen: React.FC<SecurityPreferencesScreenProps>
             <div className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 flex items-center justify-between">
               <div>
                 <span className="font-bold text-slate-900 dark:text-white block">Swiggy / Zomato</span>
-                <span className="text-[10px] text-slate-400">Auto-Pass</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">Auto-Pass</span>
               </div>
               <input
                 type="checkbox"
@@ -308,7 +308,7 @@ export const SecurityPreferencesScreen: React.FC<SecurityPreferencesScreenProps>
             <div className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 flex items-center justify-between">
               <div>
                 <span className="font-bold text-slate-900 dark:text-white block">Amazon Parcel</span>
-                <span className="text-[10px] text-slate-400">Call First</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">Call First</span>
               </div>
               <input
                 type="checkbox"

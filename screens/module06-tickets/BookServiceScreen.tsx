@@ -115,7 +115,7 @@ export const BookServiceScreen: React.FC<BookServiceScreenProps> = ({
                 }`}
               >
                 <span className="text-xs font-bold block">{d.label}</span>
-                <span className="text-[10px] text-slate-400 block mt-0.5">{d.sub}</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 block mt-0.5">{d.sub}</span>
               </button>
             ))}
           </div>

@@ -216,19 +216,19 @@ export const FamilyTenantGovernanceScreen: React.FC<FamilyTenantGovernanceScreen
 
               {/* Permission Badges Grid */}
               <div className="grid grid-cols-2 gap-1.5 text-[10px] font-semibold border-t border-slate-100 dark:border-obsidian-800 pt-2.5">
-                <span className={`flex items-center gap-1.5 ${member.canApproveGuests ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'}`}>
+                <span className={`flex items-center gap-1.5 ${member.canApproveGuests ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`}>
                   <KeyRound size={12} /> {member.canApproveGuests ? 'Gate Approvals' : 'No Gate Pass'}
                 </span>
 
-                <span className={`flex items-center gap-1.5 ${member.canPayBills ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'}`}>
+                <span className={`flex items-center gap-1.5 ${member.canPayBills ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`}>
                   <CreditCard size={12} /> {member.canPayBills ? 'Pay Society Bills' : 'No Bill Access'}
                 </span>
 
-                <span className={`flex items-center gap-1.5 ${member.canBookAmenities ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'}`}>
+                <span className={`flex items-center gap-1.5 ${member.canBookAmenities ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`}>
                   <Coffee size={12} /> {member.canBookAmenities ? 'Clubhouse Pass' : 'No Bookings'}
                 </span>
 
-                <span className={`flex items-center gap-1.5 ${member.canManageStaff ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'}`}>
+                <span className={`flex items-center gap-1.5 ${member.canManageStaff ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`}>
                   <Users size={12} /> {member.canManageStaff ? 'Manage Daily Staff' : 'Staff Restricted'}
                 </span>
               </div>

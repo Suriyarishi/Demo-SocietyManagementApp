@@ -119,7 +119,7 @@ export const SmartDoorLockScreen: React.FC<SmartDoorLockScreenProps> = ({ onBack
           <h3 className="text-base font-extrabold text-white">
             {isLocked ? 'Front Door is Secured' : 'Front Door is Unlocked'}
           </h3>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Yale Assure Deadbolt 2026 • Tower 2 - Flat 1204
           </p>
         </div>
@@ -147,7 +147,7 @@ export const SmartDoorLockScreen: React.FC<SmartDoorLockScreenProps> = ({ onBack
           {guestPinActive && (
             <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-obsidian-850 border border-slate-100 dark:border-obsidian-800 flex items-center justify-between">
               <div>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   PASSCODE (EXPIRES IN 03:45h)
                 </span>
                 <span className="text-xl font-black font-mono tracking-widest text-slate-900 dark:text-white">
@@ -180,15 +180,15 @@ export const SmartDoorLockScreen: React.FC<SmartDoorLockScreenProps> = ({ onBack
           <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-800 flex flex-col gap-2.5 text-xs text-slate-700 dark:text-slate-300">
             <div className="flex items-center justify-between">
               <span>✓ Unlocked via Optical Fingerprint (Suriya K)</span>
-              <span className="font-mono text-slate-400 text-[10px]">Today 08:14 AM</span>
+              <span className="font-mono text-slate-500 dark:text-slate-400 text-[10px]">Today 08:14 AM</span>
             </div>
             <div className="flex items-center justify-between">
               <span>✓ Auto-Deadbolted (Door closed sensor)</span>
-              <span className="font-mono text-slate-400 text-[10px]">Yesterday 6:30 PM</span>
+              <span className="font-mono text-slate-500 dark:text-slate-400 text-[10px]">Yesterday 6:30 PM</span>
             </div>
             <div className="flex items-center justify-between">
               <span>✓ Unlocked via Guest PIN (Sunita Devi - Maid)</span>
-              <span className="font-mono text-slate-400 text-[10px]">Yesterday 09:02 AM</span>
+              <span className="font-mono text-slate-500 dark:text-slate-400 text-[10px]">Yesterday 09:02 AM</span>
             </div>
           </div>
         </div>

@@ -198,7 +198,7 @@ export const DocumentUploadScreen: React.FC<DocumentUploadScreenProps> = ({
                   <p className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Tap to upload PDF, JPG, PNG
                   </p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                     Max size: 10 MB • Instant OCR Verification
                   </p>
                 </div>

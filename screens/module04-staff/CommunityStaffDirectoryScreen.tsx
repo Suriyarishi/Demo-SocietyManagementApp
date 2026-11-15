@@ -195,7 +195,7 @@ export const CommunityStaffDirectoryScreen: React.FC<CommunityStaffDirectoryScre
                     <div className="flex items-center gap-1 text-[11px] text-amber-500 font-bold mt-1">
                       <Star size={11} className="fill-current" />
                       <span>{staff.rating}</span>
-                      <span className="text-slate-400 font-normal">({staff.reviewsCount} reviews)</span>
+                      <span className="text-slate-500 dark:text-slate-400 font-normal">({staff.reviewsCount} reviews)</span>
                     </div>
                   </div>
                 </div>
@@ -204,7 +204,7 @@ export const CommunityStaffDirectoryScreen: React.FC<CommunityStaffDirectoryScre
                   <span className="text-xs font-mono font-bold text-slate-900 dark:text-white block">
                     ~₹{staff.salaryPerMonth.toLocaleString()}
                   </span>
-                  <span className="text-[10px] text-slate-400 block">per month</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block">per month</span>
                 </div>
               </div>
 

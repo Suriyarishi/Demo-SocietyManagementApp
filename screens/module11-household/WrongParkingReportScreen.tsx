@@ -77,7 +77,7 @@ export const WrongParkingReportScreen: React.FC<WrongParkingReportScreenProps> =
         {/* Slot Ownership Banner */}
         <div className="p-3.5 rounded-2xl bg-slate-100 dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-800 flex items-center justify-between text-xs">
           <div>
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+            <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
               YOUR ASSIGNED SLOT
             </span>
             <h4 className="font-mono font-extrabold text-slate-900 dark:text-white text-sm">
@@ -120,7 +120,7 @@ export const WrongParkingReportScreen: React.FC<WrongParkingReportScreenProps> =
                 <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
                   {photoAttached ? '✓ Photo of Car in Slot #B1-142 Attached' : 'Tap to Photograph Offending Car'}
                 </span>
-                <span className="text-[10px] text-slate-400">
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">
                   Visible plate and slot number required
                 </span>
               </div>

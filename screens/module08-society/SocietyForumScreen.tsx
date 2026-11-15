@@ -212,7 +212,7 @@ export const SocietyForumScreen: React.FC<SocietyForumScreenProps> = ({ onBack }
                       <h4 className="font-bold text-slate-900 dark:text-white text-xs">
                         {post.author}
                       </h4>
-                      <span className="text-[10px] font-semibold text-slate-400">
+                      <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400">
                         • {post.timeAgo}
                       </span>
                     </div>

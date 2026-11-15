@@ -75,7 +75,7 @@ export const VisitorDetailScreen: React.FC<VisitorDetailScreenProps> = ({
 
           <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-obsidian-850 border border-slate-200/60 dark:border-obsidian-750 flex items-center justify-between">
             <div>
-              <span className="text-[10px] text-slate-400 uppercase block font-bold">
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-bold">
                 Passcode / PIN
               </span>
               <span className="text-lg font-mono font-extrabold text-cobalt-600 dark:text-cobalt-400">
@@ -96,26 +96,26 @@ export const VisitorDetailScreen: React.FC<VisitorDetailScreenProps> = ({
 
           <div className="flex flex-col gap-2.5 text-xs text-slate-600 dark:text-slate-300">
             <div className="flex items-center justify-between py-1 border-b border-slate-100 dark:border-obsidian-800">
-              <span className="text-slate-400">Gate Location:</span>
+              <span className="text-slate-500 dark:text-slate-400">Gate Location:</span>
               <span className="font-semibold text-slate-900 dark:text-white">{visitor.gateNumber}</span>
             </div>
 
             <div className="flex items-center justify-between py-1 border-b border-slate-100 dark:border-obsidian-800">
-              <span className="text-slate-400">Entry Timestamp:</span>
+              <span className="text-slate-500 dark:text-slate-400">Entry Timestamp:</span>
               <span className="font-mono font-semibold text-slate-900 dark:text-white">
                 {visitor.entryTimestamp || visitor.expectedTime}
               </span>
             </div>
 
             <div className="flex items-center justify-between py-1 border-b border-slate-100 dark:border-obsidian-800">
-              <span className="text-slate-400">Exit Timestamp:</span>
+              <span className="text-slate-500 dark:text-slate-400">Exit Timestamp:</span>
               <span className="font-mono font-semibold text-slate-900 dark:text-white">
                 {visitor.exitTimestamp || 'Active / On Campus'}
               </span>
             </div>
 
             <div className="flex items-center justify-between py-1 border-b border-slate-100 dark:border-obsidian-800">
-              <span className="text-slate-400">Authorized By:</span>
+              <span className="text-slate-500 dark:text-slate-400">Authorized By:</span>
               <span className="font-semibold text-slate-900 dark:text-white">
                 {visitor.guardName || 'App Pre-Approval'}
               </span>
@@ -123,7 +123,7 @@ export const VisitorDetailScreen: React.FC<VisitorDetailScreenProps> = ({
 
             {visitor.vehicleNo && (
               <div className="flex items-center justify-between py-1">
-                <span className="text-slate-400">Vehicle Registered:</span>
+                <span className="text-slate-500 dark:text-slate-400">Vehicle Registered:</span>
                 <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400">
                   {visitor.vehicleNo}
                 </span>

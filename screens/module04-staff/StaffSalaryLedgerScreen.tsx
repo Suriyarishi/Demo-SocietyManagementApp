@@ -113,7 +113,7 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
             <span className="text-3xl font-extrabold font-mono text-white">
               ₹{totalMonthlyDue.toLocaleString()}
             </span>
-            <span className="text-xs text-slate-400">for 3 staff members</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">for 3 staff members</span>
           </div>
 
           <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
@@ -142,7 +142,7 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
                   <span className="text-base font-extrabold font-mono text-slate-900 dark:text-white block">
                     ₹{item.netPayable.toLocaleString()}
                   </span>
-                  <span className="text-[10px] text-slate-400 block">Net Payable</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Net Payable</span>
                 </div>
               </div>
 
@@ -153,7 +153,7 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
                     -₹{item.advanceTaken} Advance
                   </span>
                 ) : (
-                  <span className="text-slate-400">Zero Advance</span>
+                  <span className="text-slate-500 dark:text-slate-400">Zero Advance</span>
                 )}
                 <button
                   type="button"
@@ -173,7 +173,7 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
         <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
           <div className="w-full max-w-[340px] p-5 rounded-3xl bg-slate-900 border border-slate-800 text-white shadow-2xl flex flex-col gap-4">
             <h3 className="text-base font-bold">Record Advance Salary Note</h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Advance payments are automatically deducted from the month-end net payable ledger.
             </p>
 

@@ -122,7 +122,7 @@ export const AddStaffScreen: React.FC<AddStaffScreenProps> = ({
 
             <div className="p-4 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-800 flex items-center justify-between text-xs shadow-sm">
               <div>
-                <span className="text-[10px] text-slate-400 uppercase block font-bold tracking-wider">Matched Worker</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase block font-bold tracking-wider">Matched Worker</span>
                 <span className="font-bold text-slate-900 dark:text-white text-sm">Sunita Devi (Cook)</span>
                 <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold block mt-0.5">✓ Police Cleared • 4.8★ Rating</span>
               </div>

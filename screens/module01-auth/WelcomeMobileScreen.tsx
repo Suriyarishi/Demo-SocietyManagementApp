@@ -153,7 +153,7 @@ export const WelcomeMobileScreen: React.FC<WelcomeMobileScreenProps> = ({
                 <button
                   type="button"
                   onClick={() => setPhoneNumber('')}
-                  className="mr-3.5 px-2 py-1 rounded-md text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-200/60 dark:bg-obsidian-800"
+                  className="mr-3.5 px-2 py-1 rounded-md text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-200/60 dark:bg-obsidian-800"
                 >
                   Clear
                 </button>

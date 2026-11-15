@@ -68,7 +68,7 @@ export const CheckoutGatewayScreen: React.FC<CheckoutGatewayScreenProps> = ({
 
         {/* Amount Banner */}
         <div className="p-5 rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-elevated text-center flex flex-col items-center gap-1">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+          <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
             Total Amount to Pay
           </span>
           <span className="text-3xl font-mono font-extrabold text-white">

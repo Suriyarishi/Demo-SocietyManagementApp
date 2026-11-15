@@ -68,7 +68,7 @@ export const GuardDispatchLiveScreen: React.FC<GuardDispatchLiveScreenProps> = (
         {/* ETA Countdown Tracker */}
         <div className="p-4 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex items-center justify-between">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
               GUARD INTERVENTION ETA
             </span>
             <div className="flex items-baseline gap-1 mt-0.5">
@@ -87,7 +87,7 @@ export const GuardDispatchLiveScreen: React.FC<GuardDispatchLiveScreenProps> = (
         {/* Dispatched Guard Officer Card */}
         <div className="p-4 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex flex-col gap-3">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               ASSIGNED RESPONDER
             </span>
             <Badge variant="emerald" size="sm">

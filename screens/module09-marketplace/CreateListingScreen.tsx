@@ -126,7 +126,7 @@ export const CreateListingScreen: React.FC<CreateListingScreenProps> = ({
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200 block">
                 {photoAdded ? '✓ 1 Photo Attached (Tap to change)' : 'Tap to Take or Upload Photo'}
               </span>
-              <span className="text-[10px] text-slate-400">
+              <span className="text-[10px] text-slate-500 dark:text-slate-400">
                 Supports JPG, PNG up to 10MB
               </span>
             </div>

@@ -146,12 +146,12 @@ export const PinlessEntryScreen: React.FC<PinlessEntryScreenProps> = ({ onBack }
           <h3 className="text-sm font-extrabold text-white mt-1">
             Scanning Hunt Lockdoor BLE Beacons
           </h3>
-          <p className="text-[11px] text-slate-400 max-w-[260px] mt-0.5">
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 max-w-[260px] mt-0.5">
             Hold phone within 2 meters of any turnstile or gate reader to open hands-free.
           </p>
 
           <div className="mt-4 pt-3 w-full border-t border-white/10 flex items-center justify-between text-xs">
-            <span className="text-slate-400">Auto-Unlock on Proximity</span>
+            <span className="text-slate-500 dark:text-slate-400">Auto-Unlock on Proximity</span>
             <input
               type="checkbox"
               checked={autoUnlockNearby}
@@ -170,7 +170,7 @@ export const PinlessEntryScreen: React.FC<PinlessEntryScreenProps> = ({ onBack }
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Detected Turnstiles & Doors ({beacons.length})
             </span>
-            <span className="text-[10px] text-slate-400 font-mono">
+            <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
               AES-256 Encrypted
             </span>
           </div>

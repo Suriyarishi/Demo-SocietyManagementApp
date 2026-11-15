@@ -157,7 +157,7 @@ export const Module01Controller: React.FC<Module01ControllerProps> = ({
               <h3 className="text-lg font-bold tracking-tight">
                 Module 01 Flow Complete!
               </h3>
-              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
                 You have successfully experienced all 6 screens of <strong>Module 01: Authentication, Onboarding & Society Verification</strong>.
               </p>
             </div>

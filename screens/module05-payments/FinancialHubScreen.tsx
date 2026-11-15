@@ -90,7 +90,7 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
                   <span className="text-3xl font-extrabold font-mono text-white tracking-tight">
                     ₹{maintenanceDue.toLocaleString()}
                   </span>
-                  <span className="text-xs text-slate-400 font-medium">Flat 1204</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Flat 1204</span>
                 </div>
               </div>
 
@@ -119,7 +119,7 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
                 <ChevronRight size={13} />
               </button>
 
-              <span className="text-[11px] text-slate-400">0% UPI Fee</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400">0% UPI Fee</span>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
                 <span className="text-base font-extrabold font-mono text-emerald-600 dark:text-emerald-400 block">
                   ₹{ebBalance.toFixed(2)}
                 </span>
-                <span className="text-[10px] text-slate-400">~4 Days Left</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">~4 Days Left</span>
               </div>
             </div>
 
@@ -167,7 +167,7 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
 
             {/* Quick Recharge Chips */}
             <div className="flex items-center gap-2 pt-1 border-t border-slate-100 dark:border-obsidian-800">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Top-up:</span>
+              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Top-up:</span>
               {[500, 1000, 2000].map((amt) => (
                 <button
                   key={amt}

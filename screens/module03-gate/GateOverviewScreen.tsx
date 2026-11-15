@@ -311,7 +311,7 @@ export const GateOverviewScreen: React.FC<GateOverviewScreenProps> = ({
                   <span className="flex items-center gap-1.5 font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     {v.gateNumber}
-                    {v.vehicleNo && <span className="text-slate-400 font-mono">({v.vehicleNo})</span>}
+                    {v.vehicleNo && <span className="text-slate-500 dark:text-slate-400 font-mono">({v.vehicleNo})</span>}
                   </span>
 
                   {v.status === 'in_campus' && v.overstayMinutes && (
@@ -329,7 +329,7 @@ export const GateOverviewScreen: React.FC<GateOverviewScreenProps> = ({
                   )}
 
                   {v.status === 'departed' && (
-                    <span className="font-medium text-slate-400">
+                    <span className="font-medium text-slate-500 dark:text-slate-400">
                       Exited at {v.exitTimestamp}
                     </span>
                   )}

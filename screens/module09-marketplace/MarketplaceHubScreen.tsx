@@ -250,7 +250,7 @@ export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
                   >
                     {item.condition}
                   </Badge>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     {item.category}
                   </span>
                 </div>
@@ -283,7 +283,7 @@ export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
                       `₹${item.price.toLocaleString()}`
                     )}
                   </span>
-                  <span className="text-[10px] text-slate-400 block">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                     {item.sellerUnit} • {item.postedAgo}
                   </span>
                 </div>

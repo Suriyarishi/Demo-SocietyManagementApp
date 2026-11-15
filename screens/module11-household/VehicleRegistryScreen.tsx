@@ -192,7 +192,7 @@ export const VehicleRegistryScreen: React.FC<VehicleRegistryScreenProps> = ({ on
                   <p className="text-[11px] text-slate-500 font-medium mt-0.5">
                     {v.model} • {v.type}
                   </p>
-                  <p className="text-[10px] text-slate-400 font-mono mt-0.5">
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
                     {v.parkingSlot} • {v.rfidTag}
                   </p>
                 </div>

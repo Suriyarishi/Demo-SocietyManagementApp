@@ -74,7 +74,7 @@ export const DeliveryPassScreen: React.FC<DeliveryPassScreenProps> = ({
           <button
             type="button"
             onClick={onBack}
-            className="text-xs font-semibold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
           >
             Cancel
           </button>

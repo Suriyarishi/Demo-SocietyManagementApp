@@ -135,7 +135,7 @@ export const MultiFlatSelectorSheet: React.FC<MultiFlatSelectorSheetProps> = ({
                       <Check size={14} strokeWidth={3} />
                     </div>
                   ) : (
-                    <span className="text-xs font-semibold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
                       Switch
                     </span>
                   )}

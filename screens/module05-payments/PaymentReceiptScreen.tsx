@@ -76,7 +76,7 @@ export const PaymentReceiptScreen: React.FC<PaymentReceiptScreenProps> = ({
         <div className="rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/80 dark:border-obsidian-800 shadow-elevated overflow-hidden text-xs">
           <div className="p-4 bg-slate-50 dark:bg-obsidian-850 border-b border-slate-200 dark:border-obsidian-750 flex items-center justify-between">
             <div>
-              <span className="text-[10px] text-slate-400 uppercase font-bold block">Official Receipt</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block">Official Receipt</span>
               <span className="font-mono font-bold text-slate-800 dark:text-slate-200 text-sm">
                 #{receiptData.txnId}
               </span>
@@ -88,28 +88,28 @@ export const PaymentReceiptScreen: React.FC<PaymentReceiptScreenProps> = ({
 
           <div className="p-5 flex flex-col gap-3">
             <div className="flex items-center justify-between py-1 border-b border-slate-100 dark:border-obsidian-800">
-              <span className="text-slate-400">Beneficiary:</span>
+              <span className="text-slate-500 dark:text-slate-400">Beneficiary:</span>
               <span className="font-semibold text-slate-900 dark:text-white text-right truncate max-w-[200px]">
                 {receiptData.society}
               </span>
             </div>
 
             <div className="flex items-center justify-between py-1 border-b border-slate-100 dark:border-obsidian-800">
-              <span className="text-slate-400">Payment Rail:</span>
+              <span className="text-slate-500 dark:text-slate-400">Payment Rail:</span>
               <span className="font-semibold text-slate-900 dark:text-white font-mono">
                 {receiptData.method} UPI (0% Fee)
               </span>
             </div>
 
             <div className="flex items-center justify-between py-1 border-b border-slate-100 dark:border-obsidian-800">
-              <span className="text-slate-400">Date & Time:</span>
+              <span className="text-slate-500 dark:text-slate-400">Date & Time:</span>
               <span className="font-mono text-slate-900 dark:text-white">
                 {receiptData.date} • {receiptData.timestamp}
               </span>
             </div>
 
             <div className="flex items-center justify-between py-1">
-              <span className="text-slate-400">Society Green Rebate:</span>
+              <span className="text-slate-500 dark:text-slate-400">Society Green Rebate:</span>
               <span className="font-bold text-emerald-600 dark:text-emerald-400 font-mono">
                 -₹150.00 Applied
               </span>

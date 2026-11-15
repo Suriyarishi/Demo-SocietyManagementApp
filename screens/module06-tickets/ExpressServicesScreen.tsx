@@ -225,7 +225,7 @@ export const ExpressServicesScreen: React.FC<ExpressServicesScreenProps> = ({
                   <span className="text-base font-extrabold font-mono text-slate-900 dark:text-white block">
                     ₹{service.price}
                   </span>
-                  <span className="text-[10px] text-slate-400 font-medium">fixed rate</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">fixed rate</span>
                 </div>
               </div>
 

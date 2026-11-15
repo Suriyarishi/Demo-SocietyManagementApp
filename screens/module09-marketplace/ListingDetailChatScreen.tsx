@@ -135,7 +135,7 @@ export const ListingDetailChatScreen: React.FC<ListingDetailChatScreenProps> = (
                 <Badge variant={item.price === 0 ? 'emerald' : 'cobalt'} size="sm">
                   {item.condition}
                 </Badge>
-                <span className="text-[10px] font-bold text-slate-400 font-mono">
+                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 font-mono">
                   Posted {item.postedAgo}
                 </span>
               </div>
@@ -232,7 +232,7 @@ export const ListingDetailChatScreen: React.FC<ListingDetailChatScreenProps> = (
                 >
                   {m.text}
                 </div>
-                <span className="text-[9px] text-slate-400 font-mono mt-0.5 px-1">
+                <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono mt-0.5 px-1">
                   {m.time}
                 </span>
               </div>

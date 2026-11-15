@@ -257,7 +257,7 @@ export const HelpdeskHubScreen: React.FC<HelpdeskHubScreenProps> = ({
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                className="absolute right-3 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
               >
                 Clear
               </button>
@@ -295,7 +295,7 @@ export const HelpdeskHubScreen: React.FC<HelpdeskHubScreenProps> = ({
             <span className="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
               Tickets ({filteredTickets.length})
             </span>
-            <span className="text-[11px] text-slate-400">Tap card to inspect SLA</span>
+            <span className="text-[11px] text-slate-500 dark:text-slate-400">Tap card to inspect SLA</span>
           </div>
 
           {filteredTickets.length > 0 ? (
@@ -376,7 +376,7 @@ export const HelpdeskHubScreen: React.FC<HelpdeskHubScreenProps> = ({
                         <CheckCircle2 size={13} />
                         <span>Work approved by resident • 5.0★ Rating</span>
                       </span>
-                      <span className="text-slate-400 font-mono text-[11px]">Closed</span>
+                      <span className="text-slate-500 dark:text-slate-400 font-mono text-[11px]">Closed</span>
                     </div>
                   )}
                 </div>

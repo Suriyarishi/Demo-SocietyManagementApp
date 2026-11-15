@@ -84,7 +84,7 @@ export const GuestPassShareScreen: React.FC<GuestPassShareScreenProps> = ({
                 <span className="text-[11px] font-extrabold tracking-wider uppercase text-slate-100 block leading-tight">
                   HUNT LOCKDOOR PASS
                 </span>
-                <span className="text-[10px] text-slate-400">Gate 1 & Gate 2 Clearance</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">Gate 1 & Gate 2 Clearance</span>
               </div>
             </div>
             <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-500/40 font-bold uppercase">
@@ -95,7 +95,7 @@ export const GuestPassShareScreen: React.FC<GuestPassShareScreenProps> = ({
           {/* Ticket Body: PIN & QR Code */}
           <div className="p-5 text-center flex flex-col items-center gap-4">
             <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">
+              <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">
                 6-Digit Entry Code
               </span>
               <div className="mt-1 flex items-center justify-center gap-2">
@@ -123,20 +123,20 @@ export const GuestPassShareScreen: React.FC<GuestPassShareScreenProps> = ({
             {/* Guest & Unit Metadata */}
             <div className="w-full pt-3 border-t border-white/10 flex flex-col gap-2 text-left text-xs">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Guest Name:</span>
+                <span className="text-slate-500 dark:text-slate-400">Guest Name:</span>
                 <span className="font-bold text-white">{passData.guestName}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Destination:</span>
+                <span className="text-slate-500 dark:text-slate-400">Destination:</span>
                 <span className="font-mono font-bold text-slate-200">Tower 2 - Flat 1204</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Time Window:</span>
+                <span className="text-slate-500 dark:text-slate-400">Time Window:</span>
                 <span className="font-semibold text-slate-200">{passData.dateStr} • {passData.timeSlot.split(' ')[0]}</span>
               </div>
               {passData.hasVehicle && passData.vehicleNo && (
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-400">Vehicle Plate:</span>
+                  <span className="text-slate-500 dark:text-slate-400">Vehicle Plate:</span>
                   <span className="font-mono font-bold text-emerald-400">{passData.vehicleNo}</span>
                 </div>
               )}

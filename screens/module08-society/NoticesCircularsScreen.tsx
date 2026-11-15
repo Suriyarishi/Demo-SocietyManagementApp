@@ -169,7 +169,7 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
                 >
                   {n.priority === 'urgent' ? 'URGENT NOTICE' : n.priority === 'official' ? 'OFFICIAL CIRCULAR' : 'ADVISORY'}
                 </Badge>
-                <span className="text-[10px] font-mono font-bold text-slate-400">
+                <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400">
                   {n.dateStr}
                 </span>
               </div>
@@ -184,7 +184,7 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
               </div>
 
               <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-obsidian-800 text-[11px]">
-                <span className="font-bold text-slate-400 truncate max-w-[190px]">
+                <span className="font-bold text-slate-500 dark:text-slate-400 truncate max-w-[190px]">
                   {n.department}
                 </span>
 
@@ -219,13 +219,13 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
             </div>
 
             <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+              <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                 {selectedNotice.department}
               </span>
               <h3 className="text-sm font-extrabold text-slate-900 dark:text-white mt-0.5">
                 {selectedNotice.title}
               </h3>
-              <p className="text-[10px] font-mono text-slate-400 mt-1">
+              <p className="text-[10px] font-mono text-slate-500 dark:text-slate-400 mt-1">
                 Issued: {selectedNotice.dateStr}
               </p>
             </div>

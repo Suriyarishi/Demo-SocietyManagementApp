@@ -253,7 +253,7 @@ export const IntercomDirectoryScreen: React.FC<IntercomDirectoryScreenProps> = (
               <h3 className="text-base font-extrabold text-white mt-1">
                 {activeCall.title}
               </h3>
-              <p className="text-xs text-slate-400 font-mono mt-0.5">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
                 {activeCall.extension} • 00:14
               </p>
             </div>

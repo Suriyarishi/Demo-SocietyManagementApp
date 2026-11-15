@@ -93,7 +93,7 @@ export const TicketSignoffScreen: React.FC<TicketSignoffScreenProps> = ({
             <span className="font-bold text-slate-900 dark:text-white block mt-0.5">
               {ticket.title}
             </span>
-            <span className="text-[11px] text-slate-400">
+            <span className="text-[11px] text-slate-500 dark:text-slate-400">
               Technician: {ticket.technician?.name || 'Kishore Verma'}
             </span>
           </div>
@@ -194,7 +194,7 @@ export const TicketSignoffScreen: React.FC<TicketSignoffScreenProps> = ({
               <Heart size={14} className="text-crimson-500 fill-crimson-500" />
               <span>Appreciation Tip for Kishore Verma</span>
             </span>
-            <span className="text-[11px] text-slate-400">100% goes to staff</span>
+            <span className="text-[11px] text-slate-500 dark:text-slate-400">100% goes to staff</span>
           </div>
 
           <div className="grid grid-cols-4 gap-2">

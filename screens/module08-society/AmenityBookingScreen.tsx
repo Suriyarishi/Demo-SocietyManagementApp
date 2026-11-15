@@ -202,7 +202,7 @@ export const AmenityBookingScreen: React.FC<AmenityBookingScreenProps> = ({ onBa
                     <Badge variant={amn.status === 'available' ? 'emerald' : 'amber'} size="sm">
                       {amn.status === 'available' ? 'Slots Available' : 'Few Slots Left'}
                     </Badge>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       {amn.category}
                     </span>
                   </div>
@@ -232,7 +232,7 @@ export const AmenityBookingScreen: React.FC<AmenityBookingScreenProps> = ({ onBa
               </div>
 
               <div className="flex items-center justify-between pt-1">
-                <span className="text-[11px] font-semibold text-slate-400">
+                <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
                   {amn.slots.length} upcoming slots
                 </span>
                 <button

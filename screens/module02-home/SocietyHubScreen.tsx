@@ -301,7 +301,7 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                   }`}>
                     {notice.priority}
                   </span>
-                  <span className="text-[10px] text-slate-400 font-medium">{notice.date}</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">{notice.date}</span>
                 </div>
                 <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
                   {notice.title}

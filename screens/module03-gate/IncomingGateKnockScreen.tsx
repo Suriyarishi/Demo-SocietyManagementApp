@@ -95,7 +95,7 @@ export const IncomingGateKnockScreen: React.FC<IncomingGateKnockScreenProps> = (
                 <h3 className="text-base font-extrabold text-white">
                   Amazon Delivery (Sandeep M)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Parcel #AZ-9402 • At Boom Barrier Gate 1
                 </p>
               </div>
@@ -104,7 +104,7 @@ export const IncomingGateKnockScreen: React.FC<IncomingGateKnockScreenProps> = (
               </span>
             </div>
 
-            <p className="text-[11px] text-slate-400 mt-1 leading-relaxed bg-white/5 p-2 rounded-xl border border-white/5">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed bg-white/5 p-2 rounded-xl border border-white/5">
               Guard Note: "Delivery agent requesting access to Tower 2 passenger lift."
             </p>
           </div>

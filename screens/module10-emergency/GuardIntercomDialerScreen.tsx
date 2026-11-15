@@ -199,7 +199,7 @@ export const GuardIntercomDialerScreen: React.FC<GuardIntercomDialerScreenProps>
               <h3 className="text-base font-extrabold text-white mt-1">
                 {activeCall.name}
               </h3>
-              <p className="text-xs text-slate-400 font-mono mt-0.5">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
                 {activeCall.extension} • 00:24
               </p>
             </div>
