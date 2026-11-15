@@ -7,13 +7,10 @@ import {
   UserPlus,
   Package,
   CreditCard,
-  Users,
-  AlertTriangle,
   CheckCircle,
   XCircle,
   Zap,
   Clock,
-  ArrowRight,
   ShieldAlert,
   ChevronRight,
   FileText,
@@ -38,13 +35,7 @@ import {
   Hammer,
   Droplets,
   FileSignature,
-  X,
-  Phone,
-  Check,
-  Calendar,
   Lock,
-  Star,
-  Send
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { FlatEntity } from './MultiFlatSelectorSheet';
@@ -68,6 +59,9 @@ interface HomeScreenProps {
   onOpenDirectory?: () => void;
   onOpenPinless?: () => void;
   onOpenMarketplace?: () => void;
+  onOpenSmartMeter?: () => void;
+  onOpenItemizedBill?: () => void;
+  onSelectExpressService?: (service: { title: string; category: string; basePrice: string; eta: string }) => void;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -88,6 +82,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onOpenDirectory,
   onOpenPinless,
   onOpenMarketplace,
+  onOpenSmartMeter,
+  onOpenItemizedBill,
+  onSelectExpressService,
 }) => {
   // Gate Knock Simulator State
   const [hasGateKnock, setHasGateKnock] = useState<boolean>(true);
@@ -96,15 +93,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
   // Core Residential Hub Segmented Tab State ('visitors' | 'bills' | 'society' | 'services')
   const [activeHubTab, setActiveHubTab] = useState<'visitors' | 'bills' | 'society' | 'services'>('visitors');
-  
-  // Interactive Modal State for Core Hub Actions
-  const [activeHubModal, setActiveHubModal] = useState<string | null>(null);
-  const [selectedService, setSelectedService] = useState<{
-    title: string;
-    category: string;
-    basePrice: string;
-    eta: string;
-  } | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -383,8 +371,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 2. Zepto Card */}
                 <button
                   type="button"
-                  onClick={() => setActiveHubModal('zepto_pass')}
+                  onClick={onDeliveryPass}
                   className="bg-white dark:bg-obsidian-900 rounded-2xl p-2.5 flex flex-col items-center justify-between gap-1.5 border border-slate-100 dark:border-obsidian-800 shadow-sm hover:border-emerald-500 transition-all press-scale h-28"
+                  title="Issue Instant Delivery Pass for Zepto"
                 >
                   <div className="w-11 h-11 rounded-full border-2 border-emerald-500 p-0.5 overflow-hidden bg-slate-100 mt-1">
                     <img
@@ -401,8 +390,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 3. Zomato Card */}
                 <button
                   type="button"
-                  onClick={() => setActiveHubModal('zomato_pass')}
+                  onClick={onDeliveryPass}
                   className="bg-white dark:bg-obsidian-900 rounded-2xl p-2.5 flex flex-col items-center justify-between gap-1.5 border border-slate-100 dark:border-obsidian-800 shadow-sm hover:border-emerald-500 transition-all press-scale h-28"
+                  title="Issue Instant Delivery Pass for Zomato"
                 >
                   <div className="w-11 h-11 rounded-full border-2 border-emerald-500 p-0.5 overflow-hidden bg-slate-100 mt-1">
                     <img
@@ -456,7 +446,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 2. Meter Recharge */}
                 <button
                   type="button"
-                  onClick={() => setActiveHubModal('meter_recharge')}
+                  onClick={onOpenSmartMeter || onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -470,7 +460,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 3. Utility */}
                 <button
                   type="button"
-                  onClick={() => setActiveHubModal('utility_bill')}
+                  onClick={onOpenItemizedBill || onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -484,7 +474,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 4. Pay Rent */}
                 <button
                   type="button"
-                  onClick={() => setActiveHubModal('pay_rent')}
+                  onClick={onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -498,7 +488,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 5. Meter Consumption */}
                 <button
                   type="button"
-                  onClick={() => setActiveHubModal('meter_consumption')}
+                  onClick={onOpenSmartMeter || onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -523,7 +513,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </span>
                 <button
                   type="button"
-                  onClick={() => setActiveHubModal('directory')}
+                  onClick={onOpenDirectory || onOpenForum}
                   className="text-[11px] font-bold text-crimson-600 dark:text-crimson-400 hover:underline flex items-center gap-0.5"
                 >
                   <span>Community Suite</span>
@@ -536,7 +526,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 1. Amenities */}
                 <button
                   type="button"
-                  onClick={onOpenAmenities || (() => setActiveHubModal('amenities'))}
+                  onClick={onOpenAmenities}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -550,7 +540,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 2. Society Forum */}
                 <button
                   type="button"
-                  onClick={onOpenForum || (() => setActiveHubModal('society_forum'))}
+                  onClick={onOpenForum}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -564,7 +554,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 3. Directory */}
                 <button
                   type="button"
-                  onClick={onOpenDirectory || (() => setActiveHubModal('directory'))}
+                  onClick={onOpenDirectory}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -592,7 +582,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 5. Notices */}
                 <button
                   type="button"
-                  onClick={onOpenNotices || (() => setActiveHubModal('notices'))}
+                  onClick={onOpenNotices}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -620,7 +610,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 7. Pinless Entry */}
                 <button
                   type="button"
-                  onClick={onOpenPinless || (() => setActiveHubModal('pinless_entry'))}
+                  onClick={onOpenPinless}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -634,7 +624,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 8. Market Place */}
                 <button
                   type="button"
-                  onClick={onOpenMarketplace || (() => setActiveHubModal('marketplace'))}
+                  onClick={onOpenMarketplace}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -657,15 +647,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 1. Full House Cleaning */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedService({
+                  onClick={() =>
+                    onSelectExpressService?.({
                       title: 'Full House Cleaning',
                       category: 'Deep Cleaning',
                       basePrice: '₹1,499',
-                      eta: '~15 mins'
-                    });
-                    setActiveHubModal('express_service_modal');
-                  }}
+                      eta: '~15 mins',
+                    }) || onNavigateTab('services')
+                  }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -679,15 +668,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 2. Painting */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedService({
+                  onClick={() =>
+                    onSelectExpressService?.({
                       title: 'Home & Balcony Painting',
                       category: 'Wall Finish',
                       basePrice: '₹799',
-                      eta: '~20 mins'
-                    });
-                    setActiveHubModal('express_service_modal');
-                  }}
+                      eta: '~20 mins',
+                    }) || onNavigateTab('services')
+                  }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -701,15 +689,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 3. Packers & Movers */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedService({
+                  onClick={() =>
+                    onSelectExpressService?.({
                       title: 'Packers & Movers Clearance',
                       category: 'Shift Logistics',
                       basePrice: '₹2,499',
-                      eta: 'Scheduled'
-                    });
-                    setActiveHubModal('express_service_modal');
-                  }}
+                      eta: 'Scheduled',
+                    }) || onNavigateTab('services')
+                  }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -723,15 +710,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 4. Plumbing */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedService({
+                  onClick={() =>
+                    onSelectExpressService?.({
                       title: 'Emergency Plumbing Repair',
                       category: 'Leak & Fitting',
                       basePrice: '₹199',
-                      eta: '~12 mins'
-                    });
-                    setActiveHubModal('express_service_modal');
-                  }}
+                      eta: '~12 mins',
+                    }) || onNavigateTab('services')
+                  }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -745,15 +731,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 5. Carpenter */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedService({
+                  onClick={() =>
+                    onSelectExpressService?.({
                       title: 'Door Lock & Woodwork',
                       category: 'Carpentry',
                       basePrice: '₹249',
-                      eta: '~15 mins'
-                    });
-                    setActiveHubModal('express_service_modal');
-                  }}
+                      eta: '~15 mins',
+                    }) || onNavigateTab('services')
+                  }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -767,15 +752,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 6. Bathroom Cleaning */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedService({
+                  onClick={() =>
+                    onSelectExpressService?.({
                       title: 'Bathroom Deep Scrubbing',
                       category: 'Sanitization',
                       basePrice: '₹449',
-                      eta: '~15 mins'
-                    });
-                    setActiveHubModal('express_service_modal');
-                  }}
+                      eta: '~15 mins',
+                    }) || onNavigateTab('services')
+                  }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -789,15 +773,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 7. Rental Agreement */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedService({
+                  onClick={() =>
+                    onSelectExpressService?.({
                       title: 'Digital Rental Agreement',
                       category: 'Legal e-Stamp',
                       basePrice: '₹599',
-                      eta: 'Digital PDF'
-                    });
-                    setActiveHubModal('express_service_modal');
-                  }}
+                      eta: 'Digital PDF',
+                    }) || onNavigateTab('services')
+                  }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
@@ -962,516 +945,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </button>
         </div>
       </div>
-
-
-
-      {/* ========================================================
-          5. IN-DEVICE INTERACTIVE MODALS FOR CORE HUB ACTIONS
-          (Scoped strictly inside phone chassis with absolute positioning)
-          ======================================================== */}
-
-      {/* Modal A: Zepto Expected Courier Pass */}
-      {activeHubModal === 'zepto_pass' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-4">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300 uppercase tracking-wider">
-                Zepto Quick Delivery
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl border-2 border-emerald-500 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=140&q=80" alt="Zepto" className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">Pooja Sharma (Rider)</h3>
-                <p className="text-xs text-slate-500 mt-0.5">Order #ZPT-88402 • 10m Groceries</p>
-                <span className="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400">At Gate 1 Boom Barrier</span>
-              </div>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-50 dark:bg-obsidian-850 text-xs text-slate-600 dark:text-slate-300">
-              Clear courier without calling guard intercom. Pre-approves 10-minute turnaround pass.
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  showToast('Zepto delivery cleared at Gate 1');
-                  setActiveHubModal(null);
-                }}
-                className="flex-1 h-11 rounded-2xl bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm press-scale"
-              >
-                <Check size={16} />
-                <span>Allow At Boom Barrier</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal B: Zomato Expected Food Pass */}
-      {activeHubModal === 'zomato_pass' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-4">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-crimson-100 text-crimson-700 dark:bg-crimson-950 dark:text-crimson-300 uppercase tracking-wider">
-                Zomato Food Express
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl border-2 border-emerald-500 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=140&q=80" alt="Zomato" className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">Manoj Kumar (Rider)</h3>
-                <p className="text-xs text-slate-500 mt-0.5">Order #ZOM-49102 • Dinner Unit 1204</p>
-                <span className="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400">At Gate 2 Visitor Turnstile</span>
-              </div>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-50 dark:bg-obsidian-850 text-xs text-slate-600 dark:text-slate-300">
-              Courier has thermal bag and helmet badge. 1-tap fast clearance opens barrier.
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  showToast('Zomato delivery cleared at Gate 2');
-                  setActiveHubModal(null);
-                }}
-                className="flex-1 h-11 rounded-2xl bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm press-scale"
-              >
-                <Check size={16} />
-                <span>Allow Food Courier</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal C: Prepaid Smart Meter Fast Topup */}
-      {activeHubModal === 'meter_recharge' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-4">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 uppercase">
-                Prepaid Meter Recharge
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div>
-              <span className="text-xs text-slate-500 block">Sub-Meter #MTR-1204</span>
-              <h3 className="text-xl font-bold font-mono text-slate-900 dark:text-white mt-0.5">Current Balance: ₹840.50</h3>
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-              {[500, 1000, 2000].map((amt) => (
-                <button
-                  key={amt}
-                  type="button"
-                  onClick={() => {
-                    showToast(`₹${amt} recharged to Smart Meter via UPI!`);
-                    setActiveHubModal(null);
-                  }}
-                  className="p-3 rounded-2xl border border-slate-200 dark:border-obsidian-700 bg-slate-50 dark:bg-obsidian-800 font-mono font-bold text-xs text-slate-900 dark:text-white hover:border-cobalt-500 transition-colors press-scale"
-                >
-                  +₹{amt}
-                </button>
-              ))}
-            </div>
-            <p className="text-[11px] text-slate-500">Auto-credited within 60 seconds via society substation gateway.</p>
-          </div>
-        </div>
-      )}
-
-      {/* Modal D: Meter Consumption Analytics */}
-      {activeHubModal === 'meter_consumption' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-cobalt-600 dark:text-cobalt-400 uppercase tracking-widest">
-                Real-Time EB & Water Meter
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">Unit 1204 Consumption</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Average: 18.4 kWh/day • Normal Residential Load</p>
-            </div>
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-obsidian-850 flex items-center justify-between text-xs">
-              <div>
-                <span className="text-[10px] text-slate-400 block uppercase">Water Meter</span>
-                <span className="font-mono font-bold text-slate-800 dark:text-slate-100">420 Liters / Day</span>
-              </div>
-              <div className="text-right">
-                <span className="text-[10px] text-slate-400 block uppercase">Projected Bill</span>
-                <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400">₹1,480 / Month</span>
-              </div>
-            </div>
-            <button
-              onClick={() => setActiveHubModal(null)}
-              className="w-full h-10 rounded-xl bg-slate-900 text-white font-bold text-xs"
-            >
-              Close Analytics
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal E: Utility Bills */}
-      {activeHubModal === 'utility_bill' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-cobalt-600 dark:text-cobalt-400 uppercase tracking-widest">
-                Society Utility Invoices
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="p-3 rounded-2xl border border-slate-200 dark:border-obsidian-800 flex items-center justify-between text-xs">
-                <div>
-                  <span className="font-bold block">Piped LPG Gas (Indraprastha)</span>
-                  <span className="text-[11px] text-slate-500">Due Nov 28 • 14.2 m³</span>
-                </div>
-                <span className="font-mono font-bold text-slate-900 dark:text-white">₹620</span>
-              </div>
-              <div className="p-3 rounded-2xl border border-slate-200 dark:border-obsidian-800 flex items-center justify-between text-xs">
-                <div>
-                  <span className="font-bold block">DG Backup Generator AMC</span>
-                  <span className="text-[11px] text-slate-500">Nov 2026 • 24.5 units</span>
-                </div>
-                <span className="font-mono font-bold text-slate-900 dark:text-white">₹380</span>
-              </div>
-            </div>
-            <button
-              onClick={() => {
-                showToast('Utility payment initiated via Bharat BillPay UPI');
-                setActiveHubModal(null);
-              }}
-              className="w-full h-11 rounded-2xl bg-cobalt-600 text-white font-bold text-xs"
-            >
-              Pay Total ₹1,000 via UPI
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal F: Pay Rent Direct UPI */}
-      {activeHubModal === 'pay_rent' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
-                Direct Landlord Rent UPI
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">Monthly Rent Transfer</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Landlord: R. Narayanan • HDFC A/C ••9402</p>
-            </div>
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-obsidian-850 flex items-baseline justify-between">
-              <span className="text-xs text-slate-500">Rent Payable</span>
-              <span className="text-2xl font-extrabold font-mono text-slate-900 dark:text-white">₹38,000</span>
-            </div>
-            <p className="text-[11px] text-slate-500">Includes auto-generated rent agreement receipt with landlord PAN for HRA tax exemption.</p>
-            <button
-              onClick={() => {
-                showToast('Rent transferred! Official digital receipt sent to your email.');
-                setActiveHubModal(null);
-              }}
-              className="w-full h-11 rounded-2xl bg-emerald-600 text-white font-bold text-xs"
-            >
-              Transfer ₹38,000 via UPI (0% Fee)
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal G: Amenities Booking */}
-      {activeHubModal === 'amenities' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-cobalt-600 dark:text-cobalt-400 uppercase tracking-widest">
-                Clubhouse Amenities
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="p-3 rounded-2xl border border-slate-200 dark:border-obsidian-800 flex items-center justify-between">
-                <div>
-                  <h4 className="text-xs font-bold">Badminton Court 1</h4>
-                  <p className="text-[10px] text-slate-500">Today • 6:00 PM – 7:00 PM</p>
-                </div>
-                <button
-                  onClick={() => {
-                    showToast('Slot booked! Pass added to your Gate QR.');
-                    setActiveHubModal(null);
-                  }}
-                  className="px-3 py-1.5 rounded-xl bg-cobalt-50 text-cobalt-600 font-bold text-xs"
-                >
-                  Book Slot
-                </button>
-              </div>
-              <div className="p-3 rounded-2xl border border-slate-200 dark:border-obsidian-800 flex items-center justify-between">
-                <div>
-                  <h4 className="text-xs font-bold">Swimming Pool (Adults)</h4>
-                  <p className="text-[10px] text-slate-500">Open 6 AM – 9 PM • Heated</p>
-                </div>
-                <button
-                  onClick={() => {
-                    showToast('Pool access pass confirmed!');
-                    setActiveHubModal(null);
-                  }}
-                  className="px-3 py-1.5 rounded-xl bg-cobalt-50 text-cobalt-600 font-bold text-xs"
-                >
-                  Get Pass
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal H: Society Forum & Polls */}
-      {activeHubModal === 'society_forum' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-widest">
-                Resident Voting & Forum
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="p-3 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 text-xs">
-              <span className="text-[10px] font-bold text-purple-700 dark:text-purple-300 block uppercase">Active Resolution Poll</span>
-              <h4 className="font-bold text-slate-900 dark:text-white mt-1">Installation of 8 New EV Fast-Chargers in Basement 2</h4>
-              <div className="mt-2.5 flex items-center gap-2">
-                <button onClick={() => { showToast('Voted: YES on EV Resolution'); setActiveHubModal(null); }} className="flex-1 py-1.5 rounded-xl bg-emerald-600 text-white font-bold text-xs">
-                  Vote Yes (84%)
-                </button>
-                <button onClick={() => { showToast('Voted: NO on EV Resolution'); setActiveHubModal(null); }} className="flex-1 py-1.5 rounded-xl bg-slate-200 dark:bg-obsidian-800 text-slate-700 dark:text-slate-300 font-bold text-xs">
-                  Vote No
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal I: Directory & Intercom */}
-      {activeHubModal === 'directory' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-cobalt-600 dark:text-cobalt-400 uppercase tracking-widest">
-                Society Directory & Intercom
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-2 text-xs">
-              <div className="p-2.5 rounded-xl border border-slate-200 dark:border-obsidian-800 flex items-center justify-between">
-                <div>
-                  <h4 className="font-bold">Main Gate 1 Kiosk</h4>
-                  <span className="text-[11px] text-slate-500">Ext: 101 • Guard Ratan</span>
-                </div>
-                <button onClick={() => showToast('Calling Gate 1 Intercom...')} className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                  <Phone size={15} />
-                </button>
-              </div>
-              <div className="p-2.5 rounded-xl border border-slate-200 dark:border-obsidian-800 flex items-center justify-between">
-                <div>
-                  <h4 className="font-bold">Estate Management Desk</h4>
-                  <span className="text-[11px] text-slate-500">Ext: 104 • Facility Officer</span>
-                </div>
-                <button onClick={() => showToast('Calling Estate Desk...')} className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                  <Phone size={15} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal J: Notices & Circulars */}
-      {activeHubModal === 'notices' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
-                Official Society Notices
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-obsidian-850 text-xs">
-              <span className="text-[10px] text-slate-400 font-bold block">Ref #MC-CIR-2026-11</span>
-              <h4 className="font-bold text-slate-900 dark:text-white mt-1">Solar Rooftop Inverter Maintenance Schedule</h4>
-              <p className="text-[11px] text-slate-500 mt-1">Solar grid sync scheduled for Saturday 10 AM to 2 PM. Main common area power unaffected.</p>
-            </div>
-            <button onClick={() => setActiveHubModal(null)} className="w-full h-10 rounded-xl bg-slate-900 text-white font-bold text-xs">
-              Close Circular
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal K: Multi-Day Visit Pass */}
-      {activeHubModal === 'visit_pass' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-cobalt-600 dark:text-cobalt-400 uppercase tracking-widest">
-                Multi-Day Visitor Pass
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <p className="text-xs text-slate-500">For home tutors, relatives, or construction interior workers.</p>
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-obsidian-850 flex items-center justify-between text-xs font-mono font-bold">
-              <span>PASSCODE: 849-204</span>
-              <span className="text-emerald-600">Valid 7 Days</span>
-            </div>
-            <button
-              onClick={() => {
-                showToast('7-Day Visitor Pass copied & shared via WhatsApp!');
-                setActiveHubModal(null);
-              }}
-              className="w-full h-11 rounded-2xl bg-cobalt-600 text-white font-bold text-xs"
-            >
-              Share WhatsApp QR Pass
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal L: Pinless ANPR & Bluetooth Entry */}
-      {activeHubModal === 'pinless_entry' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
-                ANPR & Bluetooth Fast-Pass
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs">
-              <span className="font-bold text-emerald-800 dark:text-emerald-300 block">Registered Vehicle</span>
-              <h4 className="font-mono font-bold text-sm text-slate-900 dark:text-white mt-0.5">KA-04-MB-1204 (Tesla Model 3)</h4>
-              <span className="text-[11px] text-emerald-600 mt-1 block">✓ Auto-Open Boom Barrier Active</span>
-            </div>
-            <button onClick={() => setActiveHubModal(null)} className="w-full h-10 rounded-xl bg-slate-900 text-white font-bold text-xs">
-              Done
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal M: Resident Marketplace */}
-      {activeHubModal === 'marketplace' && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
-                Resident Community Classifieds
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-2 text-xs">
-              <div className="p-2.5 rounded-xl border border-slate-200 dark:border-obsidian-800 flex items-center justify-between">
-                <div>
-                  <h4 className="font-bold">Solid Wood Study Desk (IKEA)</h4>
-                  <span className="text-[11px] text-slate-500">Tower 3 • Flat 402</span>
-                </div>
-                <span className="font-mono font-bold text-emerald-600">₹2,800</span>
-              </div>
-              <div className="p-2.5 rounded-xl border border-slate-200 dark:border-obsidian-800 flex items-center justify-between">
-                <div>
-                  <h4 className="font-bold">Home-Baked Sourdough Loaf</h4>
-                  <span className="text-[11px] text-slate-500">Tower 1 • Fresh Daily</span>
-                </div>
-                <span className="font-mono font-bold text-emerald-600">₹180</span>
-              </div>
-            </div>
-            <button onClick={() => setActiveHubModal(null)} className="w-full h-10 rounded-xl bg-slate-900 text-white font-bold text-xs">
-              Close Marketplace
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal N: Express 15m Home Care Service Booking */}
-      {activeHubModal === 'express_service_modal' && selectedService && (
-        <div className="absolute inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 text-left animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-750 text-slate-900 dark:text-white shadow-2xl flex flex-col gap-3.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1">
-                <Sparkles size={13} />
-                <span>15-Minute Response Guaranteed</span>
-              </span>
-              <button onClick={() => setActiveHubModal(null)} className="w-7 h-7 rounded-full bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500">
-                <X size={15} />
-              </button>
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-cobalt-600 dark:text-cobalt-400 uppercase tracking-wider block">
-                {selectedService.category}
-              </span>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight mt-0.5">
-                {selectedService.title}
-              </h3>
-            </div>
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-obsidian-850 flex items-center justify-between text-xs">
-              <div>
-                <span className="text-[10px] text-slate-400 uppercase block">Society Rate</span>
-                <span className="text-lg font-extrabold font-mono text-slate-900 dark:text-white">{selectedService.basePrice}</span>
-              </div>
-              <div className="text-right">
-                <span className="text-[10px] text-slate-400 uppercase block">Arrival SLA</span>
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">{selectedService.eta}</span>
-              </div>
-            </div>
-            <p className="text-[11px] text-slate-500 leading-relaxed">
-              Assigned to pre-vetted association maintenance team. Digital signoff required upon completion.
-            </p>
-            <button
-              onClick={() => {
-                showToast(`Technician booked for ${selectedService.title}! ETA ~15 mins`);
-                setActiveHubModal(null);
-              }}
-              className="w-full h-11 rounded-2xl bg-cobalt-600 hover:bg-cobalt-700 text-white font-bold text-xs shadow-md shadow-cobalt-600/30 transition-transform press-scale"
-            >
-              Confirm Dispatch to Unit 1204
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

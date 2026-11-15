@@ -244,6 +244,36 @@ export function App() {
             onOpenDirectory={() => pushScreen('SCR_SOC_05')}
             onOpenPinless={() => pushScreen('SCR_SOC_06')}
             onOpenMarketplace={() => pushScreen('SCR_MKT_01')}
+            onOpenSmartMeter={() => pushScreen('SCR_PAY_04')}
+            onOpenItemizedBill={() => pushScreen('SCR_PAY_02')}
+            onSelectExpressService={(srv) => {
+              const matched = EXPRESS_CATALOG.find(
+                (item) =>
+                  item.title.toLowerCase().includes(srv.title.toLowerCase()) ||
+                  srv.title.toLowerCase().includes(item.title.toLowerCase())
+              );
+              if (matched) {
+                setSelectedService(matched);
+              } else {
+                setSelectedService({
+                  id: `srv_${srv.title.toLowerCase().replace(/\s+/g, '_')}`,
+                  title: srv.title,
+                  category: (srv.category.toLowerCase().includes('clean')
+                    ? 'cleaning'
+                    : srv.category.toLowerCase().includes('paint')
+                    ? 'cleaning'
+                    : srv.category.toLowerCase().includes('shift')
+                    ? 'carpentry'
+                    : 'plumbing') as any,
+                  price: parseInt(srv.basePrice.replace(/\D/g, '')) || 299,
+                  etaMinutes: 15,
+                  rating: 4.9,
+                  jobsCompleted: 142,
+                  description: `Pre-vetted society technician for ${srv.title} with 15-minute dispatch SLA.`,
+                });
+              }
+              pushScreen('SCR_TICK_05');
+            }}
           />
         )}
 

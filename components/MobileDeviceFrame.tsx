@@ -37,7 +37,7 @@ export const MobileDeviceFrame: React.FC<MobileDeviceFrameProps> = ({ children }
         <div className="absolute top-40 -right-[13px] w-[3px] h-16 bg-[#27272A] rounded-r-sm" />
 
         {/* Outer Phone Chassis with Realistic Shadow & Bezel */}
-        <div className="relative w-[402px] h-[848px] max-w-[96vw] max-h-[94vh] rounded-[52px] bg-[#18181B] p-[9.5px] shadow-[0_30px_70px_rgba(0,0,0,0.22),0_12px_28px_rgba(0,0,0,0.1),0_0_0_1px_rgba(0,0,0,0.2)] select-none">
+        <div className="relative w-[402px] h-[848px] max-w-[96vw] max-h-[92vh] aspect-[402/848] rounded-[52px] bg-[#18181B] p-[9.5px] shadow-[0_30px_70px_rgba(0,0,0,0.22),0_12px_28px_rgba(0,0,0,0.1),0_0_0_1px_rgba(0,0,0,0.2)] select-none">
           {/* Inner Glass Screen Chassis (Dark Mode Scoped Strictly to Phone Screen) */}
           <div
             className={`w-full h-full rounded-[43px] overflow-hidden flex flex-col relative border border-black/10 dark:border-white/10 shadow-inner ${
