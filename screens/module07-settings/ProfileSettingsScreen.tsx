@@ -90,116 +90,94 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
           <div className="w-10" />
         </div>
 
-        {/* Resident Identity Card (Ultra-Premium 3D Vector Membership & Access Pass) */}
-        <div className="rounded-[28px] bg-white dark:bg-gradient-to-br dark:from-[#0D131F] dark:via-[#090D16] dark:to-[#05070E] border border-slate-200/90 dark:border-white/10 shadow-[0_12px_36px_rgba(4,187,73,0.08),0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.7)] relative overflow-hidden transition-all">
-          {/* Top Holographic Emerald Accent Line */}
-          <div className="h-1.5 w-full bg-gradient-to-r from-[#04BB49] via-[#0ECD5A] to-[#34D399]" />
+        {/* Resident Identity Card (Clean & Neat UI/UX Architecture) */}
+        <div className="rounded-3xl bg-white dark:bg-[#0B0F19] border border-slate-200/90 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.5)] p-4 relative overflow-hidden transition-all flex flex-col gap-3.5">
+          {/* Subtle Top Emerald Micro-Gradient Accent */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#04BB49] via-[#0ECD5A] to-[#6EE3A1] opacity-75" />
 
-          {/* Ambient Specular Glow */}
-          <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#04BB49]/15 dark:bg-[#04BB49]/20 rounded-full blur-3xl pointer-events-none" />
+          {/* Row 1: Resident Identity (Left) & 3D Smart Pass Graphic (Right) */}
+          <div className="flex items-center justify-between gap-3 pt-0.5">
+            {/* Identity & Residence Group */}
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              {/* Resident Initials Avatar */}
+              <div className="relative shrink-0">
+                <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-[#04BB49] to-[#027A2F] text-white font-black text-xl flex items-center justify-center shadow-md shadow-[#04BB49]/25 border-2 border-white dark:border-slate-800">
+                  SK
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 rounded-full bg-[#04BB49] text-white flex items-center justify-center border-2 border-white dark:border-[#0B0F19] shadow-2xs">
+                  <CheckCircle2 size={11} strokeWidth={2.8} />
+                </div>
+              </div>
 
-          {/* Guilloche Micro-Security Watermark Background SVG */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.03] dark:opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="guillochePattern" width="30" height="30" patternUnits="userSpaceOnUse">
-                <circle cx="15" cy="15" r="14" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                <path d="M0 15Q15 0 30 15Q15 30 0 15Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#guillochePattern)" />
-          </svg>
+              {/* Text Hierarchy */}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <h2 className="text-base font-extrabold text-slate-900 dark:text-white leading-tight">
+                    Suriya K
+                  </h2>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#E8FBF0] dark:bg-[#0A2E18] text-[#038334] dark:text-[#0ECD5A] border border-[#04BB49]/30 text-[10px] font-bold tracking-tight shadow-2xs">
+                    <ShieldCheck size={10} strokeWidth={2.4} />
+                    <span>Verified Owner</span>
+                  </span>
+                </div>
+                <p className="text-xs font-bold text-slate-700 dark:text-slate-200 mt-1">
+                  {activeFlat.unit}
+                </p>
+                <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                  {activeFlat.societyName}
+                </p>
+              </div>
+            </div>
 
-          <div className="p-4 relative z-10 flex flex-col gap-3.5">
-            {/* Top Pass Header (Brand & NFC Active Indicator) */}
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/5 pb-2">
-              <div className="flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-[#04BB49] animate-pulse" />
-                <span className="text-[9.5px] font-black uppercase tracking-widest text-[#038334] dark:text-[#0ECD5A]">
-                  HUNT LOCKDOOR • RESIDENTIAL ACCESS PASS
+            {/* 3D Graphic Vector Element (Symmetrical Visual Balance) */}
+            <div className="shrink-0 flex items-center justify-center">
+              <ResidentSmartPass3D size={64} glow={false} />
+            </div>
+          </div>
+
+          {/* Row 2: Interactive Gate QR Pass & Digital Key (Fitts's Law Full-Touch Target) */}
+          <button
+            type="button"
+            onClick={() => setShowQrModal(true)}
+            className="w-full flex items-center justify-between p-2.5 px-3 rounded-2xl bg-slate-50 hover:bg-slate-100 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200/80 dark:border-white/10 transition-all press-scale shadow-xs group text-left"
+            title="Open Gate QR Pass & Access Key"
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-8 h-8 rounded-xl bg-[#E8FBF0] dark:bg-[#0A2E18] text-[#04BB49] dark:text-[#0ECD5A] flex items-center justify-center border border-[#04BB49]/25 shrink-0 group-hover:scale-105 transition-transform">
+                <QrCode size={17} strokeWidth={2.2} />
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
+                    Gate QR Pass & Digital Key
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#04BB49] animate-pulse" />
+                </div>
+                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 block leading-tight truncate mt-0.5">
+                  KEY: {activeFlat.gateKey || 'GATE-PLH-9402'} • TAP TO EXPAND
                 </span>
               </div>
-              <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 text-[9px] font-mono font-bold text-slate-600 dark:text-slate-400">
-                <span>NFC ACTIVE</span>
-              </div>
             </div>
 
-            {/* Main Stage: Resident Details (Left) & 3D Graphic Vector Element (Right) */}
-            <div className="flex items-center justify-between gap-3">
-              {/* Left Column: Avatar & Resident Meta */}
-              <div className="flex items-center gap-3 min-w-0 flex-1">
-                <div className="relative shrink-0">
-                  <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-[#04BB49] to-[#027A2F] text-white font-black text-xl flex items-center justify-center shadow-md shadow-[#04BB49]/30 border-2 border-white dark:border-slate-800">
-                    SK
-                  </div>
-                  <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#04BB49] text-white flex items-center justify-center border-2 border-white dark:border-[#090D16] shadow-xs">
-                    <CheckCircle2 size={12} strokeWidth={2.6} />
-                  </div>
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <h2 className="text-base font-extrabold text-slate-900 dark:text-white leading-tight">
-                      Suriya K
-                    </h2>
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#E8FBF0] dark:bg-[#0A2E18] text-[#038334] dark:text-[#0ECD5A] border border-[#04BB49]/30 text-[10px] font-bold tracking-tight shadow-2xs">
-                      <ShieldCheck size={11} strokeWidth={2.4} />
-                      <span>Verified Owner</span>
-                    </span>
-                  </div>
-                  <p className="text-xs font-bold text-slate-700 dark:text-slate-200 mt-1 flex items-center gap-1.5">
-                    <span>{activeFlat.unit}</span>
-                  </p>
-                  <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate max-w-[180px] mt-0.5">
-                    {activeFlat.societyName}
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Column: 3D Graphic Vector Element & QR Pass Trigger */}
-              <div className="flex flex-col items-center justify-center shrink-0">
-                <div className="transform hover:scale-105 transition-transform duration-300">
-                  <ResidentSmartPass3D size={74} glow={true} />
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowQrModal(true)}
-                  className="mt-1 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E8FBF0] hover:bg-[#D3F8E2] dark:bg-[#0A2E18] dark:hover:bg-[#0E3D20] text-[#038334] dark:text-[#0ECD5A] border border-[#04BB49]/35 transition-all press-scale text-[11px] font-bold shadow-2xs group"
-                  title="View Resident Gate QR Pass"
-                >
-                  <QrCode size={13} strokeWidth={2.4} className="group-hover:rotate-12 transition-transform" />
-                  <span>View Pass</span>
-                </button>
-              </div>
+            <div className="flex items-center gap-1 text-xs font-bold text-[#04BB49] dark:text-[#0ECD5A] shrink-0 pl-2">
+              <span className="text-[11px]">Pass</span>
+              <ChevronRight size={13} strokeWidth={2.4} className="group-hover:translate-x-0.5 transition-transform" />
             </div>
+          </button>
 
-            {/* Security Smart Lock Token Bar */}
-            <div className="p-2 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200/70 dark:border-white/5 flex items-center justify-between text-[11px]">
-              <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
-                <Lock size={12} className="text-[#04BB49] shrink-0" />
-                <span className="font-mono text-[10.5px] font-bold text-slate-800 dark:text-slate-200">
-                  KEY: {activeFlat.gateKey || 'GATE-PLH-9402'}
-                </span>
+          {/* Row 3: Verified Contact Line */}
+          <div className="pt-2.5 border-t border-slate-100 dark:border-white/5 grid grid-cols-2 gap-2 text-xs">
+            <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 min-w-0">
+              <div className="w-5 h-5 rounded-md bg-[#E8FBF0] dark:bg-[#0A2E18] flex items-center justify-center text-[#04BB49] dark:text-[#0ECD5A] shrink-0">
+                <Phone size={11} strokeWidth={2.4} />
               </div>
-              <div className="flex items-center gap-1 text-[10px] font-extrabold text-[#038334] dark:text-[#0ECD5A]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#04BB49] animate-pulse" />
-                <span>PAIRED & SECURED</span>
-              </div>
+              <span className="font-mono text-[11px] font-semibold text-slate-800 dark:text-slate-200 truncate">+91 98765 43210</span>
             </div>
-
-            {/* Quick Contact Line */}
-            <div className="pt-2 border-t border-slate-100 dark:border-white/5 grid grid-cols-2 gap-2 text-xs">
-              <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 min-w-0">
-                <div className="w-5 h-5 rounded-md bg-[#E8FBF0] dark:bg-[#0A2E18] flex items-center justify-center text-[#04BB49] dark:text-[#0ECD5A] shrink-0">
-                  <Phone size={11} strokeWidth={2.4} />
-                </div>
-                <span className="font-mono text-[11px] font-semibold text-slate-800 dark:text-slate-200 truncate">+91 98765 43210</span>
+            <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 min-w-0">
+              <div className="w-5 h-5 rounded-md bg-[#E8FBF0] dark:bg-[#0A2E18] flex items-center justify-center text-[#04BB49] dark:text-[#0ECD5A] shrink-0">
+                <Mail size={11} strokeWidth={2.4} />
               </div>
-              <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 min-w-0">
-                <div className="w-5 h-5 rounded-md bg-[#E8FBF0] dark:bg-[#0A2E18] flex items-center justify-center text-[#04BB49] dark:text-[#0ECD5A] shrink-0">
-                  <Mail size={11} strokeWidth={2.4} />
-                </div>
-                <span className="text-[11px] font-semibold text-slate-800 dark:text-slate-200 truncate">suriya@huntlock.in</span>
-              </div>
+              <span className="text-[11px] font-semibold text-slate-800 dark:text-slate-200 truncate">suriya@huntlock.in</span>
             </div>
           </div>
         </div>

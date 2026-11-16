@@ -713,18 +713,28 @@ export const ResidentSmartPass3D: React.FC<Vector3DProps> = ({ size = 72, classN
           </radialGradient>
         </defs>
 
-        {/* Ambient Isometric Shadow */}
-        <ellipse cx="60" cy="106" rx="44" ry="10" fill="#022B11" fillOpacity="0.3" />
-
-        {/* 3D Extruded Card Base (Thickness/Depth) */}
-        <g transform="rotate(-10 60 54)">
+        {/* Ambient Isometric Shadow (Natural Soft Gaussian) */}
+        <g transform="rotate(-10 60 52)">
           <rect
-            x="14"
+            x="16"
             y="26"
             width="88"
             height="58"
             rx="12"
-            fill="#013615"
+            fill="#022B11"
+            fillOpacity="0.18"
+          />
+        </g>
+
+        {/* 3D Extruded Card Base (Thickness/Depth) */}
+        <g transform="rotate(-10 60 53)">
+          <rect
+            x="14"
+            y="24"
+            width="88"
+            height="58"
+            rx="12"
+            fill="#024019"
           />
         </g>
 
