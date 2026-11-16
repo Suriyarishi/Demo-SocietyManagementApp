@@ -115,68 +115,74 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     <div className="w-full min-h-full flex flex-col justify-between text-left animate-in fade-in duration-300 relative">
       {/* ========================================================
           1. TOP APP BAR & RESIDENT CONCIERGE HEADER
+          Clean, ergonomic, and untruncated header layout
           ======================================================== */}
-      <div className="px-3.5 py-2.5 bg-white dark:bg-obsidian-900 border-b border-slate-200/80 dark:border-obsidian-800 shadow-sm sticky top-0 z-20">
+      <div className="px-3 py-2 bg-white/95 dark:bg-obsidian-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-white/10 shadow-xs sticky top-0 z-20">
         <div className="flex items-center justify-between gap-2 w-full">
-          {/* Flat Switcher Pill (Auto-truncates cleanly) */}
+          {/* Flat Switcher Pill (Optimized for full legibility without truncation) */}
           <button
             type="button"
             onClick={onOpenFlatSwitcher}
-            className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-obsidian-800 hover:bg-slate-200 dark:hover:bg-obsidian-750 transition-colors border border-slate-200 dark:border-obsidian-700 text-left flex-1 min-w-0 press-scale"
+            className="flex items-center gap-2 px-2.5 py-1 rounded-2xl bg-slate-50 hover:bg-slate-100 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 transition-all border border-slate-200/80 dark:border-white/10 text-left flex-1 min-w-0 press-scale shadow-2xs group"
+            title="Switch Residence Unit"
           >
-            <TowerResidence3D size={22} glow={false} className="shrink-0" />
-            <div className="min-w-0 flex-1 truncate">
-              <span className="text-xs font-bold text-slate-900 dark:text-white block leading-tight truncate">
+            <div className="w-7 h-7 rounded-xl bg-[#E8FBF0] dark:bg-[#0A2E18] text-[#04BB49] dark:text-[#0ECD5A] flex items-center justify-center shrink-0 border border-[#04BB49]/20 group-hover:scale-105 transition-transform">
+              <Building2 size={15} strokeWidth={2.4} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <span className="text-xs font-extrabold text-slate-900 dark:text-white block leading-tight truncate">
                 {activeFlat.unit}
               </span>
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate leading-tight">
+              <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 block truncate leading-tight mt-0.5">
                 {activeFlat.societyName}
               </span>
             </div>
-            <ChevronDown size={13} className="text-slate-400 shrink-0 ml-0.5" />
+            <ChevronDown size={13} className="text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-200 shrink-0 ml-0.5 transition-colors" />
           </button>
 
           {/* Quick Header Actions (Search, Alerts, SOS, Profile Settings) */}
-          <div className="flex items-center gap-1 shrink-0">
+          <div className="flex items-center gap-1.5 shrink-0">
+            {/* Search Quick Action */}
             <button
               type="button"
               onClick={onOpenSearch}
-              className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-800 dark:hover:bg-obsidian-750 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200 dark:border-obsidian-700 press-scale"
-              title="Search"
+              className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200/80 dark:border-white/10 press-scale shrink-0"
+              title="Search community, bills, & services"
             >
-              <Search size={15} />
+              <Search size={15} strokeWidth={2.2} />
             </button>
 
+            {/* Notification Alerts */}
             <button
               type="button"
               onClick={() => showToast('Notifications: All perimeter gate alerts synced')}
-              className="relative w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-800 dark:hover:bg-obsidian-750 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200 dark:border-obsidian-700 press-scale"
-              title="Alerts"
+              className="relative w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200/80 dark:border-white/10 press-scale shrink-0"
+              title="Gate & Society Alerts"
             >
-              <Bell size={15} />
-              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-cobalt-500" />
+              <Bell size={15} strokeWidth={2.2} />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#04BB49] ring-2 ring-white dark:ring-obsidian-900 animate-pulse" />
             </button>
 
-            {/* Emergency SOS Quick Button */}
+            {/* Emergency SOS Quick Trigger */}
             <button
               type="button"
               onClick={onTriggerSOS}
-              className="h-8 px-2 rounded-xl bg-crimson-600 hover:bg-crimson-700 active:bg-crimson-800 text-white flex items-center gap-0.5 text-[11px] font-extrabold shadow-sm transition-transform press-scale shrink-0"
-              title="Emergency SOS"
+              className="h-8 px-2 rounded-xl bg-crimson-600 hover:bg-crimson-700 active:bg-crimson-800 text-white flex items-center gap-1 text-[10.5px] font-black tracking-wide shadow-xs transition-transform press-scale shrink-0"
+              title="Emergency SOS Alarm"
             >
-              <ShieldAlert size={13} />
+              <ShieldAlert size={13} strokeWidth={2.6} />
               <span>SOS</span>
             </button>
 
-            {/* Top Right Profile & Settings Button */}
+            {/* Resident Profile Avatar */}
             <button
               type="button"
               onClick={onOpenProfileSettings}
-              className="relative w-8 h-8 rounded-xl bg-gradient-to-br from-cobalt-600 to-indigo-700 text-white font-extrabold text-[11px] flex items-center justify-center shadow-sm border border-white/20 press-scale shrink-0 ml-0.5"
-              title="Resident Profile & Settings"
+              className="relative w-8 h-8 rounded-xl bg-gradient-to-br from-[#04BB49] to-[#027A2F] text-white font-black text-[11px] flex items-center justify-center shadow-xs border border-white/20 press-scale shrink-0"
+              title="Resident Profile & Governance"
             >
               <span>SK</span>
-              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-white dark:border-slate-900" />
+              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-white dark:border-obsidian-900" />
             </button>
           </div>
         </div>
