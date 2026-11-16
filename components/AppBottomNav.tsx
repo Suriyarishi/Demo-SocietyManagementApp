@@ -58,29 +58,29 @@ export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChan
               onClick={() => onTabChange(tab.id)}
               className={`relative flex items-center justify-center transition-all duration-300 ease-out press-scale ${
                 isActive
-                  ? 'h-11 px-4 rounded-full bg-[#29273D] border border-purple-500/25 shadow-lg shadow-purple-950/40 gap-2 shrink-0'
+                  ? 'h-11 px-4 rounded-full bg-[#0A2E18] border border-[#04BB49]/40 shadow-lg shadow-[#04BB49]/20 gap-2 shrink-0'
                   : 'w-11 h-11 rounded-full text-[#7E8299] hover:text-white hover:bg-white/5 transition-colors shrink-0'
               }`}
             >
               {tab.id === 'home' && (
-                <HomeGlyph active={isActive} className={isActive ? 'text-[#A78BFA]' : 'text-current'} />
+                <HomeGlyph active={isActive} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
               )}
               {tab.id === 'search' && (
-                <Search size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#A78BFA]' : 'text-current'} />
+                <Search size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
               )}
               {tab.id === 'society' && (
-                <PieChart size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#A78BFA]' : 'text-current'} />
+                <PieChart size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
               )}
               {tab.id === 'activity' && (
-                <Clock size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#A78BFA]' : 'text-current'} />
+                <Clock size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
               )}
               {tab.id === 'profile' && (
-                <User size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#A78BFA]' : 'text-current'} />
+                <User size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
               )}
 
               {/* Expanding Label for Active Tab */}
               {isActive && (
-                <span className="text-xs font-bold text-[#A78BFA] tracking-wide animate-in fade-in zoom-in-95 duration-200">
+                <span className="text-xs font-bold text-[#04BB49] dark:text-[#0ECD5A] tracking-wide animate-in fade-in zoom-in-95 duration-200">
                   {tab.label}
                 </span>
               )}

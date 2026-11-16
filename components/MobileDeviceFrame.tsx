@@ -25,7 +25,7 @@ export const MobileDeviceFrame: React.FC<MobileDeviceFrameProps> = ({ children }
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-slate-900 flex items-center justify-center p-2 sm:p-6 font-sans selection:bg-cobalt-600 selection:text-white relative">
+    <div className="min-h-screen bg-[#F4F5F7] text-slate-900 flex items-center justify-center p-2 sm:p-6 font-sans selection:bg-[#04BB49] selection:text-white relative">
       {/* ========================================================
           AUTHENTIC SMARTPHONE MOCKUP FRAME (CENTER STAGE)
           ======================================================== */}
@@ -79,7 +79,7 @@ export const MobileDeviceFrame: React.FC<MobileDeviceFrameProps> = ({ children }
         className="fixed bottom-4 right-4 z-50 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 hover:bg-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 shadow-md backdrop-blur-md text-[11px] font-bold flex items-center gap-1.5 transition-all press-scale"
         title="Toggle In-Device Theme"
       >
-        {isDarkMode ? <Sun size={13} className="text-amber-500" /> : <Moon size={13} className="text-cobalt-600" />}
+        {isDarkMode ? <Sun size={13} className="text-amber-500" /> : <Moon size={13} className="text-[#04BB49]" />}
         <span>{isDarkMode ? 'Light' : 'OLED Dark'}</span>
       </button>
     </div>
