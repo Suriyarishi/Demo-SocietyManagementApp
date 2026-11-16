@@ -100,6 +100,12 @@ export const CommunityStaffDirectoryScreen: React.FC<CommunityStaffDirectoryScre
 }) => {
   const [selectedRole, setSelectedRole] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
 
   const roles = ['All', 'Cook', 'Driver', 'Cleaner', 'Nanny', 'Dog Walker'];
 
@@ -112,7 +118,13 @@ export const CommunityStaffDirectoryScreen: React.FC<CommunityStaffDirectoryScre
   });
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       <div className="flex flex-col gap-4">
         {/* Header */}
         <div className="flex items-center gap-3">
@@ -212,7 +224,7 @@ export const CommunityStaffDirectoryScreen: React.FC<CommunityStaffDirectoryScre
               <div className="pt-2.5 border-t border-slate-100 dark:border-obsidian-800 flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => alert(`Calling ${staff.name} at +91 ${staff.phone}`)}
+                  onClick={() => showToast(`Calling ${staff.name} at +91 ${staff.phone}`)}
                   className="h-10 px-3 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 text-slate-700 dark:text-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border border-slate-200 dark:border-obsidian-700"
                 >
                   <Phone size={13} />

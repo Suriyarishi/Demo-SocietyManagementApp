@@ -28,6 +28,12 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
   onOpenLedger,
 }) => {
   const [selectedMonth, setSelectedMonth] = useState<string>('November 2026');
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
 
   // Simulated 28-day calendar attendance
   const days = Array.from({ length: 28 }, (_, i) => {
@@ -39,7 +45,13 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
   });
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       <div className="flex flex-col gap-5">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -55,7 +67,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           </span>
           <button
             type="button"
-            onClick={() => alert(`Calling ${staff.name} at +91 ${staff.phone}...`)}
+            onClick={() => showToast(`Calling ${staff.name} at +91 ${staff.phone}...`)}
             className="w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition-colors shadow-md shadow-emerald-600/30"
             title="Call Staff"
           >
@@ -196,7 +208,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
 
         <button
           type="button"
-          onClick={() => alert(`Marked ${staff.name} as on-leave for today.`)}
+          onClick={() => showToast(`Marked ${staff.name} as on-leave for today.`)}
           className="w-full h-11 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-900 dark:hover:bg-obsidian-850 text-slate-700 dark:text-slate-200 font-bold text-xs transition-colors border border-slate-200 dark:border-obsidian-800"
         >
           Mark Leave for Today

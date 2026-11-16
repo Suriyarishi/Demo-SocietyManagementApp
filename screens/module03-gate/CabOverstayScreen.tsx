@@ -25,6 +25,12 @@ export const CabOverstayScreen: React.FC<CabOverstayScreenProps> = ({
   const [cabNumber, setCabNumber] = useState<string>('KA-01-AJ-4921');
   const [purpose, setPurpose] = useState<'pickup' | 'drop'>('pickup');
   const [isCreating, setIsCreating] = useState<boolean>(false);
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
 
   // Active Cab in campus simulation
   const [activeCab, setActiveCab] = useState({
@@ -47,7 +53,13 @@ export const CabOverstayScreen: React.FC<CabOverstayScreenProps> = ({
   };
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       <div className="flex flex-col gap-5">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -112,7 +124,7 @@ export const CabOverstayScreen: React.FC<CabOverstayScreenProps> = ({
 
               <button
                 type="button"
-                onClick={() => alert('Calling driver Manoj Kumar...')}
+                onClick={() => showToast('Calling driver Manoj Kumar...')}
                 className="w-11 h-11 rounded-2xl bg-cobalt-600 text-white flex items-center justify-center hover:bg-cobalt-500 transition-colors shadow-md shadow-cobalt-600/30 press-scale"
                 title="Call Cab Driver"
               >
@@ -123,7 +135,7 @@ export const CabOverstayScreen: React.FC<CabOverstayScreenProps> = ({
             <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => alert('Added +10 minutes grace period for cab departure')}
+                onClick={() => showToast('Added +10 minutes grace period for cab departure')}
                 className="flex-1 py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 text-xs font-bold text-slate-200 border border-white/15 transition-colors press-scale"
               >
                 Extend +10m
@@ -131,7 +143,7 @@ export const CabOverstayScreen: React.FC<CabOverstayScreenProps> = ({
               <button
                 type="button"
                 onClick={() => {
-                  alert('Cab marked as departed from campus');
+                  showToast('Cab marked as departed from campus');
                   setActiveCab(null as any);
                 }}
                 className="flex-1 py-2.5 rounded-2xl bg-emerald-600/30 hover:bg-emerald-600/40 text-emerald-300 text-xs font-bold border border-emerald-500/40 transition-colors press-scale"

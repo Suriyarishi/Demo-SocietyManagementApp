@@ -33,6 +33,12 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
 }) => {
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
   const [escalated, setEscalated] = useState<boolean>(false);
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
 
   const handleEscalate = () => {
     setEscalated(true);
@@ -40,7 +46,13 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
   };
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       <div className="flex flex-col gap-5">
         {/* Header Bar */}
         <div className="flex items-center justify-between">
@@ -61,7 +73,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
           </div>
           <button
             type="button"
-            onClick={() => alert(`Calling Society Facility Manager on duty (+91 98450 11223)...`)}
+            onClick={() => showToast(`Calling Society Facility Manager on duty (+91 98450 11223)...`)}
             className="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slate-700 dark:text-slate-200"
             title="Call Facility Manager"
           >
@@ -209,7 +221,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => alert(`Calling technician ${ticket.technician?.name} at +91 ${ticket.technician?.phone}...`)}
+                  onClick={() => showToast(`Calling technician ${ticket.technician?.name} at +91 ${ticket.technician?.phone}...`)}
                   className="w-10 h-10 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition-colors shadow-md shadow-emerald-600/30 press-scale"
                   title="Call Technician"
                 >
@@ -217,7 +229,7 @@ export const TicketDetailSlaScreen: React.FC<TicketDetailSlaScreenProps> = ({
                 </button>
                 <button
                   type="button"
-                  onClick={() => alert(`Opening in-app resident chat with ${ticket.technician?.name}...`)}
+                  onClick={() => showToast(`Opening in-app resident chat with ${ticket.technician?.name}...`)}
                   className="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slate-700 dark:text-slate-200 press-scale"
                   title="Chat with Technician"
                 >

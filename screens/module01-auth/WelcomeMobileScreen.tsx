@@ -18,6 +18,12 @@ export const WelcomeMobileScreen: React.FC<WelcomeMobileScreenProps> = ({
   const [agreedToTerms, setAgreedToTerms] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>('');
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawVal = e.target.value.replace(/\D/g, '').slice(0, 10);
@@ -45,7 +51,13 @@ export const WelcomeMobileScreen: React.FC<WelcomeMobileScreenProps> = ({
   };
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       {/* Top Brand & Status Section */}
       <div className="flex flex-col gap-6">
         {/* Brand Header */}
@@ -204,7 +216,7 @@ export const WelcomeMobileScreen: React.FC<WelcomeMobileScreenProps> = ({
           <span>Are you a Security Guard or Facility Admin?</span>
           <button
             type="button"
-            onClick={() => alert('Society Gate Kiosk & Admin Station portal is separate for perimeter security.')}
+            onClick={() => showToast('Society Gate Kiosk & Admin Station portal is separate for perimeter security.')}
             className="font-semibold text-cobalt-600 dark:text-cobalt-400 hover:underline"
           >
             Gate Kiosk

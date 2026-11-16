@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Search, MapPin, Building2, Check, ShieldCheck, ChevronRight, PlusCircle } from 'lucide-react';
+import { ArrowLeft, Search, MapPin, Building2, Check, ShieldCheck, ChevronRight, PlusCircle, CheckCircle2 } from 'lucide-react';
 import { Button, StepProgress } from '../../components/UIComponents';
 
 export interface SocietyItem {
@@ -75,6 +75,12 @@ export const SocietySearchScreen: React.FC<SocietySearchScreenProps> = ({
   const [selectedCity, setSelectedCity] = useState<string>('All');
   const [selected, setSelected] = useState<string>(selectedSocietyId);
   const [isDetectingLocation, setIsDetectingLocation] = useState<boolean>(false);
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
 
   const cities = ['All', 'Bengaluru', 'Mumbai', 'Noida', 'Hyderabad'];
 
@@ -104,7 +110,13 @@ export const SocietySearchScreen: React.FC<SocietySearchScreenProps> = ({
   };
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       {/* Top Header & Search Bar */}
       <div className="flex flex-col gap-5">
         <div className="flex items-center justify-between">
@@ -244,7 +256,7 @@ export const SocietySearchScreen: React.FC<SocietySearchScreenProps> = ({
 
           {/* Request New Society Card */}
           <div
-            onClick={() => alert('Onboarding request submitted! Our community onboarding team will reach out to your Management Committee.')}
+            onClick={() => showToast('✓ Onboarding request submitted! Our community onboarding team will reach out.')}
             className="p-3.5 rounded-2xl border border-dashed border-slate-300 dark:border-obsidian-700 bg-slate-50/50 dark:bg-obsidian-900/30 flex items-center justify-between cursor-pointer hover:bg-slate-100 dark:hover:bg-obsidian-900 transition-colors"
           >
             <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-700 dark:text-slate-300">

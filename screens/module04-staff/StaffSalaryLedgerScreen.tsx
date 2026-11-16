@@ -22,6 +22,12 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
   const [showAdvanceModal, setShowAdvanceModal] = useState<boolean>(false);
   const [advanceAmount, setAdvanceAmount] = useState<string>('1000');
   const [targetStaff, setTargetStaff] = useState<string>('Lakshmi R (Cook)');
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
 
   const staffLedgers = [
     {
@@ -59,7 +65,15 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
   const totalMonthlyDue = staffLedgers.reduce((acc, s) => acc + s.netPayable, 0);
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200 relative">
+      {/* Toast Notification */}
+      {toastMsg && (
+        <div className="absolute top-14 left-3 right-3 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
+
       <div className="flex flex-col gap-5">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -157,7 +171,7 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
                 )}
                 <button
                   type="button"
-                  onClick={() => alert(`Initiating direct zero-markup UPI transfer of ₹${item.netPayable} to ${item.name}`)}
+                  onClick={() => showToast(`Initiating direct zero-markup UPI transfer of ₹${item.netPayable} to ${item.name}`)}
                   className="text-xs font-bold text-cobalt-600 dark:text-cobalt-400 hover:underline"
                 >
                   Pay via UPI
@@ -206,7 +220,7 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
               <button
                 type="button"
                 onClick={() => {
-                  alert(`Advance of ₹${advanceAmount} recorded for ${targetStaff}`);
+                  showToast(`Advance of ₹${advanceAmount} recorded for ${targetStaff}`);
                   setShowAdvanceModal(false);
                 }}
                 className="flex-1 h-11 rounded-xl bg-cobalt-600 hover:bg-cobalt-500 text-xs font-bold text-white"
@@ -221,7 +235,7 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
       {/* Bottom Export CTA */}
       <div className="pt-6">
         <Button
-          onClick={() => alert('Exporting monthly audit PDF receipt for November 2026...')}
+          onClick={() => showToast('Exporting monthly audit PDF receipt for November 2026...')}
           icon={Download}
           iconPosition="left"
           size="lg"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ArrowLeft,
   User,
@@ -10,7 +10,8 @@ import {
   MapPin,
   AlertTriangle,
   QrCode,
-  Share2
+  Share2,
+  CheckCircle2
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { VisitorRecord } from './GateOverviewScreen';
@@ -28,8 +29,21 @@ export const VisitorDetailScreen: React.FC<VisitorDetailScreenProps> = ({
   onCallVisitor,
   onCallGuard,
 }) => {
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
+
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       <div className="flex flex-col gap-5">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -139,7 +153,7 @@ export const VisitorDetailScreen: React.FC<VisitorDetailScreenProps> = ({
             <span>Notice any unauthorized activity?</span>
           </div>
           <button
-            onClick={() => alert('Security report lodged with Facility Management.')}
+            onClick={() => showToast('Security report lodged with Facility Management.')}
             className="text-xs font-bold text-crimson-600 dark:text-crimson-400 hover:underline"
           >
             Report
@@ -152,7 +166,7 @@ export const VisitorDetailScreen: React.FC<VisitorDetailScreenProps> = ({
         <div className="grid grid-cols-2 gap-3">
           <button
             type="button"
-            onClick={onCallVisitor || (() => alert('Calling visitor...'))}
+            onClick={onCallVisitor || (() => showToast(`Calling ${visitor.name}...`))}
             className="h-12 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 text-slate-800 dark:text-slate-200 font-bold text-xs flex items-center justify-center gap-2 transition-colors border border-slate-200 dark:border-obsidian-700"
           >
             <PhoneCall size={15} />
@@ -161,7 +175,7 @@ export const VisitorDetailScreen: React.FC<VisitorDetailScreenProps> = ({
 
           <button
             type="button"
-            onClick={onCallGuard || (() => alert('Calling Gate 1 Guard Kiosk...'))}
+            onClick={onCallGuard || (() => showToast('Opening 2-way VoIP line to Gate 1 Guard Kiosk...'))}
             className="h-12 rounded-xl bg-cobalt-600 hover:bg-cobalt-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors"
           >
             <ShieldCheck size={16} />

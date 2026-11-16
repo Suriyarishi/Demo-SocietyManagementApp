@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   CheckCircle2,
   Download,
@@ -30,8 +30,21 @@ export const PaymentReceiptScreen: React.FC<PaymentReceiptScreenProps> = ({
   receiptData,
   onReturnToHub,
 }) => {
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
+
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       <div className="flex flex-col gap-5">
         {/* Top Navigation Header */}
         <div className="flex items-center justify-between">
@@ -130,7 +143,7 @@ export const PaymentReceiptScreen: React.FC<PaymentReceiptScreenProps> = ({
         <div className="grid grid-cols-2 gap-2 text-xs">
           <button
             type="button"
-            onClick={() => alert('Downloading official GST Tax Invoice PDF...')}
+            onClick={() => showToast('✓ Downloading official GST Tax Invoice PDF...')}
             className="h-11 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 text-slate-800 dark:text-slate-200 font-bold flex items-center justify-center gap-1.5 transition-colors border border-slate-200 dark:border-obsidian-750"
           >
             <Download size={14} />
@@ -138,7 +151,7 @@ export const PaymentReceiptScreen: React.FC<PaymentReceiptScreenProps> = ({
           </button>
           <button
             type="button"
-            onClick={() => alert('Receipt shared via WhatsApp')}
+            onClick={() => showToast('✓ Receipt link copied & prepared for WhatsApp share')}
             className="h-11 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 text-slate-800 dark:text-slate-200 font-bold flex items-center justify-center gap-1.5 transition-colors border border-slate-200 dark:border-obsidian-750"
           >
             <Share2 size={14} />

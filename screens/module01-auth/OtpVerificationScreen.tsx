@@ -19,6 +19,7 @@ export const OtpVerificationScreen: React.FC<OtpVerificationScreenProps> = ({
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>('');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [infoBanner, setInfoBanner] = useState<string>('');
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -96,7 +97,8 @@ export const OtpVerificationScreen: React.FC<OtpVerificationScreenProps> = ({
     setTimer(30);
     setCanResend(false);
     setErrorMsg('');
-    alert(`Fresh verification code dispatched via ${channel.toUpperCase()} to +91 ${phoneNumber}`);
+    setInfoBanner(`Fresh verification code dispatched via ${channel.toUpperCase()} to ${formattedPhone}`);
+    setTimeout(() => setInfoBanner(''), 3500);
   };
 
   const formattedPhone = phoneNumber
@@ -104,7 +106,13 @@ export const OtpVerificationScreen: React.FC<OtpVerificationScreenProps> = ({
     : '+91 98765 43210';
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-300 relative">
+      {infoBanner && (
+        <div className="absolute top-2 left-4 right-4 z-50 p-2.5 rounded-xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={14} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{infoBanner}</span>
+        </div>
+      )}
       {/* Top Header & Step Bar */}
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
