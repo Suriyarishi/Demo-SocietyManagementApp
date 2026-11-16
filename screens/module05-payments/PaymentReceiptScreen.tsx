@@ -143,7 +143,16 @@ export const PaymentReceiptScreen: React.FC<PaymentReceiptScreenProps> = ({
         <div className="grid grid-cols-2 gap-2 text-xs">
           <button
             type="button"
-            onClick={() => showToast('✓ Downloading official GST Tax Invoice PDF...')}
+            onClick={() => {
+              showToast('✓ Preparing official GST Tax Invoice for print/PDF export...');
+              setTimeout(() => {
+                try {
+                  window.print();
+                } catch (e) {
+                  // Fallback
+                }
+              }, 500);
+            }}
             className="h-11 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 text-slate-800 dark:text-slate-200 font-bold flex items-center justify-center gap-1.5 transition-colors border border-slate-200 dark:border-obsidian-750"
           >
             <Download size={14} />

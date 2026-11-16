@@ -166,6 +166,23 @@ export const GlobalSearchScreen: React.FC<GlobalSearchScreenProps> = ({
           ))}
         </div>
 
+        {/* Quick Suggestion Chips */}
+        {!query && (
+          <div className="flex items-center gap-1.5 flex-wrap px-0.5 pt-0.5">
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mr-0.5">Quick:</span>
+            {['Swiggy', 'Security Kiosk', 'Water Tank', 'Lakshmi', 'Geyser'].map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setQuery(s)}
+                className="px-2 py-0.5 rounded-md bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 text-[11px] font-semibold text-slate-700 dark:text-slate-300 transition-colors border border-slate-200/60 dark:border-obsidian-750"
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
+
         {/* Results Stream */}
         <div className="flex flex-col gap-2 max-h-[520px] overflow-y-auto no-scrollbar pr-0.5 mt-1">
           {filteredResults.length > 0 ? (

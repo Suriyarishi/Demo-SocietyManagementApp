@@ -63,7 +63,16 @@ export const ItemizedBillScreen: React.FC<ItemizedBillScreenProps> = ({
           </span>
           <button
             type="button"
-            onClick={() => showToast('✓ Downloading official GST Tax Invoice PDF for Flat 1204...')}
+            onClick={() => {
+              showToast('✓ Preparing official GST Tax Invoice PDF for print/save...');
+              setTimeout(() => {
+                try {
+                  window.print();
+                } catch (e) {
+                  // Fallback
+                }
+              }, 500);
+            }}
             className="w-10 h-10 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-900 dark:hover:bg-obsidian-850 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200 dark:border-obsidian-800"
             title="Download PDF"
           >
