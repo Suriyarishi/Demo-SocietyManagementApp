@@ -662,3 +662,149 @@ export const EmergencyBeacon3D: React.FC<Vector3DProps> = ({ size = 64, classNam
     </div>
   );
 };
+
+/**
+ * 11. M07 / Resident Pass: 3D Holographic Resident Smart Access Keycard
+ * Isometric biometric smart card with glowing emerald RFID antenna, gold EMV chip,
+ * 3D security shield emblem, and floating contactless transmission waves.
+ */
+export const ResidentSmartPass3D: React.FC<Vector3DProps> = ({ size = 72, className = '', glow = true }) => {
+  return (
+    <div
+      className={`relative inline-flex items-center justify-center shrink-0 ${className}`}
+      style={{ width: size, height: size }}
+    >
+      {glow && (
+        <div className="absolute inset-0 bg-[#04BB49]/20 rounded-full blur-xl animate-pulse pointer-events-none" />
+      )}
+      <svg
+        viewBox="0 0 120 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full drop-shadow-[0_12px_28px_rgba(4,187,73,0.35)] select-none"
+      >
+        <defs>
+          {/* Card Body Gradient with #04BB49 Spring Emerald */}
+          <linearGradient id="smartCardGrad" x1="15" y1="20" x2="105" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0ECD5A" />
+            <stop offset="45%" stopColor="#04BB49" />
+            <stop offset="100%" stopColor="#024D1E" />
+          </linearGradient>
+
+          {/* Chamfer & Bevel Highlight */}
+          <linearGradient id="bevelLight" x1="10" y1="15" x2="95" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#A4EFC3" stopOpacity="0.9" />
+            <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#038032" stopOpacity="0.2" />
+          </linearGradient>
+
+          {/* 24K Gold EMV Security Chip */}
+          <linearGradient id="emvChipGrad" x1="28" y1="42" x2="48" y2="62" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#FEF08A" />
+            <stop offset="40%" stopColor="#EAB308" />
+            <stop offset="100%" stopColor="#A16207" />
+          </linearGradient>
+
+          {/* Hologram Core */}
+          <radialGradient id="holoLens" cx="78" cy="50" r="22" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
+            <stop offset="40%" stopColor="#6EE3A1" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#04BB49" stopOpacity="0.1" />
+          </radialGradient>
+        </defs>
+
+        {/* Ambient Isometric Shadow */}
+        <ellipse cx="60" cy="106" rx="44" ry="10" fill="#022B11" fillOpacity="0.3" />
+
+        {/* 3D Extruded Card Base (Thickness/Depth) */}
+        <g transform="rotate(-10 60 54)">
+          <rect
+            x="14"
+            y="26"
+            width="88"
+            height="58"
+            rx="12"
+            fill="#013615"
+          />
+        </g>
+
+        {/* Main Floating 3D Isometric Card Surface */}
+        <g transform="rotate(-10 60 52)">
+          {/* Card Body */}
+          <rect
+            x="14"
+            y="22"
+            width="88"
+            height="58"
+            rx="12"
+            fill="url(#smartCardGrad)"
+            stroke="url(#bevelLight)"
+            strokeWidth="1.5"
+          />
+
+          {/* Holographic Security Guilloche Arcs */}
+          <path
+            d="M20 32C45 28 75 35 96 48"
+            stroke="#FFFFFF"
+            strokeWidth="1"
+            strokeOpacity="0.25"
+            strokeDasharray="3 3"
+          />
+          <path
+            d="M16 46C42 42 70 50 94 65"
+            stroke="#FFFFFF"
+            strokeWidth="1"
+            strokeOpacity="0.2"
+            strokeDasharray="4 4"
+          />
+
+          {/* EMV Gold Microchip */}
+          <rect
+            x="26"
+            y="36"
+            width="18"
+            height="15"
+            rx="3"
+            fill="url(#emvChipGrad)"
+            stroke="#CA8A04"
+            strokeWidth="0.8"
+          />
+          <line x1="26" y1="43.5" x2="44" y2="43.5" stroke="#713F12" strokeWidth="0.8" />
+          <line x1="35" y1="36" x2="35" y2="51" stroke="#713F12" strokeWidth="0.8" />
+          <circle cx="35" cy="43.5" r="2" fill="#FEF08A" stroke="#713F12" strokeWidth="0.6" />
+
+          {/* Contactless RFID Waves (Active Beacon) */}
+          <path d="M50 40C53 43 53 47 50 50" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeOpacity="0.95" />
+          <path d="M54 36C59 41 59 49 54 54" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeOpacity="0.7" />
+          <path d="M58 32C65 39 65 53 58 60" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeOpacity="0.4" />
+
+          {/* Hologram Resident Shield Crest */}
+          <circle cx="80" cy="50" r="14" fill="url(#holoLens)" stroke="#FFFFFF" strokeWidth="1.2" strokeOpacity="0.6" />
+          {/* Mini 3D Keyhole inside Crest */}
+          <path
+            d="M80 43C77.8 43 76 44.8 76 47C76 48.5 76.8 49.8 78 50.5V55C78 56.1 78.9 57 80 57C81.1 57 82 56.1 82 55V50.5C83.2 49.8 84 48.5 84 47C84 44.8 82.2 43 80 43Z"
+            fill="#013615"
+            stroke="#6EE3A1"
+            strokeWidth="0.8"
+          />
+
+          {/* Micro Laser-Engraved Text */}
+          <text x="26" y="68" fill="#FFFFFF" fillOpacity="0.9" fontSize="6" fontFamily="monospace" fontWeight="bold" letterSpacing="0.5">
+            HUNT • RESIDENT PASS
+          </text>
+
+          {/* Glossy Diagonal Specular Highlight */}
+          <path
+            d="M20 22L45 22L25 78L14 78C14 78 14 65 14 55L20 22Z"
+            fill="#FFFFFF"
+            fillOpacity="0.25"
+          />
+        </g>
+
+        {/* Orbiting Laser Ring (3D Particle) */}
+        <circle cx="94" cy="40" r="4" fill="#0ECD5A" className="animate-ping" opacity="0.75" />
+        <circle cx="94" cy="40" r="3" fill="#FFFFFF" />
+      </svg>
+    </div>
+  );
+};
