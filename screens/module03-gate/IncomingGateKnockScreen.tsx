@@ -1,155 +1,176 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  ShieldAlert,
-  PhoneCall,
-  CheckCircle,
-  XCircle,
-  Package,
-  Camera,
-  Volume2,
-  Clock,
-  Building,
-  User
+  X,
+  Phone,
+  ShoppingCart,
+  DoorClosed,
+  Check,
 } from 'lucide-react';
-import { Button } from '../../components/UIComponents';
 
 interface IncomingGateKnockScreenProps {
-  onAllow: () => void;
-  onDeny: () => void;
-  onLeaveAtGate: () => void;
-  onCallGuard: () => void;
+  onClose?: () => void;
+  onAllow?: () => void;
+  onAllowEntry?: () => void;
+  onDeny?: () => void;
+  onDenyEntry?: () => void;
+  onLeaveAtGate?: () => void;
+  onCallGuard?: () => void;
 }
 
 export const IncomingGateKnockScreen: React.FC<IncomingGateKnockScreenProps> = ({
+  onClose,
   onAllow,
+  onAllowEntry,
   onDeny,
+  onDenyEntry,
   onLeaveAtGate,
   onCallGuard,
 }) => {
-  const [countdown, setCountdown] = useState<number>(28);
+  const [toastMsg, setToastMsg] = useState<string>('');
 
-  useEffect(() => {
-    if (countdown > 0) {
-      const timer = setInterval(() => setCountdown((c) => c - 1), 1000);
-      return () => clearInterval(timer);
-    } else {
-      // Auto-fallback to leave with guard or IVR call
-      onLeaveAtGate();
-    }
-  }, [countdown, onLeaveAtGate]);
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
+
+  const handleApprove = () => {
+    if (onAllow) onAllow();
+    else if (onAllowEntry) onAllowEntry();
+    else if (onClose) onClose();
+  };
+
+  const handleDeny = () => {
+    if (onDeny) onDeny();
+    else if (onDenyEntry) onDenyEntry();
+    else if (onClose) onClose();
+  };
+
+  const handleLeaveSecurity = () => {
+    showToast('Instruction recorded: Leave package with Gate 1 Security');
+    setTimeout(() => {
+      if (onLeaveAtGate) onLeaveAtGate();
+      else if (onClose) onClose();
+    }, 1000);
+  };
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 bg-slate-950 text-white text-left animate-in fade-in duration-300">
-      <div className="flex flex-col gap-4">
-        {/* Urgent Top Bar */}
-        <div className="flex items-center justify-between pt-1">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[11px] font-extrabold tracking-widest uppercase text-emerald-400">
-              INCOMING GATE KNOCK
+    <div className="w-full min-h-full bg-gradient-to-b from-[#1C1308]/95 via-[#2A1D0D]/95 to-[#120C05]/98 text-slate-900 text-left flex flex-col items-center justify-center p-4 relative select-none animate-in fade-in duration-300">
+      {/* Toast Notification */}
+      {toastMsg && (
+        <div className="absolute top-12 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <Check size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
+
+      {/* Close Button at Top */}
+      <button
+        type="button"
+        onClick={onClose || handleDeny}
+        className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md flex items-center justify-center text-white transition-all press-scale mb-4 shrink-0 shadow-lg relative z-10"
+        title="Close View"
+      >
+        <X size={18} strokeWidth={2.4} />
+      </button>
+
+      {/* Main Floating Modal Card (Exact Screenshot Match) */}
+      <div className="w-full max-w-[342px] rounded-[28px] bg-white text-slate-900 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] p-5 relative overflow-hidden flex flex-col z-10 animate-in zoom-in-95 duration-200">
+        {/* Header: Unit, Society & Red HOOD Brand Badge */}
+        <div className="flex items-start justify-between">
+          <div>
+            <span className="text-[11px] font-bold tracking-wider uppercase text-slate-500 block leading-tight">
+              TOWER-10-G003
+            </span>
+            <span className="text-sm font-black tracking-tight uppercase text-slate-900 block leading-tight mt-1">
+              LA RESIDENTIA
             </span>
           </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold text-amber-300">
-            <Clock size={13} />
-            <span>00:{countdown < 10 ? `0${countdown}` : countdown}s</span>
+
+          {/* Red Infinity HOOD Brand Badge */}
+          <div className="w-11 h-11 rounded-2xl bg-[#DC2626] text-white flex flex-col items-center justify-center shadow-md shrink-0">
+            <span className="font-black text-xl leading-none">∞</span>
+            <span className="text-[7.5px] font-black tracking-widest uppercase leading-none mt-0.5">HOOD</span>
           </div>
         </div>
 
-        {/* Gate Camera Live Snapshot Box */}
-        <div className="relative rounded-3xl bg-slate-900 border border-white/15 overflow-hidden shadow-2xl">
-          {/* Simulated Gate Kiosk Camera View */}
-          <div className="w-full h-56 bg-slate-800 relative flex flex-col items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10" />
-            
-            {/* Camera Overlay Elements */}
-            <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 text-[10px] font-mono text-white">
-              <Camera size={11} className="text-red-500 animate-pulse" />
-              <span>LIVE CAM • GATE 1 KIOSK</span>
-            </div>
+        {/* Dashed Separator Line */}
+        <div className="w-full border-b border-dashed border-slate-200 my-4" />
 
-            <div className="absolute top-3 right-3 z-20 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 text-[10px] font-mono text-slate-300">
-              1080p HD
+        {/* Courier Info Row */}
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="flex items-baseline gap-1">
+              <span className="text-lg font-bold text-slate-900">Kunal</span>
+              <span className="text-xs text-slate-400 font-medium">from</span>
             </div>
-
-            {/* Courier Visual Representation */}
-            <div className="flex flex-col items-center gap-2 z-10">
-              <div className="w-20 h-20 rounded-full bg-slate-700 border-2 border-white/30 flex items-center justify-center text-white shadow-xl">
-                <Package size={36} className="text-cobalt-400" />
+            <div className="flex items-center gap-2 mt-1.5">
+              <div className="w-7 h-7 rounded-lg bg-[#232F3E] text-white flex items-center justify-center p-1 shrink-0 shadow-xs">
+                <ShoppingCart size={15} className="text-[#FF9900]" />
               </div>
-              <span className="text-xs font-mono font-bold text-white bg-black/50 px-2 py-0.5 rounded-md">
-                Verified Courier Uniform
-              </span>
-            </div>
-
-            {/* Bottom Camera Metadata */}
-            <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between text-[11px] text-slate-300">
-              <span>Guard Ratan on station</span>
-              <span className="font-mono">Unit: Tower 2 - 1204</span>
+              <span className="text-base font-extrabold text-slate-900 tracking-tight">Amazon</span>
             </div>
           </div>
 
-          {/* Visitor Details Inset */}
-          <div className="p-4 bg-slate-900 flex flex-col gap-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-base font-extrabold text-white">
-                  Amazon Delivery (Sandeep M)
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Parcel #AZ-9402 • At Boom Barrier Gate 1
-                </p>
-              </div>
-              <span className="text-xs font-bold px-2 py-1 rounded-lg bg-cobalt-500/20 text-cobalt-300 border border-cobalt-500/30 uppercase">
-                Courier
-              </span>
+          {/* Courier Avatar & Floating Green Call Button */}
+          <div className="relative shrink-0">
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-200 shadow-sm bg-slate-100">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80"
+                alt="Courier Kunal"
+                className="w-full h-full object-cover"
+              />
             </div>
-
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed bg-white/5 p-2 rounded-xl border border-white/5">
-              Guard Note: "Delivery agent requesting access to Tower 2 passenger lift."
-            </p>
+            <button
+              type="button"
+              onClick={() => {
+                if (onCallGuard) onCallGuard();
+                else showToast('Calling Kunal (Amazon Delivery)...');
+              }}
+              className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-[#16A34A] hover:bg-[#15803D] text-white flex items-center justify-center shadow-md border-2 border-white transition-transform active:scale-90"
+              title="Call Courier"
+            >
+              <Phone size={13} className="fill-current" />
+            </button>
           </div>
         </div>
 
-        {/* Wireless Intercom Audio Trigger */}
-        <button
-          type="button"
-          onClick={onCallGuard}
-          className="w-full py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-slate-200 border border-white/10 flex items-center justify-center gap-2 transition-colors"
-        >
-          <PhoneCall size={14} className="text-cobalt-400" />
-          <span>Speak with Gate Guard (Wireless Intercom)</span>
-        </button>
-      </div>
+        {/* Sub-Card Action Box */}
+        <div className="mt-4 p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 flex flex-col gap-3">
+          <p className="text-xs text-slate-600 text-center leading-relaxed">
+            Your delivery is <span className="text-[#DC2626] font-bold">waiting at the gate</span> for approval
+          </p>
 
-      {/* Decision CTAs (Large 54dp Thumb Accessible Buttons) */}
-      <div className="pt-4 flex flex-col gap-2.5">
-        <div className="grid grid-cols-2 gap-3">
+          {/* Leave with security button */}
           <button
             type="button"
-            onClick={onDeny}
-            className="h-14 rounded-2xl bg-crimson-600 hover:bg-crimson-700 active:bg-crimson-800 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-crimson-600/30 transition-transform press-scale"
+            onClick={handleLeaveSecurity}
+            className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-800 font-bold text-xs border border-slate-200/90 shadow-2xs flex items-center justify-center gap-2 transition-all press-scale"
           >
-            <XCircle size={18} />
-            <span>Deny Entry</span>
+            <DoorClosed size={16} className="text-slate-600" />
+            <span>Leave with security</span>
           </button>
 
-          <button
-            type="button"
-            onClick={onAllow}
-            className="h-14 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-transform press-scale"
-          >
-            <CheckCircle size={18} />
-            <span>Allow Entry</span>
-          </button>
+          {/* Deny & Approve Dual Buttons */}
+          <div className="grid grid-cols-2 gap-2.5 pt-0.5">
+            <button
+              type="button"
+              onClick={handleDeny}
+              className="py-2.5 px-4 rounded-xl bg-[#DC2626] hover:bg-[#B91C1C] active:bg-[#991B1B] text-white font-extrabold text-xs shadow-sm flex items-center justify-center gap-1.5 transition-transform press-scale"
+            >
+              <X size={15} strokeWidth={2.8} />
+              <span>Deny</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleApprove}
+              className="py-2.5 px-4 rounded-xl bg-[#16A34A] hover:bg-[#15803D] active:bg-[#166534] text-white font-extrabold text-xs shadow-sm flex items-center justify-center gap-1.5 transition-transform press-scale"
+            >
+              <Check size={15} strokeWidth={2.8} />
+              <span>Approve</span>
+            </button>
+          </div>
         </div>
-
-        <button
-          type="button"
-          onClick={onLeaveAtGate}
-          className="w-full h-12 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs font-bold text-slate-300 border border-white/15 transition-colors"
-        >
-          Leave with Guard at Security Desk
-        </button>
       </div>
     </div>
   );
