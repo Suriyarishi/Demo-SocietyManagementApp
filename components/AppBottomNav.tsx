@@ -45,7 +45,7 @@ export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChan
   ];
 
   return (
-    <nav className="w-full bg-[#12131A] text-white rounded-t-[32px] pt-3 pb-2.5 px-3.5 shadow-[0_-10px_35px_rgba(0,0,0,0.5)] border-t border-white/5 z-40 shrink-0 select-none flex flex-col items-center">
+    <nav className="w-full bg-white/95 dark:bg-[#070A11]/95 backdrop-blur-xl rounded-t-[32px] pt-3 pb-2.5 px-3.5 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.5)] border-t border-slate-200/80 dark:border-white/10 z-40 shrink-0 select-none flex flex-col items-center">
       {/* 5-Tab Bar Container */}
       <div className="w-full flex items-center justify-between px-0.5">
         {tabs.map((tab) => {
@@ -56,10 +56,10 @@ export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChan
               key={tab.id}
               type="button"
               onClick={() => onTabChange(tab.id)}
-              className={`relative flex items-center justify-center transition-all duration-300 ease-out press-scale ${
+              className={`relative flex items-center justify-center transition-all duration-300 ease-out press-scale focus:outline-none ${
                 isActive
-                  ? 'h-11 px-4 rounded-full bg-[#0A2E18] border border-[#04BB49]/40 shadow-lg shadow-[#04BB49]/20 gap-2 shrink-0'
-                  : 'w-11 h-11 rounded-full text-[#7E8299] hover:text-white hover:bg-white/5 transition-colors shrink-0'
+                  ? 'h-11 px-4 rounded-full bg-[#E8FBF0] dark:bg-[#0A2E18] border border-[#04BB49]/35 dark:border-[#04BB49]/40 shadow-sm shadow-[#04BB49]/15 dark:shadow-[#04BB49]/20 gap-2 shrink-0'
+                  : 'w-11 h-11 rounded-full text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors shrink-0'
               }`}
             >
               {tab.id === 'home' && (
@@ -90,7 +90,7 @@ export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChan
       </div>
 
       {/* Sleek iOS Home Indicator Bar */}
-      <div className="w-32 h-1 bg-white/20 rounded-full mt-3 mb-0.5" />
+      <div className="w-32 h-1 bg-black/25 dark:bg-white/25 rounded-full mt-3 mb-0.5" />
     </nav>
   );
 };
