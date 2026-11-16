@@ -68,11 +68,6 @@ export const MobileDeviceFrame: React.FC<MobileDeviceFrameProps> = ({ children }
             <div className="w-full flex-1 overflow-hidden bg-slate-50 dark:bg-[#070A11] text-slate-900 dark:text-slate-100 relative flex flex-col">
               {children}
             </div>
-
-            {/* Native iOS Home Indicator Bar */}
-            <div className="w-full h-6 flex items-center justify-center select-none bg-white dark:bg-[#070A11] z-30 shrink-0 border-t border-slate-100/40 dark:border-white/5">
-              <div className="w-32 h-1 bg-black/40 dark:bg-white/40 rounded-full" />
-            </div>
           </div>
         </div>
       </div>
