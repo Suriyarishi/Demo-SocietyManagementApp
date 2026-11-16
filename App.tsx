@@ -214,6 +214,18 @@ export function App() {
     return 'home';
   };
 
+  // Only show bottom navigation dock on 5 primary root hub tabs (hidesBottomBarWhenPushed = true on all detail/flow/checkout screens)
+  const ROOT_SCREEN_IDS = [
+    'SCR_HOME_01', // Home Command Hub
+    'SCR_HOME_02', // Global Search & Directory
+    'SCR_SOC_01',  // Society Hub
+    'SCR_HOME_04', // Activity Timeline
+    'SCR_SETT_01', // Household & Settings Hub
+    'SCR_SETTING_01',
+    'SCR_SET_01',
+  ];
+  const shouldShowBottomNav = ROOT_SCREEN_IDS.includes(currentScreenId);
+
   return (
     <MobileDeviceFrame>
       {/* Toast Notification (Anchored inside phone viewport) */}
@@ -245,7 +257,7 @@ export function App() {
             onTriggerSOS={() => pushScreen('SCR_SOS_01')}
             onPreApproveGuest={() => pushScreen('SCR_GATE_02')}
             onDeliveryPass={() => pushScreen('SCR_GATE_04')}
-            onPayBills={() => resetTo('SCR_PAY_01')}
+            onPayBills={() => pushScreen('SCR_PAY_01')}
             onDailyHelp={() => pushScreen('SCR_STAFF_01')}
             onOpenAmenities={() => pushScreen('SCR_SOC_02')}
             onOpenNotices={() => pushScreen('SCR_SOC_03')}
@@ -813,12 +825,18 @@ export function App() {
 
       {/* ========================================================
           PERSISTENT APP BOTTOM NAVIGATION DOCK
-          Sticky on bottom ALWAYS across ALL screens and modules
+          Visible ONLY on 5 Primary Hub Screens (hidesBottomBarWhenPushed)
           ======================================================== */}
-      <AppBottomNav
-        activeTab={getActiveTab()}
-        onTabChange={switchTab}
-      />
+      {shouldShowBottomNav ? (
+        <AppBottomNav
+          activeTab={getActiveTab()}
+          onTabChange={switchTab}
+        />
+      ) : (
+        <div className="w-full h-6 flex items-center justify-center select-none bg-white dark:bg-[#070A11] shrink-0 border-t border-slate-100/40 dark:border-white/5">
+          <div className="w-32 h-1 bg-black/40 dark:bg-white/40 rounded-full" />
+        </div>
+      )}
 
       {/* ========================================================
           GLOBAL OVERLAYS (FLAT SWITCHER & SOS)

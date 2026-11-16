@@ -105,7 +105,7 @@ export const ActivityTimelineScreen: React.FC<ActivityTimelineScreenProps> = ({ 
   const dateGroups = Array.from(new Set(filteredEvents.map((e) => e.dateGroup)));
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-28 text-left animate-in fade-in duration-200">
       <div className="flex flex-col gap-5">
         {/* Header */}
         <div className="flex items-center justify-between">

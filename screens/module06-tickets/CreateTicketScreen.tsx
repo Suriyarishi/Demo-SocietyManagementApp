@@ -332,7 +332,7 @@ export const CreateTicketScreen: React.FC<CreateTicketScreenProps> = ({
       </div>
 
       {/* Bottom CTA */}
-      <div className="pt-6">
+      <div className="pt-6 pb-2">
         <Button
           onClick={handleSubmit}
           isLoading={isSubmitting}

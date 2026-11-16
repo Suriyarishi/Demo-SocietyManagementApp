@@ -112,7 +112,7 @@ export const GlobalSearchScreen: React.FC<GlobalSearchScreenProps> = ({
   });
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-28 text-left animate-in fade-in duration-200">
       <div className="flex flex-col gap-4">
         {/* Header & Search Bar */}
         <div className="flex items-center gap-3">

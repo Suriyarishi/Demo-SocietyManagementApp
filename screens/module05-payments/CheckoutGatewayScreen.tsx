@@ -160,7 +160,7 @@ export const CheckoutGatewayScreen: React.FC<CheckoutGatewayScreenProps> = ({
       </div>
 
       {/* Pay CTA */}
-      <div className="pt-6">
+      <div className="pt-6 pb-2">
         <Button
           onClick={handlePay}
           isLoading={isProcessing}

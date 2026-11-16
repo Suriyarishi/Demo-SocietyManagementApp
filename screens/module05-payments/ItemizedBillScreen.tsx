@@ -171,7 +171,7 @@ export const ItemizedBillScreen: React.FC<ItemizedBillScreenProps> = ({
       </div>
 
       {/* Bottom CTA */}
-      <div className="pt-6">
+      <div className="pt-6 pb-2">
         <Button
           onClick={() => onProceedToPay(netDue)}
           icon={ChevronRight}
