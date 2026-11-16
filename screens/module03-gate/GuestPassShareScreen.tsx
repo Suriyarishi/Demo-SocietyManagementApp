@@ -9,7 +9,8 @@ import {
   ShieldCheck,
   AlertTriangle,
   Building,
-  Car
+  Car,
+  CheckCircle2
 } from 'lucide-react';
 import { Button } from '../../components/UIComponents';
 import { PreApproveGuestFormData } from './PreApproveGuestScreen';
@@ -29,10 +30,17 @@ export const GuestPassShareScreen: React.FC<GuestPassShareScreenProps> = ({
 }) => {
   const [copied, setCopied] = useState<boolean>(false);
   const [shareSuccess, setShareSuccess] = useState<boolean>(false);
+  const [toastMsg, setToastMsg] = useState<string>('');
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(''), 2500);
+  };
 
   const handleCopy = () => {
     navigator.clipboard?.writeText(entryCode);
     setCopied(true);
+    showToast(`✓ Gate Pass PIN ${entryCode} copied to clipboard`);
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -43,7 +51,13 @@ export const GuestPassShareScreen: React.FC<GuestPassShareScreenProps> = ({
   };
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200 relative">
+      {toastMsg && (
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        </div>
+      )}
       <div className="flex flex-col gap-5">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -98,16 +112,27 @@ export const GuestPassShareScreen: React.FC<GuestPassShareScreenProps> = ({
               <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">
                 6-Digit Entry Code
               </span>
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <span className="text-3xl font-mono font-extrabold text-white tracking-widest">
+              <div className="mt-1 flex items-center justify-center gap-2.5">
+                <span className="text-3xl font-mono font-extrabold text-white tracking-widest bg-white/5 px-3 py-1 rounded-xl border border-white/10">
                   {entryCode}
                 </span>
                 <button
+                  type="button"
                   onClick={handleCopy}
-                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 transition-colors border border-white/10"
+                  className="h-10 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 transition-colors border border-white/10 flex items-center gap-1.5 text-xs font-bold active:scale-95"
                   title="Copy PIN"
                 >
-                  {copied ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
+                  {copied ? (
+                    <>
+                      <Check size={14} className="text-emerald-400" />
+                      <span className="text-emerald-400">Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={14} />
+                      <span>Copy</span>
+                    </>
+                  )}
                 </button>
               </div>
             </div>

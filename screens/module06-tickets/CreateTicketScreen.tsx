@@ -42,7 +42,7 @@ export const CreateTicketScreen: React.FC<CreateTicketScreenProps> = ({
   const [title, setTitle] = useState<string>('Kitchen Sink Tap Dripping Continuously');
   const [description, setDescription] = useState<string>('Water is dripping from the mixer faucet joint even after tightening the valve. Need washer replacement.');
   const [priority, setPriority] = useState<'standard' | 'emergency'>('standard');
-  const [hasPhoto, setHasPhoto] = useState<boolean>(true);
+  const [photos, setPhotos] = useState<string[]>(['faucet_leak_photo_01.jpg']);
   const [isRecordingVoice, setIsRecordingVoice] = useState<boolean>(false);
   const [hasVoiceNote, setHasVoiceNote] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -81,7 +81,7 @@ export const CreateTicketScreen: React.FC<CreateTicketScreenProps> = ({
         title,
         description,
         priority,
-        hasPhoto,
+        hasPhoto: photos.length > 0,
         hasVoiceNote,
       });
     }, 700);
@@ -221,23 +221,33 @@ export const CreateTicketScreen: React.FC<CreateTicketScreenProps> = ({
 
           {/* Media Attachments (Photo + Voice Note) */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 tracking-wider uppercase">
-              Attach Evidence
-            </label>
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-300 tracking-wider uppercase">
+                Attach Evidence
+              </label>
+              <span className="text-[10px] text-slate-500 font-mono">Max 3 photos</span>
+            </div>
             <div className="grid grid-cols-2 gap-2">
               {/* Photo Attachment Button */}
               <button
                 type="button"
-                onClick={() => setHasPhoto(!hasPhoto)}
+                onClick={() => {
+                  if (photos.length < 3) {
+                    const newName = photos.length === 0 ? 'faucet_leak_photo_01.jpg' : photos.length === 1 ? 'pipe_joint_angle_02.jpg' : 'sink_cabinet_moisture_03.jpg';
+                    setPhotos([...photos, newName]);
+                  } else {
+                    setPhotos([]);
+                  }
+                }}
                 className={`p-3 rounded-2xl border transition-all flex items-center justify-center gap-2 press-scale ${
-                  hasPhoto
+                  photos.length > 0
                     ? 'border-emerald-500/60 bg-emerald-50/40 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300'
                     : 'glass-card text-slate-600 dark:text-slate-300'
                 }`}
               >
                 <Camera size={16} />
                 <span className="text-xs font-bold">
-                  {hasPhoto ? 'Photo Attached (1)' : 'Take Photo'}
+                  {photos.length > 0 ? `Photos (${photos.length}/3)` : 'Add Photo'}
                 </span>
               </button>
 
@@ -260,19 +270,24 @@ export const CreateTicketScreen: React.FC<CreateTicketScreenProps> = ({
               </button>
             </div>
 
-            {hasPhoto && (
-              <div className="mt-1 p-2 rounded-xl glass-card flex items-center justify-between text-xs text-slate-500">
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={13} className="text-emerald-500" />
-                  faucet_leak_photo_01.jpg (1.8 MB)
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setHasPhoto(false)}
-                  className="text-slate-400 hover:text-crimson-500"
-                >
-                  <X size={14} />
-                </button>
+            {photos.length > 0 && (
+              <div className="mt-1 flex flex-col gap-1.5">
+                {photos.map((photoName, pIdx) => (
+                  <div key={photoName} className="p-2 rounded-xl glass-card flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
+                    <span className="flex items-center gap-1.5">
+                      <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
+                      <span className="truncate max-w-[210px]">{photoName}</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setPhotos(photos.filter((_, idx) => idx !== pIdx))}
+                      className="text-slate-400 hover:text-crimson-500 p-1"
+                      title="Remove attachment"
+                    >
+                      <X size={14} />
+                    </button>
+                  </div>
+                ))}
               </div>
             )}
           </div>

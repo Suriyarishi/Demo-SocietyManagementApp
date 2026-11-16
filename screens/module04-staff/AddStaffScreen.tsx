@@ -133,7 +133,8 @@ export const AddStaffScreen: React.FC<AddStaffScreenProps> = ({
               label="Monthly Salary (₹)"
               placeholder="6000"
               value={salary}
-              onChange={(e) => setSalary(e.target.value)}
+              inputMode="numeric"
+              onChange={(e) => setSalary(e.target.value.replace(/\D/g, ''))}
               prefixElement={<CreditCard size={18} />}
             />
           </div>
@@ -151,7 +152,8 @@ export const AddStaffScreen: React.FC<AddStaffScreenProps> = ({
               label="Mobile Number"
               placeholder="98765 43210"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              inputMode="tel"
+              onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
               prefixElement={<Phone size={18} />}
             />
 
@@ -181,7 +183,8 @@ export const AddStaffScreen: React.FC<AddStaffScreenProps> = ({
               label="Agreed Monthly Salary (₹)"
               placeholder="6500"
               value={salary}
-              onChange={(e) => setSalary(e.target.value)}
+              inputMode="numeric"
+              onChange={(e) => setSalary(e.target.value.replace(/\D/g, ''))}
               prefixElement={<CreditCard size={18} />}
             />
           </div>

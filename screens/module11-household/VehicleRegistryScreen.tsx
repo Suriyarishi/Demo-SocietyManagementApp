@@ -259,7 +259,7 @@ export const VehicleRegistryScreen: React.FC<VehicleRegistryScreenProps> = ({ on
                 label="REGISTRATION PLATE"
                 placeholder="e.g. KA-05-MQ-3819"
                 value={newPlate}
-                onChange={(e) => setNewPlate(e.target.value)}
+                onChange={(e) => setNewPlate(e.target.value.toUpperCase())}
                 required
               />
 
@@ -331,7 +331,7 @@ export const VehicleRegistryScreen: React.FC<VehicleRegistryScreenProps> = ({ on
                 label="GUEST VEHICLE NUMBER"
                 placeholder="e.g. KA-01-MJ-9912"
                 value={guestCarPlate}
-                onChange={(e) => setGuestCarPlate(e.target.value)}
+                onChange={(e) => setGuestCarPlate(e.target.value.toUpperCase())}
                 required
               />
 

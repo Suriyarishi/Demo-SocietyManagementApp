@@ -413,10 +413,10 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
 
         {/* Security OS Footnote */}
         <div className="text-center py-2">
-          <p className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500">
+          <p className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400">
             HUNT LOCKDOOR RESIDENTIAL OS • BUILD 2026.4
           </p>
-          <p className="text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-600 mt-0.5">
+          <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
             Zero brokerage • Perimeter isolated • AES-256 encrypted
           </p>
         </div>

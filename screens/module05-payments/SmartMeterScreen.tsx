@@ -25,6 +25,7 @@ export const SmartMeterScreen: React.FC<SmartMeterScreenProps> = ({
   const [balance, setBalance] = useState<number>(840.5);
   const [selectedTopUp, setSelectedTopUp] = useState<number>(1000);
   const [autoRecharge, setAutoRecharge] = useState<boolean>(true);
+  const [alertThreshold, setAlertThreshold] = useState<number>(200);
   const [activeDayIdx, setActiveDayIdx] = useState<number>(6); // Sun default
 
   const past7Days = [
@@ -152,22 +153,49 @@ export const SmartMeterScreen: React.FC<SmartMeterScreenProps> = ({
             ))}
           </div>
 
-          {/* Auto Recharge Toggle */}
-          <div className="mt-1 p-3.5 rounded-2xl bg-slate-100/70 dark:bg-obsidian-900/60 border border-slate-200/60 dark:border-obsidian-800 flex items-center justify-between text-xs">
-            <div>
-              <span className="font-bold text-slate-900 dark:text-white block">
-                Auto-Top Up Protection
-              </span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400">
-                Auto-adds ₹1,000 if balance drops below ₹200 (prevents power cuts)
-              </span>
+          {/* Auto Recharge Toggle & Threshold Slider */}
+          <div className="mt-1 p-3.5 rounded-2xl bg-slate-100/70 dark:bg-obsidian-900/60 border border-slate-200/60 dark:border-obsidian-800 flex flex-col gap-3 text-xs">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="font-bold text-slate-900 dark:text-white block">
+                  Auto-Top Up Protection
+                </span>
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                  Prevents power cut if balance drops below threshold
+                </span>
+              </div>
+              <input
+                type="checkbox"
+                checked={autoRecharge}
+                onChange={(e) => setAutoRecharge(e.target.checked)}
+                className="w-4 h-4 rounded text-cobalt-600 focus:ring-cobalt-500 border-slate-300 cursor-pointer"
+              />
             </div>
-            <input
-              type="checkbox"
-              checked={autoRecharge}
-              onChange={(e) => setAutoRecharge(e.target.checked)}
-              className="w-4 h-4 rounded text-cobalt-600 focus:ring-cobalt-500 border-slate-300 cursor-pointer"
-            />
+
+            {autoRecharge && (
+              <div className="pt-2 border-t border-slate-200/60 dark:border-obsidian-800 flex flex-col gap-1.5">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Low-Balance Cutoff Alert</span>
+                  <span className="font-mono font-bold text-cobalt-600 dark:text-cobalt-400">
+                    ₹{alertThreshold}
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="100"
+                  max="1000"
+                  step="50"
+                  value={alertThreshold}
+                  onChange={(e) => setAlertThreshold(Number(e.target.value))}
+                  className="w-full h-1.5 bg-slate-200 dark:bg-obsidian-750 rounded-lg appearance-none cursor-pointer accent-cobalt-600"
+                />
+                <div className="flex justify-between text-[10px] text-slate-400 font-mono">
+                  <span>₹100 (Min)</span>
+                  <span>₹500</span>
+                  <span>₹1,000 (Max)</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
