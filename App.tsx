@@ -324,7 +324,7 @@ export function App() {
         )}
 
         {currentScreenId === 'SCR_SOC_04' && (
-          <SocietyForumScreen onBack={goBack} />
+          <SocietyForumScreen onBack={goBack} onNavigateTab={switchTab} />
         )}
 
         {currentScreenId === 'SCR_SOC_05' && (

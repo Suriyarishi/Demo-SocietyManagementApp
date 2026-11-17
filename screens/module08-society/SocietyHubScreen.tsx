@@ -86,18 +86,18 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
 
   const forumPosts = [
     {
-      author: 'Vikram Mehta (Tower 3 - 802)',
-      time: '1h ago',
-      title: 'Weekend Tennis Doubles Match at 7 AM? Looking for 2 players!',
-      replies: 6,
-      likes: 12,
+      author: 'Society Admin (Water Maintenance)',
+      time: '2h ago',
+      title: 'Water Supply Maintenance — Tomorrow 10:00 AM - 2:00 PM',
+      replies: 8,
+      likes: 24,
     },
     {
-      author: 'Dr. Aruna Rao (Tower 1 - 404)',
-      time: '3h ago',
-      title: 'Recommendations for reliable pediatric dentists nearby in Whitefield?',
-      replies: 14,
-      likes: 9,
+      author: 'Shweta (Tower 13 - 0801)',
+      time: '1d ago',
+      title: 'Luvlap highchair · ₹500 (Bought June 2024, Pickup only)',
+      replies: 3,
+      likes: 12,
     },
   ];
 
@@ -385,7 +385,7 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
             <button
               type="button"
               onClick={onOpenForum}
-              className="text-xs font-bold text-cobalt-600 dark:text-cobalt-400 hover:underline flex items-center gap-0.5"
+              className="text-xs font-bold text-[#04BB49] dark:text-[#0ECD5A] hover:underline flex items-center gap-0.5"
             >
               <span>Join Discussion</span>
               <ChevronRight size={13} />
@@ -397,7 +397,7 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
               <div
                 key={idx}
                 onClick={onOpenForum}
-                className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex items-start justify-between cursor-pointer hover:border-cobalt-300 dark:hover:border-cobalt-700 transition-all press-scale"
+                className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex items-start justify-between cursor-pointer hover:border-[#04BB49]/40 dark:hover:border-[#04BB49]/40 transition-all press-scale"
               >
                 <div className="flex-1 pr-2">
                   <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
