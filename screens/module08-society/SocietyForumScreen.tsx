@@ -32,7 +32,7 @@ import {
   User,
   Heart
 } from 'lucide-react';
-import { RootTabType } from '../../components/AppBottomNav';
+import { AppBottomNav, RootTabType } from '../../components/AppBottomNav';
 
 export interface ForumComment {
   id: string;
@@ -714,63 +714,17 @@ export const SocietyForumScreen: React.FC<SocietyForumScreenProps> = ({ onBack, 
             </button>
           </div>
 
-          {/* Bottom Navigation Dock (Matching AppBottomNav System) */}
-          <div className="w-full bg-white/95 dark:bg-[#070A11]/95 backdrop-blur-xl rounded-t-[32px] pt-3 pb-2.5 px-3.5 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.5)] border-t border-slate-200/80 dark:border-white/10 shrink-0 select-none flex flex-col items-center z-20">
-            <div className="w-full flex items-center justify-between px-0.5">
-              {/* Home */}
-              <button
-                type="button"
-                onClick={() => onNavigateTab ? onNavigateTab('home') : onBack()}
-                className="w-11 h-11 rounded-full text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white flex items-center justify-center transition-colors press-scale"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-              </button>
-
-              {/* Society (ACTIVE PILL) */}
-              <button
-                type="button"
-                className="h-11 px-4 rounded-full bg-[#E8FBF0] dark:bg-[#0A2E18] border border-[#04BB49]/35 dark:border-[#04BB49]/40 shadow-sm shadow-[#04BB49]/15 flex items-center justify-center gap-2 shrink-0 press-scale"
-              >
-                <PieChart size={20} strokeWidth={2.4} className="text-[#04BB49] dark:text-[#0ECD5A]" />
-                <span className="text-xs font-bold text-[#04BB49] dark:text-[#0ECD5A] tracking-wide">
-                  Society
-                </span>
-              </button>
-
-              {/* Services / Search */}
-              <button
-                type="button"
-                onClick={() => onNavigateTab ? onNavigateTab('search') : showToast('Navigating to Services')}
-                className="w-11 h-11 rounded-full text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white flex items-center justify-center transition-colors press-scale"
-              >
-                <Search size={20} strokeWidth={1.9} />
-              </button>
-
-              {/* Bills / Activity */}
-              <button
-                type="button"
-                onClick={() => onNavigateTab ? onNavigateTab('activity') : showToast('Navigating to Activity')}
-                className="w-11 h-11 rounded-full text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white flex items-center justify-center transition-colors press-scale"
-              >
-                <Clock size={20} strokeWidth={1.9} />
-              </button>
-
-              {/* Profile */}
-              <button
-                type="button"
-                onClick={() => onNavigateTab ? onNavigateTab('profile') : showToast('Navigating to Profile')}
-                className="w-11 h-11 rounded-full text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white flex items-center justify-center transition-colors press-scale"
-              >
-                <User size={20} strokeWidth={1.9} />
-              </button>
-            </div>
-
-            {/* iOS Home Indicator Bar */}
-            <div className="w-32 h-1 bg-black/25 dark:bg-white/25 rounded-full mt-3 mb-0.5" />
-          </div>
+          {/* Bottom Navigation Dock (Synchronized AppBottomNav: Home, Search, Society, Services, Profile) */}
+          <AppBottomNav
+            activeTab="society"
+            onTabChange={(tab) => {
+              if (tab === 'society') {
+                setViewMode('feed');
+              } else if (onNavigateTab) {
+                onNavigateTab(tab);
+              }
+            }}
+          />
         </div>
       )}
 

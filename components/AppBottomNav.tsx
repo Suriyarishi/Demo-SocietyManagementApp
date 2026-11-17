@@ -1,7 +1,7 @@
 import React from 'react';
-import { Search, PieChart, Clock, User } from 'lucide-react';
+import { Search, PieChart, LayoutGrid, User } from 'lucide-react';
 
-export type RootTabType = 'home' | 'search' | 'society' | 'activity' | 'profile' | 'bills' | 'services';
+export type RootTabType = 'home' | 'search' | 'society' | 'services' | 'profile' | 'activity' | 'bills';
 
 interface AppBottomNavProps {
   activeTab: RootTabType;
@@ -25,14 +25,12 @@ const HomeGlyph: React.FC<{ active: boolean; className?: string }> = ({ active, 
 };
 
 export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChange }) => {
-  // Normalize legacy tabs to our 5 primary icons
-  const normalizedActiveTab = ((): 'home' | 'search' | 'society' | 'activity' | 'profile' => {
-    if (activeTab === 'bills') return 'activity';
-    if (activeTab === 'services') return 'society';
+  // Normalize legacy tabs to our 5 primary icons in requested order: home, search, society, services, profile
+  const normalizedActiveTab = ((): 'home' | 'search' | 'society' | 'services' | 'profile' => {
     if (activeTab === 'search') return 'search';
-    if (activeTab === 'activity') return 'activity';
-    if (activeTab === 'profile') return 'profile';
     if (activeTab === 'society') return 'society';
+    if (activeTab === 'services' || activeTab === 'bills' || activeTab === 'activity') return 'services';
+    if (activeTab === 'profile') return 'profile';
     return 'home';
   })();
 
@@ -40,13 +38,13 @@ export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChan
     { id: 'home' as const, label: 'Home' },
     { id: 'search' as const, label: 'Search' },
     { id: 'society' as const, label: 'Society' },
-    { id: 'activity' as const, label: 'Activity' },
+    { id: 'services' as const, label: 'Services' },
     { id: 'profile' as const, label: 'Profile' },
   ];
 
   return (
     <nav className="w-full bg-white/95 dark:bg-[#070A11]/95 backdrop-blur-xl rounded-t-[32px] pt-3 pb-2.5 px-3.5 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.5)] border-t border-slate-200/80 dark:border-white/10 z-40 shrink-0 select-none flex flex-col items-center">
-      {/* 5-Tab Bar Container */}
+      {/* 5-Tab Bar Container (Strict Order: Home, Search, Society, Services, Profile) */}
       <div className="w-full flex items-center justify-between px-0.5">
         {tabs.map((tab) => {
           const isActive = normalizedActiveTab === tab.id;
@@ -71,8 +69,8 @@ export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChan
               {tab.id === 'society' && (
                 <PieChart size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
               )}
-              {tab.id === 'activity' && (
-                <Clock size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
+              {tab.id === 'services' && (
+                <LayoutGrid size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
               )}
               {tab.id === 'profile' && (
                 <User size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />

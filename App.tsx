@@ -167,8 +167,10 @@ export function App() {
         resetTo('SCR_HOME_02');
         break;
       case 'society':
-      case 'services':
         resetTo('SCR_SOC_01');
+        break;
+      case 'services':
+        resetTo('SCR_TICK_01');
         break;
       case 'activity':
       case 'bills':
@@ -205,11 +207,10 @@ export function App() {
 
   const getActiveTab = (): RootTabType => {
     if (currentScreenId === 'SCR_HOME_02') return 'search';
-    if (currentScreenId === 'SCR_HOME_04') return 'activity';
+    if (currentScreenId.startsWith('SCR_TICK_')) return 'services';
+    if (currentScreenId === 'SCR_HOME_04' || currentScreenId.startsWith('SCR_PAY_')) return 'services';
     if (currentScreenId.startsWith('SCR_SETT_') || currentScreenId.startsWith('SCR_SET_')) return 'profile';
     if (currentScreenId.startsWith('SCR_SOC_') || currentScreenId.startsWith('SCR_MKT_')) return 'society';
-    if (currentScreenId.startsWith('SCR_PAY_')) return 'activity';
-    if (currentScreenId.startsWith('SCR_TICK_')) return 'society';
     if (currentScreenId.startsWith('SCR_STAFF_')) return 'profile';
     return 'home';
   };
@@ -219,7 +220,7 @@ export function App() {
     'SCR_HOME_01', // Home Command Hub
     'SCR_HOME_02', // Global Search & Directory
     'SCR_SOC_01',  // Society Hub
-    'SCR_HOME_04', // Activity Timeline
+    'SCR_TICK_01', // Services (Helpdesk & Express Services Hub)
     'SCR_SETT_01', // Household & Settings Hub
     'SCR_SETTING_01',
     'SCR_SET_01',
