@@ -1217,7 +1217,7 @@ export const SocietyForumScreen: React.FC<SocietyForumScreenProps> = ({ onBack, 
           VIEW MODE 4: "START A CONVERSATION" BOTTOM ACTION SHEET (SCREEN 4)
           ======================================================== */}
       {showConversationSheet && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
+        <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
           <div
             onClick={() => setShowConversationSheet(false)}
             className="flex-1 w-full"
