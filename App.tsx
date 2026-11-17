@@ -832,7 +832,7 @@ export function App() {
           activeTab={getActiveTab()}
           onTabChange={switchTab}
         />
-      ) : (
+      ) : currentScreenId === 'SCR_SOC_04' ? null : (
         <div className="w-full h-6 flex items-center justify-center select-none bg-white dark:bg-[#070A11] shrink-0 border-t border-slate-100/40 dark:border-white/5">
           <div className="w-32 h-1 bg-black/40 dark:bg-white/40 rounded-full" />
         </div>

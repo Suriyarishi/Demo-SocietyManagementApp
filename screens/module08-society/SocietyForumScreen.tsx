@@ -467,7 +467,7 @@ export const SocietyForumScreen: React.FC<SocietyForumScreenProps> = ({ onBack, 
           </div>
 
           {/* Posts Feed Stream (Scrollable) */}
-          <div className="flex-1 overflow-y-auto no-scrollbar p-3.5 flex flex-col gap-3 pb-24">
+          <div className="flex-1 overflow-y-auto no-scrollbar p-3.5 flex flex-col gap-3 pb-36">
             {filteredPosts.map((post) => {
               // Post 1: Notice / Announcement Style
               if (post.type === 'notice') {
@@ -700,11 +700,11 @@ export const SocietyForumScreen: React.FC<SocietyForumScreenProps> = ({ onBack, 
           </div>
 
           {/* Floating Action Button (FAB) at Bottom-Right */}
-          <div className="absolute bottom-20 right-4 z-20">
+          <div className="absolute bottom-[98px] right-4 z-30">
             <button
               type="button"
               onClick={() => setShowConversationSheet(true)}
-              className="w-14 h-14 rounded-full bg-[#04BB49] text-white flex items-center justify-center shadow-lg shadow-[#04BB49]/35 hover:bg-[#03963B] transition-all duration-150 press-scale"
+              className="w-14 h-14 rounded-full bg-[#04BB49] text-white flex items-center justify-center shadow-lg shadow-[#04BB49]/40 hover:bg-[#03963B] hover:scale-105 active:scale-95 transition-all duration-150 press-scale"
               aria-label="Start Conversation"
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -715,7 +715,7 @@ export const SocietyForumScreen: React.FC<SocietyForumScreenProps> = ({ onBack, 
           </div>
 
           {/* Bottom Navigation Dock (Matching AppBottomNav System) */}
-          <div className="w-full bg-white/95 dark:bg-[#070A11]/95 backdrop-blur-xl rounded-t-[32px] pt-3 pb-2.5 px-3.5 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.5)] border-t border-slate-200/80 dark:border-white/10 shrink-0 select-none flex flex-col items-center z-10">
+          <div className="w-full bg-white/95 dark:bg-[#070A11]/95 backdrop-blur-xl rounded-t-[32px] pt-3 pb-2.5 px-3.5 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.5)] border-t border-slate-200/80 dark:border-white/10 shrink-0 select-none flex flex-col items-center z-20">
             <div className="w-full flex items-center justify-between px-0.5">
               {/* Home */}
               <button
