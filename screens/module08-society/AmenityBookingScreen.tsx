@@ -404,9 +404,30 @@ export const AmenityBookingScreen: React.FC<AmenityBookingScreenProps> = ({ onBa
 
   const [bookingAmenity, setBookingAmenity] = useState<AmenityItem | null>(null);
   const [enrollClass, setEnrollClass] = useState<ClassItem | null>(null);
-  const [bookingDate, setBookingDate] = useState<'today' | 'tomorrow' | 'weekend'>('today');
+  const [bookingDate, setBookingDate] = useState<'today' | 'tomorrow' | 'custom'>('today');
+  const [customDate, setCustomDate] = useState<string>('2026-11-20');
   const [selectedSlot, setSelectedSlot] = useState<string>('');
   const [attendeesCount, setAttendeesCount] = useState<number>(2);
+
+  const formatCustomDateSub = (dateStr: string) => {
+    try {
+      const [year, month, day] = dateStr.split('-');
+      const d = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+      return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+    } catch {
+      return 'Pick Date';
+    }
+  };
+
+  const formatCustomDateLong = (dateStr: string) => {
+    try {
+      const [year, month, day] = dateStr.split('-');
+      const d = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+      return d.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+    } catch {
+      return dateStr;
+    }
+  };
 
   // QR Pass preview modal
   const [activeQrPass, setActiveQrPass] = useState<BookingEntity | null>(null);
@@ -457,7 +478,7 @@ export const AmenityBookingScreen: React.FC<AmenityBookingScreenProps> = ({ onBa
         ? 'Today, 18 Nov 2026'
         : bookingDate === 'tomorrow'
         ? 'Tomorrow, 19 Nov 2026'
-        : 'Saturday, 22 Nov 2026';
+        : formatCustomDateLong(customDate);
 
     const newBooking: BookingEntity = {
       id: `bk_${Date.now()}`,
@@ -1142,7 +1163,7 @@ export const AmenityBookingScreen: React.FC<AmenityBookingScreenProps> = ({ onBa
                 {[
                   { id: 'today', label: 'Today', sub: '18 Nov' },
                   { id: 'tomorrow', label: 'Tomorrow', sub: '19 Nov' },
-                  { id: 'weekend', label: 'Saturday', sub: '22 Nov' },
+                  { id: 'custom', label: 'Custom Date', sub: customDate ? formatCustomDateSub(customDate) : 'Pick Date' },
                 ].map((d) => (
                   <button
                     key={d.id}
@@ -1154,11 +1175,46 @@ export const AmenityBookingScreen: React.FC<AmenityBookingScreenProps> = ({ onBa
                         : 'bg-slate-50 dark:bg-white/5 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10'
                     }`}
                   >
-                    <span className="text-xs font-bold">{d.label}</span>
+                    <span className="text-xs font-bold leading-tight">{d.label}</span>
                     <span className="text-[9px] opacity-75">{d.sub}</span>
                   </button>
                 ))}
               </div>
+
+              {/* Inline Custom Date Picker when 'Custom Date' is selected */}
+              {bookingDate === 'custom' && (
+                <div className="mt-2.5 p-3 rounded-2xl bg-[#E8FBF0]/60 dark:bg-[#0A2E18]/60 border border-[#04BB49]/35 flex items-center justify-between gap-3 animate-in fade-in slide-in-from-top-1 duration-200">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-xl bg-[#04BB49] text-white flex items-center justify-center shrink-0 shadow-xs">
+                      <Calendar size={15} strokeWidth={2.4} />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">
+                        BOOKING DATE
+                      </span>
+                      <span className="text-xs font-bold text-slate-900 dark:text-white">
+                        {formatCustomDateLong(customDate)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <input
+                      type="date"
+                      min="2026-11-18"
+                      value={customDate}
+                      onChange={(e) => {
+                        if (e.target.value) setCustomDate(e.target.value);
+                      }}
+                      className="opacity-0 absolute inset-0 w-full h-full cursor-pointer z-10"
+                    />
+                    <div className="h-8 px-3 rounded-xl bg-white dark:bg-white/10 border border-[#04BB49]/40 text-[#04BB49] dark:text-[#0ECD5A] text-xs font-bold flex items-center gap-1.5 shadow-2xs hover:bg-[#04BB49] hover:text-white transition-all press-scale pointer-events-none">
+                      <Calendar size={13} />
+                      <span>Choose</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Time Slots Selector */}
