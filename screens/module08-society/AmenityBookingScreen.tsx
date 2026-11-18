@@ -1074,11 +1074,11 @@ export const AmenityBookingScreen: React.FC<AmenityBookingScreenProps> = ({ onBa
 
                   {/* Turnstile PIN & Pass Actions */}
                   {b.turnstilePin && (
-                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 text-white text-xs font-mono">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-white/10 text-xs font-mono">
                       <div className="flex items-center gap-2">
                         <QrCode size={15} className="text-[#04BB49]" />
-                        <span className="text-[11px] text-slate-400">TURNSTILE PIN:</span>
-                        <span className="font-bold tracking-widest text-[#0ECD5A]">{b.turnstilePin}</span>
+                        <span className="text-[11px] font-sans font-semibold text-slate-500 dark:text-slate-400">TURNSTILE PIN:</span>
+                        <span className="font-bold tracking-widest text-[#03963B] dark:text-[#0ECD5A]">{b.turnstilePin}</span>
                       </div>
                       <span className="text-[10px] text-slate-400 font-sans">NFC Tap Active</span>
                     </div>
@@ -1365,76 +1365,110 @@ export const AmenityBookingScreen: React.FC<AmenityBookingScreenProps> = ({ onBa
       )}
 
       {/* ========================================================
-          MODAL 3: TURNSTILE QR ENTRY PASS MODAL
+          MODAL 3: TURNSTILE QR ENTRY PASS MODAL (WHITE THEME REDESIGN)
           ======================================================== */}
       {activeQrPass && (
-        <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="w-full max-w-[340px] p-5 rounded-3xl bg-slate-900 border border-slate-800 text-white shadow-2xl flex flex-col gap-4 text-center relative overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
-              <div className="flex items-center gap-1.5 text-[#0ECD5A] font-bold text-xs">
-                <CheckCircle2 size={14} />
+        <div className="absolute inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="w-full max-w-[340px] p-6 rounded-[28px] bg-white text-slate-900 border border-slate-100 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.22)] flex flex-col gap-4 text-center relative overflow-hidden animate-in zoom-in-95 duration-200">
+            {/* Top Brand Accent Gradient Bar */}
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-400 via-[#04BB49] to-emerald-600" />
+            <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#04BB49]/8 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-[#04BB49]/8 rounded-full blur-2xl pointer-events-none" />
+
+            {/* Header: Status Pill & Close Button */}
+            <div className="flex items-center justify-between pt-0.5">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8FBF0] text-[#03963B] border border-[#04BB49]/20 font-bold text-[11px] shadow-2xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#04BB49] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#04BB49]"></span>
+                </span>
                 <span>AMENITY PASS ACTIVE</span>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveQrPass(null)}
-                className="w-7 h-7 rounded-lg bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors press-scale"
+                aria-label="Close pass"
               >
-                <X size={14} />
+                <X size={15} />
               </button>
             </div>
 
-            <div>
-              <h3 className="text-base font-extrabold text-white leading-tight">
+            {/* Amenity Title & Location */}
+            <div className="space-y-1">
+              <h3 className="text-lg font-black text-slate-900 leading-tight tracking-tight">
                 {activeQrPass.title}
               </h3>
-              <p className="text-[11px] text-slate-400 mt-0.5">
-                Prestige Palm Heights Clubhouse
-              </p>
+              <div className="flex items-center justify-center gap-1.5 text-xs text-slate-500 font-medium">
+                <Building2 size={13} className="text-[#04BB49] shrink-0" />
+                <span>Prestige Palm Heights Clubhouse</span>
+              </div>
             </div>
 
-            {/* QR Pass Box with Turnstile Code */}
-            <div className="p-4 rounded-2xl bg-white text-slate-900 flex flex-col items-center gap-2 shadow-inner">
-              <div className="w-36 h-36 border-4 border-slate-900 rounded-xl p-2 flex items-center justify-center relative">
-                <QrCode size={110} className="text-slate-900" />
+            {/* QR Pass Box with Turnstile Code (White Theme Ticket) */}
+            <div className="p-4 rounded-2xl bg-gradient-to-b from-[#F7FCF9] to-white border border-[#04BB49]/20 shadow-xs flex flex-col items-center gap-3 relative">
+              <div className="relative p-3 bg-white rounded-2xl border border-slate-200/90 shadow-sm flex items-center justify-center">
+                {/* Scanner corner markers */}
+                <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-[#04BB49] rounded-tl-sm pointer-events-none" />
+                <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-[#04BB49] rounded-tr-sm pointer-events-none" />
+                <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-[#04BB49] rounded-bl-sm pointer-events-none" />
+                <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-[#04BB49] rounded-br-sm pointer-events-none" />
+
+                <QrCode size={118} className="text-slate-900" />
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-8 h-8 rounded-lg bg-[#04BB49] text-white flex items-center justify-center font-extrabold text-[10px] shadow-md">
+                  <div className="w-8 h-8 rounded-lg bg-[#04BB49] text-white flex items-center justify-center font-black text-[11px] shadow-md border-2 border-white">
                     HL
                   </div>
                 </div>
               </div>
-              <span className="font-mono font-bold text-xs text-slate-700 tracking-widest">
-                TURNSTILE PIN: {activeQrPass.turnstilePin || 'PASS-9402'}
-              </span>
-            </div>
 
-            {/* Pass Metadata List */}
-            <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80 text-left text-xs flex flex-col gap-1.5">
-              <div className="flex justify-between text-slate-400 text-[11px]">
-                <span>BOOKING REF:</span>
-                <span className="text-white font-mono font-bold">{activeQrPass.bookingRef}</span>
-              </div>
-              <div className="flex justify-between text-slate-400 text-[11px]">
-                <span>SCHEDULE:</span>
-                <span className="text-white font-bold">{activeQrPass.dateStr}</span>
-              </div>
-              <div className="flex justify-between text-slate-400 text-[11px]">
-                <span>TIME SLOT:</span>
-                <span className="text-[#0ECD5A] font-bold">{activeQrPass.timeSlot}</span>
-              </div>
-              <div className="flex justify-between text-slate-400 text-[11px]">
-                <span>RESIDENT:</span>
-                <span className="text-white font-bold">Vinay (Tower 10 - G003)</span>
+              {/* Turnstile PIN Box */}
+              <div className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200/80 text-slate-800">
+                <div className="flex items-center gap-1.5 text-[11px] text-slate-500 font-bold uppercase tracking-wider">
+                  <ShieldCheck size={14} className="text-[#04BB49]" />
+                  <span>Turnstile PIN</span>
+                </div>
+                <span className="font-mono font-black text-sm tracking-[0.22em] text-[#03963B] bg-white px-2.5 py-0.5 rounded-lg border border-slate-200/60 shadow-2xs">
+                  {activeQrPass.turnstilePin || '8492'}
+                </span>
               </div>
             </div>
 
+            {/* Pass Metadata List (White Theme Table) */}
+            <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-left text-xs flex flex-col gap-2">
+              <div className="flex items-center justify-between text-[11px]">
+                <span className="font-semibold text-slate-400">BOOKING REF:</span>
+                <span className="text-slate-900 font-mono font-bold tracking-wider">{activeQrPass.bookingRef}</span>
+              </div>
+              <div className="flex items-center justify-between text-[11px]">
+                <span className="font-semibold text-slate-400">SCHEDULE:</span>
+                <span className="text-slate-800 font-bold">{activeQrPass.dateStr}</span>
+              </div>
+              <div className="flex items-center justify-between text-[11px]">
+                <span className="font-semibold text-slate-400">TIME SLOT:</span>
+                <span className="text-[#03963B] font-extrabold bg-[#E8FBF0] px-2 py-0.5 rounded-md border border-[#04BB49]/15">
+                  {activeQrPass.timeSlot}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-[11px]">
+                <span className="font-semibold text-slate-400">RESIDENT:</span>
+                <span className="text-slate-800 font-bold">Vinay (Tower 10 - G003)</span>
+              </div>
+            </div>
+
+            {/* Action Button */}
             <button
               type="button"
               onClick={() => setActiveQrPass(null)}
-              className="w-full h-11 rounded-2xl bg-[#04BB49] text-white font-bold text-xs shadow-md shadow-[#04BB49]/30 hover:bg-[#03963B] transition-all press-scale"
+              className="w-full h-12 rounded-2xl bg-[#04BB49] hover:bg-[#03963B] text-white font-extrabold text-sm shadow-md shadow-[#04BB49]/30 transition-all press-scale flex items-center justify-center gap-2"
             >
-              Done & Save to Passbook
+              <CheckCircle2 size={16} />
+              <span>Done & Save to Passbook</span>
             </button>
+
+            <p className="text-[10px] text-slate-400 -mt-2">
+              Tap turnstile NFC reader or show QR code at gate
+            </p>
           </div>
         </div>
       )}
