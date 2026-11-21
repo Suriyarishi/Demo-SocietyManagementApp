@@ -64,6 +64,9 @@ import { StaffProfileAttendanceScreen } from './screens/module04-staff/StaffProf
 import { CommunityStaffDirectoryScreen } from './screens/module04-staff/CommunityStaffDirectoryScreen';
 import { AddStaffScreen } from './screens/module04-staff/AddStaffScreen';
 import { StaffSalaryLedgerScreen } from './screens/module04-staff/StaffSalaryLedgerScreen';
+import { StaffPaymentScreen, StaffTransaction } from './screens/module04-staff/StaffPaymentScreen';
+import { StaffAttendanceScreen } from './screens/module04-staff/StaffAttendanceScreen';
+import { StaffTransactionsScreen } from './screens/module04-staff/StaffTransactionsScreen';
 
 // Module 05: Financials & Society Dues
 import { FinancialHubScreen } from './screens/module05-payments/FinancialHubScreen';
@@ -110,6 +113,7 @@ export function App() {
     vehicleNo: 'KA-05-MQ-3819',
   });
   const [selectedStaff, setSelectedStaff] = useState<DomesticStaffMember>(SAMPLE_HOUSEHOLD_STAFF[0]);
+  const [staffTransactions, setStaffTransactions] = useState<StaffTransaction[]>([]);
   const [payAmount, setPayAmount] = useState<number>(4250);
   const [receiptData, setReceiptData] = useState<any>({
     amount: 4250,
@@ -572,6 +576,11 @@ export function App() {
             onBrowseDirectory={() => pushScreen('SCR_STAFF_03')}
             onAddNewStaff={() => pushScreen('SCR_STAFF_04')}
             onOpenLedger={() => pushScreen('SCR_STAFF_05')}
+            onViewAttendance={(staff) => {
+              setSelectedStaff(staff);
+              pushScreen('SCR_STAFF_07');
+            }}
+            onBookService={() => pushScreen('SCR_TICK_02')}
           />
         )}
 
@@ -580,6 +589,21 @@ export function App() {
             staff={selectedStaff}
             onBack={goBack}
             onOpenLedger={() => pushScreen('SCR_STAFF_05')}
+            onMakePayment={(staff) => {
+              setSelectedStaff(staff);
+              pushScreen('SCR_STAFF_06');
+            }}
+            onViewTransactions={(staff) => {
+              setSelectedStaff(staff);
+              pushScreen('SCR_STAFF_08');
+            }}
+            onViewAttendance={(staff) => {
+              setSelectedStaff(staff);
+              pushScreen('SCR_STAFF_07');
+            }}
+            onRemoveStaff={(staffId) => {
+              showToast(`✓ Removed staff member from Flat 1204`);
+            }}
           />
         )}
 
@@ -594,6 +618,8 @@ export function App() {
               showToast(`✓ Linked ${staff.name} (${staff.role}) to Flat 1204`);
               goBack();
             }}
+            onAddNewStaff={() => pushScreen('SCR_STAFF_04')}
+            onBookCarpentry={() => pushScreen('SCR_TICK_02')}
           />
         )}
 
@@ -609,6 +635,34 @@ export function App() {
 
         {currentScreenId === 'SCR_STAFF_05' && (
           <StaffSalaryLedgerScreen onBack={goBack} />
+        )}
+
+        {currentScreenId === 'SCR_STAFF_06' && (
+          <StaffPaymentScreen
+            staff={selectedStaff}
+            onBack={goBack}
+            onViewTransactions={() => pushScreen('SCR_STAFF_08')}
+            onPaymentSuccess={(newTx) => {
+              setStaffTransactions((prev) => [newTx, ...prev]);
+              showToast(`✓ Payment of ₹${newTx.amount.toLocaleString('en-IN')} recorded for ${newTx.staffName}`);
+            }}
+          />
+        )}
+
+        {currentScreenId === 'SCR_STAFF_07' && (
+          <StaffAttendanceScreen
+            staff={selectedStaff}
+            onBack={goBack}
+          />
+        )}
+
+        {currentScreenId === 'SCR_STAFF_08' && (
+          <StaffTransactionsScreen
+            staff={selectedStaff}
+            transactions={staffTransactions.filter((tx) => tx.staffId === selectedStaff.id)}
+            onBack={goBack}
+            onMakePayment={() => pushScreen('SCR_STAFF_06')}
+          />
         )}
 
         {/* ========================================================

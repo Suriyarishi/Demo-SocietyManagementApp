@@ -4,13 +4,19 @@ import { StaffProfileAttendanceScreen } from './StaffProfileAttendanceScreen';
 import { CommunityStaffDirectoryScreen } from './CommunityStaffDirectoryScreen';
 import { AddStaffScreen } from './AddStaffScreen';
 import { StaffSalaryLedgerScreen } from './StaffSalaryLedgerScreen';
+import { StaffPaymentScreen, StaffTransaction } from './StaffPaymentScreen';
+import { StaffAttendanceScreen } from './StaffAttendanceScreen';
+import { StaffTransactionsScreen } from './StaffTransactionsScreen';
 
 export const MODULE04_SCREENS = [
-  { id: 'SCR_STAFF_01', name: 'Household Staff Hub', step: 1 },
-  { id: 'SCR_STAFF_02', name: 'Staff Profile & Calendar', step: 2 },
-  { id: 'SCR_STAFF_03', name: 'Society Hire Directory', step: 3 },
-  { id: 'SCR_STAFF_04', name: 'Link Staff Passcode', step: 4 },
+  { id: 'SCR_STAFF_01', name: 'Daily Help Hub', step: 1 },
+  { id: 'SCR_STAFF_02', name: 'Staff Profile & Details', step: 2 },
+  { id: 'SCR_STAFF_03', name: 'Find Daily Help Directory', step: 3 },
+  { id: 'SCR_STAFF_04', name: 'Add / Link Daily Help', step: 4 },
   { id: 'SCR_STAFF_05', name: 'Salary & Leave Ledger', step: 5 },
+  { id: 'SCR_STAFF_06', name: 'Staff Payment Gateway', step: 6 },
+  { id: 'SCR_STAFF_07', name: 'Monthly Attendance Calendar', step: 7 },
+  { id: 'SCR_STAFF_08', name: 'Payment Transactions History', step: 8 },
 ];
 
 interface Module04ControllerProps {
@@ -25,6 +31,7 @@ export const Module04Controller: React.FC<Module04ControllerProps> = ({
   onNavigateHome,
 }) => {
   const [selectedStaff, setSelectedStaff] = useState<DomesticStaffMember>(SAMPLE_HOUSEHOLD_STAFF[0]);
+  const [transactions, setTransactions] = useState<StaffTransaction[]>([]);
   const [toastMessage, setToastMessage] = useState<string>('');
 
   const showToast = (msg: string) => {
@@ -35,6 +42,21 @@ export const Module04Controller: React.FC<Module04ControllerProps> = ({
   const handleSelectStaff = (staff: DomesticStaffMember) => {
     setSelectedStaff(staff);
     onScreenChange('SCR_STAFF_02');
+  };
+
+  const handleViewAttendance = (staff: DomesticStaffMember) => {
+    setSelectedStaff(staff);
+    onScreenChange('SCR_STAFF_07');
+  };
+
+  const handleMakePayment = (staff: DomesticStaffMember) => {
+    setSelectedStaff(staff);
+    onScreenChange('SCR_STAFF_06');
+  };
+
+  const handleViewTransactions = (staff: DomesticStaffMember) => {
+    setSelectedStaff(staff);
+    onScreenChange('SCR_STAFF_08');
   };
 
   const handleAddStaffToFlat = (staff: DomesticStaffMember) => {
@@ -57,31 +79,40 @@ export const Module04Controller: React.FC<Module04ControllerProps> = ({
         </div>
       )}
 
-      {/* Screen 1: Dashboard */}
+      {/* Screen 1: Daily Help Dashboard */}
       {currentScreenId === 'SCR_STAFF_01' && (
         <StaffDashboardScreen
           onSelectStaff={handleSelectStaff}
           onBrowseDirectory={() => onScreenChange('SCR_STAFF_03')}
           onAddNewStaff={() => onScreenChange('SCR_STAFF_04')}
           onOpenLedger={() => onScreenChange('SCR_STAFF_05')}
+          onViewAttendance={handleViewAttendance}
         />
       )}
 
-      {/* Screen 2: Profile & Attendance Calendar */}
+      {/* Screen 2: Profile & Details */}
       {currentScreenId === 'SCR_STAFF_02' && (
         <StaffProfileAttendanceScreen
           staff={selectedStaff}
           onBack={() => onScreenChange('SCR_STAFF_01')}
           onOpenLedger={() => onScreenChange('SCR_STAFF_05')}
+          onMakePayment={handleMakePayment}
+          onViewTransactions={handleViewTransactions}
+          onViewAttendance={handleViewAttendance}
+          onRemoveStaff={(id) => {
+            showToast(`✓ Removed staff member from flat`);
+            onScreenChange('SCR_STAFF_01');
+          }}
         />
       )}
 
-      {/* Screen 3: Community Hire Directory */}
+      {/* Screen 3: Find Daily Help Directory */}
       {currentScreenId === 'SCR_STAFF_03' && (
         <CommunityStaffDirectoryScreen
           onBack={() => onScreenChange('SCR_STAFF_01')}
           onSelectStaff={handleSelectStaff}
           onAddStaffToFlat={handleAddStaffToFlat}
+          onAddNewStaff={() => onScreenChange('SCR_STAFF_04')}
         />
       )}
 
@@ -97,6 +128,37 @@ export const Module04Controller: React.FC<Module04ControllerProps> = ({
       {currentScreenId === 'SCR_STAFF_05' && (
         <StaffSalaryLedgerScreen
           onBack={() => onScreenChange('SCR_STAFF_01')}
+        />
+      )}
+
+      {/* Screen 6: Staff Payment Screen */}
+      {currentScreenId === 'SCR_STAFF_06' && (
+        <StaffPaymentScreen
+          staff={selectedStaff}
+          onBack={() => onScreenChange('SCR_STAFF_02')}
+          onViewTransactions={() => onScreenChange('SCR_STAFF_08')}
+          onPaymentSuccess={(newTx) => {
+            setTransactions((prev) => [newTx, ...prev]);
+            showToast(`✓ Payment of ₹${newTx.amount} recorded for ${newTx.staffName}`);
+          }}
+        />
+      )}
+
+      {/* Screen 7: Attendance Calendar Screen */}
+      {currentScreenId === 'SCR_STAFF_07' && (
+        <StaffAttendanceScreen
+          staff={selectedStaff}
+          onBack={() => onScreenChange('SCR_STAFF_02')}
+        />
+      )}
+
+      {/* Screen 8: Transaction History Screen */}
+      {currentScreenId === 'SCR_STAFF_08' && (
+        <StaffTransactionsScreen
+          staff={selectedStaff}
+          transactions={transactions.filter((tx) => tx.staffId === selectedStaff.id)}
+          onBack={() => onScreenChange('SCR_STAFF_02')}
+          onMakePayment={() => onScreenChange('SCR_STAFF_06')}
         />
       )}
     </div>
