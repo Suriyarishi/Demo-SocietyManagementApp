@@ -4,11 +4,8 @@ import {
   Phone,
   Calendar,
   Clock,
-  ShieldCheck,
   Star,
   CheckCircle2,
-  AlertCircle,
-  CreditCard,
   Share2,
   Hand,
   ChevronDown,
@@ -21,7 +18,6 @@ import {
   History,
   X,
   Check,
-  HelpCircle,
   Sun,
   Sunset
 } from 'lucide-react';
@@ -50,7 +46,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
   const [openToWork, setOpenToWork] = useState<boolean>(staff.openToWork ?? false);
   const [notifyEntryExit, setNotifyEntryExit] = useState<boolean>(staff.notifyOnEntryExit ?? true);
   const [rating, setRating] = useState<number>(staff.rating || 0);
-  const [languages, setLanguages] = useState<string[]>(staff.languages || ['Hindi']);
+  const [languages, setLanguages] = useState<string[]>(staff.languages || []);
   
   // Accordion toggle states
   const [isFlatsOpen, setIsFlatsOpen] = useState<boolean>(true);
@@ -79,10 +75,10 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
     if (navigator.share) {
       navigator.share({
         title: `${staff.name} - ${staff.role}`,
-        text: `Hire ${staff.name} (${staff.role}) on Hunt Lockdoor. Verified staff in Tower 10.`,
+        text: `Verified ${staff.role} in Tower 10: ${staff.name}`,
       }).catch(() => {});
     } else {
-      showToast(`✓ Copied ${staff.name}'s profile share link to clipboard!`);
+      showToast(`✓ Copied ${staff.name}'s profile share link`);
     }
   };
 
@@ -99,28 +95,28 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
   const allLanguages = ['Hindi', 'English', 'Kannada', 'Tamil', 'Telugu', 'Bengali', 'Marathi'];
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between bg-[#F7F8F4] dark:bg-obsidian-950 text-slate-900 dark:text-white text-left animate-in fade-in duration-200 relative pb-12">
-      {/* Toast Notification */}
+    <div className="w-full min-h-full flex flex-col justify-between bg-[#F8FAF9] dark:bg-obsidian-950 text-slate-900 dark:text-white text-left animate-in fade-in duration-200 relative pb-12">
+      {/* Toast Notification Container */}
       {toastMsg && (
-        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
-          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
-          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-[#04BB49]/40 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-[#04BB49] shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight font-medium">{toastMsg}</span>
         </div>
       )}
 
-      {/* Top Header (Matching Image 2) */}
-      <div className="px-4 py-3 bg-white dark:bg-obsidian-900 border-b border-slate-200/80 dark:border-white/5 flex items-center justify-between sticky top-0 z-30">
-        <div className="flex items-center gap-3">
+      {/* Top Header Bar (Matching Screenshot 2) */}
+      <div className="px-4 py-3 bg-white dark:bg-obsidian-900 border-b border-slate-100 dark:border-white/5 flex items-center justify-between sticky top-0 z-30">
+        <div className="flex items-center gap-2.5">
           <button
             type="button"
             onClick={onBack}
             className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors press-scale"
             aria-label="Back"
           >
-            <ArrowLeft size={17} className="text-slate-800 dark:text-white" />
+            <ArrowLeft size={18} className="text-slate-800 dark:text-white" />
           </button>
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {staff.role === 'Other' ? 'Others Profile' : `${staff.role} Profile`}
+            Others Profile
           </h2>
         </div>
 
@@ -129,66 +125,59 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           onClick={handleShare}
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors press-scale"
         >
-          <Share2 size={15} />
+          <Share2 size={14} />
           <span>Share</span>
         </button>
       </div>
 
       <div className="p-4 flex flex-col gap-3.5">
-        {/* CARD 1: Profile Summary Card (Matching Image 2) */}
-        <div className="p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-xs flex flex-col gap-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              {/* Avatar */}
-              <div className="w-13 h-13 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-slate-800 shadow-xs shrink-0">
-                {staff.avatarUrl ? (
-                  <img
-                    src={staff.avatarUrl}
-                    alt={staff.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center font-bold text-slate-500 text-sm">
-                    {staff.name.slice(0, 2).toUpperCase()}
-                  </div>
-                )}
+        {/* CARD 1: Profile Summary Card (Strictly Minimal, 48px circle avatar, no overlap) */}
+        <div className="p-4 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] flex flex-col gap-3">
+          <div className="flex items-center justify-between gap-3">
+            {/* Left: Avatar (48px fixed) + User Info */}
+            <div className="flex items-center gap-3.5 min-w-0 flex-1">
+              <div className="w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-slate-800 shadow-2xs shrink-0">
+                <img
+                  src={staff.avatarUrl}
+                  alt={staff.name}
+                  className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full object-cover"
+                />
               </div>
 
-              {/* Info */}
-              <div>
-                <h3 className="text-base font-extrabold text-slate-900 dark:text-white leading-tight">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight truncate">
                   {staff.name}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5 truncate">
                   📞 {staff.maskedPhone || '*********91'}
                 </p>
 
-                <div className="flex items-center gap-2 mt-1 text-xs">
-                  <span className="text-slate-400 dark:text-slate-500 flex items-center gap-1">
-                    <Clock size={12} />
+                <div className="flex items-center gap-2 mt-1 text-[11px] flex-wrap">
+                  <span className="text-slate-400 dark:text-slate-500 flex items-center gap-1 font-medium">
+                    <Clock size={11} className="shrink-0" />
                     <span>{staff.statusText || 'Not in yet'}</span>
                   </span>
                   <span className="text-slate-300 dark:text-slate-700">•</span>
-                  <span className="text-sky-600 dark:text-sky-400 font-medium flex items-center gap-1">
-                    <CheckCircle2 size={12} />
+                  <span className="text-[#03963B] dark:text-[#0ECD5A] font-semibold flex items-center gap-1">
+                    <CheckCircle2 size={11} className="shrink-0" />
                     <span>Since {staff.sinceYear || '2024'}</span>
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Circular Call Button */}
+            {/* Right: Circular Call Button */}
             <button
               type="button"
               onClick={handleCall}
-              className="w-10 h-10 rounded-full bg-[#E8FBF0] dark:bg-emerald-950/60 text-[#03963B] dark:text-[#0ECD5A] flex items-center justify-center hover:bg-[#d2f7e0] transition-colors press-scale shrink-0 shadow-2xs"
+              className="w-10 h-10 min-w-[40px] rounded-full bg-[#E8FBF0] dark:bg-emerald-950/60 text-[#03963B] dark:text-[#0ECD5A] flex items-center justify-center hover:bg-[#d5f7e3] transition-colors press-scale shrink-0 shadow-2xs"
               aria-label={`Call ${staff.name}`}
             >
-              <Phone size={17} />
+              <Phone size={16} />
             </button>
           </div>
 
-          <div className="h-px bg-slate-100 dark:bg-white/5" />
+          <div className="h-px bg-slate-100 dark:bg-white/5 my-0.5" />
 
           {/* Add Your Review Row */}
           <div className="flex items-center justify-between">
@@ -207,11 +196,11 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
                   className="p-0.5 text-slate-300 dark:text-slate-600 hover:text-amber-400 hover:scale-110 transition-all press-scale"
                 >
                   <Star
-                    size={17}
+                    size={16}
                     className={
                       s <= rating
                         ? 'text-amber-400 fill-amber-400'
-                        : 'text-slate-400'
+                        : 'text-slate-300 dark:text-slate-600'
                     }
                   />
                 </button>
@@ -220,11 +209,11 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           </div>
         </div>
 
-        {/* CARD 2: Mark as open to work (Matching Image 2) */}
-        <div className="p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-xs flex items-center justify-between">
+        {/* CARD 2: Mark as open to work (Matching Screenshot 2) */}
+        <div className="p-4 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
-              <Hand size={18} />
+            <div className="w-9 h-9 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+              <Hand size={17} />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
@@ -249,7 +238,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               setOpenToWork(nextState);
               showToast(
                 nextState
-                  ? `✓ ${staff.name} is now marked as Open to Work in society directory`
+                  ? `✓ ${staff.name} is now marked as Open to Work`
                   : `✓ Updated: ${staff.name} is no longer taking new flats`
               );
             }}
@@ -265,13 +254,11 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           </button>
         </div>
 
-        {/* CARD 3: Attendance Summary (Matching Image 2) */}
-        <div className="p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-xs flex flex-col gap-3">
-          <div className="flex items-center justify-between">
-            <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">
-              Attendance
-            </h4>
-          </div>
+        {/* CARD 3: Attendance Summary (Matching Screenshot 2) */}
+        <div className="p-4 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] flex flex-col gap-3">
+          <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">
+            Attendance
+          </h4>
 
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
             <span>Last 30 days</span>
@@ -302,8 +289,8 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           </div>
         </div>
 
-        {/* CARD 4: Flats Accordion (Matching Image 2) */}
-        <div className="rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-xs overflow-hidden">
+        {/* CARD 4: Flats Accordion (Matching Screenshot 2) */}
+        <div className="rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] overflow-hidden">
           <button
             type="button"
             onClick={() => setIsFlatsOpen(!isFlatsOpen)}
@@ -321,7 +308,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
 
           {isFlatsOpen && (
             <div className="px-4 pb-4 animate-in slide-in-from-top-1 duration-150">
-              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-sm">📍</span>
                   <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
@@ -336,8 +323,8 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           )}
         </div>
 
-        {/* CARD 5: About Accordion (Matching Image 2) */}
-        <div className="rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-xs overflow-hidden">
+        {/* CARD 5: About Accordion (Matching Screenshot 2) */}
+        <div className="rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] overflow-hidden">
           <button
             type="button"
             onClick={() => setIsAboutOpen(!isAboutOpen)}
@@ -366,12 +353,13 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
                 <span>Languages</span>
                 <div className="flex items-center gap-1.5">
                   <span className="font-semibold text-slate-900 dark:text-white">
-                    {languages.join(', ') || '-'}
+                    {languages.length > 0 ? languages.join(', ') : '-'}
                   </span>
                   <button
                     type="button"
                     onClick={() => setShowLanguageEdit(true)}
-                    className="p-1 text-slate-400 hover:text-slate-800 dark:hover:text-white"
+                    className="p-1 text-[#03963B] dark:text-[#0ECD5A] hover:opacity-80"
+                    aria-label="Edit Languages"
                   >
                     <Edit2 size={13} />
                   </button>
@@ -381,8 +369,8 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           )}
         </div>
 
-        {/* CARD 6: Actions (Matching Image 2) */}
-        <div className="p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-xs flex flex-col gap-1">
+        {/* CARD 6: Actions (Matching Screenshot 2) */}
+        <div className="p-4 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] flex flex-col gap-1">
           <h4 className="text-sm font-extrabold text-slate-900 dark:text-white mb-1">
             Actions
           </h4>
@@ -432,21 +420,6 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
             <ChevronRight size={15} className="text-slate-400" />
           </button>
 
-          {/* Action 3.5: Set Availability */}
-          <button
-            type="button"
-            onClick={() => setShowAvailabilityDrawer(true)}
-            className="w-full py-2.5 flex items-center justify-between text-left hover:bg-slate-50 dark:hover:bg-white/5 px-2 rounded-xl transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <Clock size={16} className="text-slate-500" />
-              <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                Working Availability
-              </span>
-            </div>
-            <ChevronRight size={15} className="text-slate-400" />
-          </button>
-
           {/* Action 4: Notify on entry & exit toggle */}
           <div className="w-full py-2.5 flex items-center justify-between px-2">
             <div className="flex items-center gap-3">
@@ -485,7 +458,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
           <button
             type="button"
             onClick={() => setShowRemoveConfirm(true)}
-            className="w-full py-2.5 flex items-center gap-3 text-left hover:bg-rose-50 dark:hover:bg-rose-950/20 px-2 rounded-xl transition-colors text-rose-600 font-bold text-xs"
+            className="w-full py-2.5 flex items-center gap-3 text-left hover:bg-rose-50 dark:hover:bg-rose-950/20 px-2 rounded-xl transition-colors text-[#E11D48] font-bold text-xs"
           >
             <Trash2 size={16} />
             <span>Remove from flat</span>
@@ -494,17 +467,15 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
       </div>
 
       {/* ========================================================
-          DRAWER 1: SEND PASSCODE BOTTOM SHEET (Matching Image 5)
+          DRAWER 1: SEND PASSCODE BOTTOM SHEET (Screenshot 5)
           ======================================================== */}
       {showPasscodeDrawer && (
         <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
           <div className="w-full bg-white dark:bg-slate-900 rounded-t-[32px] p-5 shadow-2xl border-t border-slate-100 dark:border-white/10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-200 relative">
-            {/* Grab handle */}
             <div className="w-10 h-1 bg-slate-200 dark:bg-white/20 rounded-full mx-auto" />
 
-            {/* Header */}
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-black text-slate-900 dark:text-white">
+              <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
                 Send passcode
               </h3>
               <button
@@ -520,10 +491,10 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               {staff.name}'s passcode will be sent again if it's lost or forgotten.
             </p>
 
-            {/* 3 Guided Steps (Matching Image 5) */}
+            {/* 3 Guided Steps */}
             <div className="flex flex-col gap-3 py-1">
               <div className="flex items-center gap-3 text-xs text-slate-700 dark:text-slate-300">
-                <span className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0">
+                <span className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-[#03963B] font-bold text-xs flex items-center justify-center shrink-0">
                   1
                 </span>
                 <span>
@@ -532,7 +503,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               </div>
 
               <div className="flex items-center gap-3 text-xs text-slate-700 dark:text-slate-300">
-                <span className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0">
+                <span className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-[#03963B] font-bold text-xs flex items-center justify-center shrink-0">
                   2
                 </span>
                 <span>
@@ -544,7 +515,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               </div>
 
               <div className="flex items-center gap-3 text-xs text-slate-700 dark:text-slate-300">
-                <span className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0">
+                <span className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-[#03963B] font-bold text-xs flex items-center justify-center shrink-0">
                   3
                 </span>
                 <span>They share it with the guard to enter</span>
@@ -569,7 +540,6 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               )}
             </div>
 
-            {/* Action CTA Button */}
             <button
               type="button"
               onClick={handleSendPasscode}
@@ -582,17 +552,15 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
       )}
 
       {/* ========================================================
-          DRAWER 2: AVAILABILITY BOTTOM SHEET (Matching Image 7)
+          DRAWER 2: AVAILABILITY BOTTOM SHEET (Screenshot 7)
           ======================================================== */}
       {showAvailabilityDrawer && (
         <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
           <div className="w-full bg-white dark:bg-slate-900 rounded-t-[32px] p-5 shadow-2xl border-t border-slate-100 dark:border-white/10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-200 relative max-h-[85%] overflow-y-auto">
-            {/* Grab handle */}
             <div className="w-10 h-1 bg-slate-200 dark:bg-white/20 rounded-full mx-auto" />
 
-            {/* Header */}
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-black text-slate-900 dark:text-white">
+              <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
                 Availability
               </h3>
               <button
@@ -604,7 +572,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               </button>
             </div>
 
-            {/* Days Selection (Matching Image 7) */}
+            {/* Days Selection */}
             <div className="flex flex-col gap-2.5">
               <span className="text-xs font-bold text-slate-900 dark:text-white">Days</span>
               <div className="flex flex-wrap gap-2.5">
@@ -632,7 +600,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               </div>
             </div>
 
-            {/* Time Selection (Matching Image 7) */}
+            {/* Time Selection */}
             <div className="flex flex-col gap-2.5 pt-2">
               <span className="text-xs font-bold text-slate-900 dark:text-white">Time</span>
 
@@ -685,7 +653,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
               </div>
             </div>
 
-            {/* Footer Actions (Matching Image 7) */}
+            {/* Footer Actions */}
             <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-white/5">
               <button
                 type="button"
@@ -781,7 +749,7 @@ export const StaffProfileAttendanceScreen: React.FC<StaffProfileAttendanceScreen
                 Remove {staff.name}?
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                This will revoke their automated gate pass for your flat (Tower 10). You can re-link them anytime.
+                This will revoke their automated gate pass for your flat (Tower 10).
               </p>
             </div>
 

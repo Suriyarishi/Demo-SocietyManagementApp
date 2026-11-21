@@ -5,14 +5,8 @@ import {
   Phone,
   Star,
   ChevronRight,
-  CheckCircle2,
-  Zap,
-  Building2,
-  Wrench,
-  Search,
-  Plus
+  CheckCircle2
 } from 'lucide-react';
-import { DomesticStaffMember } from './StaffDashboardScreen';
 
 export interface DomesticStaffMember {
   id: string;
@@ -117,7 +111,7 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
 
   return (
     <div className="w-full min-h-full flex flex-col justify-between bg-[#F8FAF9] dark:bg-obsidian-950 text-slate-900 dark:text-white text-left animate-in fade-in duration-200 relative pb-10">
-      {/* Toast Notification */}
+      {/* Toast Notification Container */}
       {toastMsg && (
         <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-[#04BB49]/40 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
           <CheckCircle2 size={15} className="text-[#04BB49] shrink-0" />
@@ -138,12 +132,12 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
               <ArrowLeft size={18} className="text-slate-800 dark:text-white" />
             </button>
           )}
-          <h1 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+          <h1 className="text-base font-extrabold text-slate-900 dark:text-white tracking-tight">
             Daily Help
           </h1>
         </div>
 
-        {/* Find daily help Action (Top Right Link) */}
+        {/* Find daily help Action (Top Right Link in Screenshot 1) */}
         <button
           type="button"
           onClick={onBrowseDirectory}
@@ -155,58 +149,56 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
 
       {/* Main Content Area */}
       <div className="p-4 flex flex-col gap-4">
-        {/* CARD 1: Domestic Staff Member Card (Matching Screenshot 1) */}
+        {/* CARD 1: Domestic Staff Member Card (Strictly Minimal & Pixel-Perfect) */}
         <div
           onClick={() => onSelectStaff(staff)}
-          className="p-5 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] hover:shadow-md transition-all cursor-pointer flex flex-col gap-3 relative"
+          className="p-4 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] hover:shadow-md transition-all cursor-pointer flex flex-col gap-3 relative"
         >
-          {/* Top Row: Avatar, Name, Role Tag, Status, Call Button */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3.5">
-              {/* Avatar with Status Dot */}
-              <div className="relative shrink-0">
-                <div className="w-13 h-13 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-slate-800 shadow-xs">
-                  <img
-                    src={staff.avatarUrl}
-                    alt={staff.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+          {/* Top Row: Avatar (48px fixed circle), Name, Role Tag, Status, Call Button */}
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              {/* Minimal Circle Avatar (strictly 48px, never stretches) */}
+              <div className="relative w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] rounded-full shrink-0">
+                <img
+                  src={staff.avatarUrl}
+                  alt={staff.name}
+                  className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full object-cover border border-slate-100 dark:border-slate-800 shadow-2xs"
+                />
                 {/* Yellow status indicator dot for "Not in yet" */}
                 <span className="absolute top-0 right-0 w-3 h-3 rounded-full bg-[#EAB308] border-2 border-white dark:border-slate-900" />
               </div>
 
               {/* Name & Role */}
-              <div>
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <h3 className="text-base font-extrabold text-slate-900 dark:text-white leading-tight">
+                  <h3 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight truncate">
                     {staff.name}
                   </h3>
-                  <span className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 text-[11px] font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 text-[10px] font-bold shrink-0">
                     {staff.role}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500 mt-1 font-medium">
-                  <Clock size={13} className="shrink-0" />
+                <div className="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500 mt-0.5 font-medium">
+                  <Clock size={12} className="shrink-0" />
                   <span>{staff.statusText || 'Not in yet'}</span>
                 </div>
               </div>
             </div>
 
-            {/* Circular Call Button */}
+            {/* Circular Call Button (Matching Screenshot 1) */}
             <button
               type="button"
               onClick={handleCall}
-              className="w-10 h-10 rounded-full bg-[#E8FBF0] dark:bg-emerald-950/60 text-[#03963B] dark:text-[#0ECD5A] flex items-center justify-center hover:bg-[#d5f7e3] transition-colors press-scale shrink-0 shadow-2xs"
+              className="w-10 h-10 min-w-[40px] rounded-full bg-[#E8FBF0] dark:bg-emerald-950/60 text-[#03963B] dark:text-[#0ECD5A] flex items-center justify-center hover:bg-[#d5f7e3] transition-colors press-scale shrink-0 shadow-2xs"
               aria-label={`Call ${staff.name}`}
             >
-              <Phone size={17} />
+              <Phone size={16} />
             </button>
           </div>
 
           {/* Thin Divider Line */}
-          <div className="h-px bg-slate-100 dark:bg-white/5 my-0.5" />
+          <div className="h-px bg-slate-100 dark:bg-white/5" />
 
           {/* Middle Link: View Attendance > */}
           <div className="flex items-center justify-between">
@@ -236,7 +228,7 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
                   aria-label={`Rate ${star} star`}
                 >
                   <Star
-                    size={17}
+                    size={16}
                     className={
                       star <= rating
                         ? 'text-amber-400 fill-amber-400'
@@ -253,9 +245,8 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
         <div className="rounded-[28px] bg-gradient-to-r from-[#EBF7FF] via-[#E1F2FE] to-[#D7EDFD] dark:from-sky-950/40 dark:via-cyan-950/30 dark:to-blue-950/40 border border-[#D5EEFF] dark:border-sky-900/40 p-4 relative overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,102,204,0.08)]">
           <div className="flex items-center justify-between relative z-10">
             <div className="flex flex-col gap-1 max-w-[62%]">
-              {/* Badge */}
               <div className="flex items-center gap-1">
-                <span className="text-[11px] font-bold text-rose-500 uppercase tracking-tight">
+                <span className="text-[10px] font-bold text-rose-500 uppercase tracking-tight">
                   Don't Wait Around!
                 </span>
                 <span className="w-3.5 h-3.5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[9px] font-bold">
@@ -263,19 +254,16 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
                 </span>
               </div>
 
-              {/* Headline */}
               <h4 className="text-sm font-black text-[#0B3A68] dark:text-sky-100 flex items-center gap-1">
                 <span>Repaired in 30 mins!</span>
                 <Clock size={13} className="text-[#0B3A68] dark:text-sky-300" />
               </h4>
 
-              {/* Offer */}
               <p className="text-xs text-slate-700 dark:text-slate-300 font-medium mt-0.5 leading-snug">
                 Book an <span className="font-bold text-slate-900 dark:text-white">Electrical Services</span>{' '}
                 <span className="text-rose-600 font-black">@₹99</span>
               </p>
 
-              {/* CTA Button */}
               <div className="pt-2">
                 <button
                   type="button"
@@ -287,12 +275,11 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
               </div>
             </div>
 
-            {/* Ceiling Fan & Electrician Graphic */}
-            <div className="w-24 h-24 relative flex items-center justify-center shrink-0">
+            <div className="w-20 h-20 min-w-[80px] min-h-[80px] relative flex items-center justify-center shrink-0">
               <img
                 src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=250&q=80"
                 alt="Electrical Services"
-                className="w-20 h-20 rounded-2xl object-cover shadow-xs border-2 border-white dark:border-slate-800"
+                className="w-18 h-18 rounded-2xl object-cover shadow-xs border-2 border-white dark:border-slate-800"
               />
             </div>
           </div>
