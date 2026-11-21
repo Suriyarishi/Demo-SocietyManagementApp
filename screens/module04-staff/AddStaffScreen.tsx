@@ -46,7 +46,7 @@ export const AddStaffScreen: React.FC<AddStaffScreenProps> = ({
   };
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-20 text-left animate-in fade-in duration-200">
+    <div className="w-full min-h-full flex flex-col p-4 pb-20 text-left animate-in fade-in duration-200">
       <div className="flex flex-col gap-5">
         {/* Header Bar */}
         <div className="flex items-center justify-between">

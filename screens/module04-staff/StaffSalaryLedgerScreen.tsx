@@ -65,7 +65,7 @@ export const StaffSalaryLedgerScreen: React.FC<StaffSalaryLedgerScreenProps> = (
   const totalMonthlyDue = staffLedgers.reduce((acc, s) => acc + s.netPayable, 0);
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-6 text-left animate-in fade-in duration-200 relative">
+    <div className="w-full min-h-full flex flex-col p-4 pb-16 text-left animate-in fade-in duration-200 relative">
       {/* Toast Notification */}
       {toastMsg && (
         <div className="absolute top-14 left-3 right-3 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
