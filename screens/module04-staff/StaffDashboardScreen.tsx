@@ -240,50 +240,6 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
             </div>
           </div>
         </div>
-
-        {/* CARD 2: Promotional Service Banner (Matching Screenshot 1) */}
-        <div className="rounded-[28px] bg-gradient-to-r from-[#EBF7FF] via-[#E1F2FE] to-[#D7EDFD] dark:from-sky-950/40 dark:via-cyan-950/30 dark:to-blue-950/40 border border-[#D5EEFF] dark:border-sky-900/40 p-4 relative overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,102,204,0.08)]">
-          <div className="flex items-center justify-between relative z-10">
-            <div className="flex flex-col gap-1 max-w-[62%]">
-              <div className="flex items-center gap-1">
-                <span className="text-[10px] font-bold text-rose-500 uppercase tracking-tight">
-                  Don't Wait Around!
-                </span>
-                <span className="w-3.5 h-3.5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[9px] font-bold">
-                  ↘
-                </span>
-              </div>
-
-              <h4 className="text-sm font-black text-[#0B3A68] dark:text-sky-100 flex items-center gap-1">
-                <span>Repaired in 30 mins!</span>
-                <Clock size={13} className="text-[#0B3A68] dark:text-sky-300" />
-              </h4>
-
-              <p className="text-xs text-slate-700 dark:text-slate-300 font-medium mt-0.5 leading-snug">
-                Book an <span className="font-bold text-slate-900 dark:text-white">Electrical Services</span>{' '}
-                <span className="text-rose-600 font-black">@₹99</span>
-              </p>
-
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={onBookService || onAddNewStaff}
-                  className="px-4 py-2 rounded-xl bg-[#0055A5] hover:bg-[#004182] text-white font-extrabold text-xs shadow-xs transition-all press-scale"
-                >
-                  Book Now
-                </button>
-              </div>
-            </div>
-
-            <div className="w-20 h-20 min-w-[80px] min-h-[80px] relative flex items-center justify-center shrink-0">
-              <img
-                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=250&q=80"
-                alt="Electrical Services"
-                className="w-18 h-18 rounded-2xl object-cover shadow-xs border-2 border-white dark:border-slate-800"
-              />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
