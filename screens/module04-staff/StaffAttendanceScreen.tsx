@@ -5,10 +5,7 @@ import {
   CheckCircle2,
   Clock,
   X,
-  AlertCircle,
-  Check,
-  ChevronRight,
-  Sparkles
+  Check
 } from 'lucide-react';
 import { DomesticStaffMember } from './StaffDashboardScreen';
 
@@ -22,7 +19,7 @@ export const StaffAttendanceScreen: React.FC<StaffAttendanceScreenProps> = ({
   onBack,
 }) => {
   // Calendar attendance status state (key: day number)
-  // Initially days 1-21 are absent (matching screenshot Image 6)
+  // Initially days 1-21 are absent (matching Screenshot 6)
   const [attendanceMap, setAttendanceMap] = useState<Record<number, 'present' | 'half_day' | 'absent' | 'future'>>(() => {
     const map: Record<number, 'present' | 'half_day' | 'absent' | 'future'> = {};
     for (let i = 1; i <= 30; i++) {
@@ -57,17 +54,17 @@ export const StaffAttendanceScreen: React.FC<StaffAttendanceScreenProps> = ({
   };
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between bg-[#F7F8F4] dark:bg-obsidian-950 text-slate-900 dark:text-white text-left animate-in fade-in duration-200 relative pb-10">
+    <div className="w-full min-h-full flex flex-col justify-between bg-[#F8FAF9] dark:bg-obsidian-950 text-slate-900 dark:text-white text-left animate-in fade-in duration-200 relative pb-10">
       {/* Toast Notification */}
       {toastMsg && (
-        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-slate-700 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
-          <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
-          <span className="flex-1 text-[11px] leading-tight">{toastMsg}</span>
+        <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 text-white border border-[#04BB49]/40 text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in slide-in-from-top duration-200">
+          <CheckCircle2 size={15} className="text-[#04BB49] shrink-0" />
+          <span className="flex-1 text-[11px] leading-tight font-medium">{toastMsg}</span>
         </div>
       )}
 
-      {/* Header */}
-      <div className="px-4 py-3 bg-white dark:bg-obsidian-900 border-b border-slate-200/80 dark:border-white/5 flex items-center justify-between sticky top-0 z-30">
+      {/* Header Bar (Matching Screenshot 6) */}
+      <div className="px-4 py-3 bg-white dark:bg-obsidian-900 border-b border-slate-100 dark:border-white/5 flex items-center justify-between sticky top-0 z-30">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -75,20 +72,20 @@ export const StaffAttendanceScreen: React.FC<StaffAttendanceScreenProps> = ({
             className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors press-scale"
             aria-label="Back"
           >
-            <ArrowLeft size={17} className="text-slate-800 dark:text-white" />
+            <ArrowLeft size={18} className="text-slate-800 dark:text-white" />
           </button>
-          <h2 className="text-base font-extrabold text-slate-900 dark:text-white tracking-tight truncate max-w-[240px]">
+          <h2 className="text-base font-bold text-slate-800 dark:text-white tracking-tight truncate max-w-[240px]">
             {staff.name}'s Attendance
           </h2>
         </div>
       </div>
 
       <div className="p-4 flex flex-col gap-4">
-        {/* Calendar Card (Matching Image 6) */}
-        <div className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-xs flex flex-col gap-4">
+        {/* Top Calendar Card (Matching Screenshot 6) */}
+        <div className="p-5 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] flex flex-col gap-4">
           {/* Days Grid (1 to 30) */}
           <div className="grid grid-cols-7 gap-2 text-center">
-            {/* Empty offset if needed; day 1 */}
+            {/* Empty offset if needed for calendar alignment */}
             <div className="invisible" />
             <div className="invisible" />
             <div className="invisible" />
@@ -109,11 +106,11 @@ export const StaffAttendanceScreen: React.FC<StaffAttendanceScreenProps> = ({
                   onClick={() => setSelectedDayForModal(day)}
                   className={`h-9 rounded-xl flex items-center justify-center text-xs font-bold transition-all press-scale relative ${
                     status === 'present'
-                      ? 'bg-emerald-500 text-white shadow-xs'
+                      ? 'bg-[#04BB49] text-white shadow-xs'
                       : isToday
-                      ? 'bg-rose-600 text-white font-extrabold shadow-sm ring-2 ring-rose-300 dark:ring-rose-900'
+                      ? 'bg-[#E11D48] text-white font-extrabold shadow-sm'
                       : status === 'absent'
-                      ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400'
+                      ? 'bg-[#FFF1F2] dark:bg-rose-950/40 text-[#E11D48] dark:text-rose-400'
                       : 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10'
                   }`}
                 >
@@ -123,34 +120,67 @@ export const StaffAttendanceScreen: React.FC<StaffAttendanceScreenProps> = ({
             })}
           </div>
 
-          {/* Attendance Stats Counters (Matching Image 6) */}
+          {/* Attendance Stats Counters (Matching Screenshot 6) */}
           <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-100 dark:border-white/5">
-            <div className="py-2 px-1 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 text-center flex items-center justify-center gap-1.5">
+            <div className="py-2 px-1 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 text-center flex items-center justify-center gap-1.5">
               <span className="font-bold text-xs text-[#04BB49]">{presentCount}</span>
               <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">Present</span>
             </div>
 
-            <div className="py-2 px-1 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200/60 dark:border-white/5 text-center flex items-center justify-center gap-1.5">
+            <div className="py-2 px-1 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 text-center flex items-center justify-center gap-1.5">
               <span className="font-bold text-xs text-[#04BB49]">{halfDayCount}</span>
               <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">Half day</span>
             </div>
 
-            <div className="py-2 px-1 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200/60 dark:border-rose-900/40 text-center flex items-center justify-center gap-1.5">
-              <span className="font-bold text-xs text-rose-600">{absentCount}</span>
-              <span className="text-[11px] font-semibold text-rose-700 dark:text-rose-300">Absent</span>
+            <div className="py-2 px-1 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-100 dark:border-rose-900/40 text-center flex items-center justify-center gap-1.5">
+              <span className="font-bold text-xs text-[#E11D48]">{absentCount}</span>
+              <span className="text-[11px] font-semibold text-[#E11D48]">Absent</span>
             </div>
           </div>
         </div>
 
-        {/* Today's Status Card (Matching Image 6) */}
-        <div className="p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-xs flex flex-col gap-3">
+        {/* Airtel / Croma Promotional Banner (Matching Screenshot 8) */}
+        <div className="rounded-[28px] bg-gradient-to-r from-[#8B0000] via-[#C41224] to-[#A30012] text-white p-4 relative overflow-hidden shadow-md flex items-center justify-between">
+          <div className="flex flex-col gap-1 max-w-[62%] z-10">
+            <div className="flex items-center gap-2 text-[10px] font-bold tracking-wider opacity-90">
+              <span className="font-extrabold">airtel insider</span>
+              <span>|</span>
+              <span>cromā A TATA Enterprise</span>
+            </div>
+            <h4 className="text-sm font-black leading-tight mt-0.5">
+              Being on Airtel pays off!
+            </h4>
+            <p className="text-[11px] text-white/90">
+              Save up to ₹26,000 on your first iPhone.
+            </p>
+            <div className="pt-2">
+              <button
+                type="button"
+                className="px-3.5 py-1.5 rounded-full bg-black text-white font-bold text-[10px] hover:bg-black/80 transition-colors shadow-xs"
+              >
+                Claim Now
+              </button>
+            </div>
+          </div>
+
+          <div className="w-22 h-22 relative flex items-center justify-center shrink-0">
+            <img
+              src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=250&q=80"
+              alt="iPhone 17 Pro"
+              className="w-20 h-20 rounded-2xl object-cover shadow-sm"
+            />
+          </div>
+        </div>
+
+        {/* Bottom Card: Today's Status (Matching Screenshot 6) */}
+        <div className="p-4 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">
               Today, 21 Nov
             </h3>
 
             {attendanceMap[21] === 'present' ? (
-              <span className="text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+              <span className="text-xs font-bold text-[#03963B] bg-[#E8FBF0] px-2.5 py-1 rounded-full border border-[#04BB49]/20">
                 ✓ Present in Flat
               </span>
             ) : (
@@ -164,14 +194,13 @@ export const StaffAttendanceScreen: React.FC<StaffAttendanceScreenProps> = ({
             )}
           </div>
 
-          <p className="text-xs text-slate-500 dark:text-slate-400 -mt-1">
+          <p className="text-xs text-slate-400 dark:text-slate-500 -mt-1 font-medium">
             Arrived in your flat?
           </p>
 
-          {/* Desert Cactus Empty State Box */}
-          <div className="p-6 rounded-2xl border border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-white/5 flex flex-col items-center justify-center text-center gap-2">
+          {/* Desert Cactus Empty State Box (Matching Screenshot 6) */}
+          <div className="p-6 rounded-2xl border border-slate-100 dark:border-white/5 bg-slate-50/60 dark:bg-white/5 flex flex-col items-center justify-center text-center gap-2">
             <div className="w-20 h-14 relative flex items-center justify-center text-slate-300 dark:text-slate-600">
-              {/* SVG Cactus & Sun Illustration */}
               <svg width="64" height="48" viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="28" cy="28" r="14" fill="#E2E8F0" />
                 <path d="M0 40C12 36 28 36 64 40V48H0V40Z" fill="#CBD5E1" />
@@ -180,14 +209,14 @@ export const StaffAttendanceScreen: React.FC<StaffAttendanceScreenProps> = ({
             </div>
             <p className="text-xs font-semibold text-slate-400 dark:text-slate-500">
               {attendanceMap[21] === 'present'
-                ? 'Entry logged today at 08:30 AM via Gate Turnstile'
+                ? 'Entry logged today via Gate Turnstile'
                 : 'No entries on this date'}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Date Detail / Attendance Bottom Sheet (Matching Image 8) */}
+      {/* Date Detail / Attendance Bottom Sheet (Matching Screenshot 8) */}
       {selectedDayForModal && (
         <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
           <div className="w-full bg-white dark:bg-slate-900 rounded-t-[32px] p-5 shadow-2xl border-t border-slate-100 dark:border-white/10 flex flex-col gap-4 animate-in slide-in-from-bottom duration-200 relative">
