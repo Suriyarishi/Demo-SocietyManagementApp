@@ -50,7 +50,7 @@ interface HomeScreenProps {
   activeFlat: FlatEntity;
   onOpenFlatSwitcher: () => void;
   onOpenSearch: () => void;
-  onOpenProfileSettings: () => void;
+  onOpenProfileSettings?: () => void;
   onOpenActivityHistory: () => void;
   onNavigateTab: (tab: 'home' | 'gate' | 'services' | 'community') => void;
   onTriggerSOS: () => void;
@@ -178,17 +178,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             >
               <ShieldAlert size={13} strokeWidth={2.6} />
               <span>SOS</span>
-            </button>
-
-            {/* Resident Profile Avatar */}
-            <button
-              type="button"
-              onClick={onOpenProfileSettings}
-              className="relative w-8 h-8 rounded-xl bg-gradient-to-br from-[#04BB49] to-[#027A2F] text-white font-black text-[11px] flex items-center justify-center shadow-xs border border-white/20 press-scale shrink-0"
-              title="Resident Profile & Governance"
-            >
-              <span>SK</span>
-              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-white dark:border-obsidian-900" />
             </button>
           </div>
         </div>
