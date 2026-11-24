@@ -1,26 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import {
   ArrowLeft,
-  Megaphone,
-  FileText,
-  Download,
-  AlertTriangle,
-  CheckCircle2,
-  Calendar,
-  Building,
-  Building2,
-  Vote,
   X,
   Share2,
-  ChevronRight,
+  Bookmark,
+  BookmarkCheck,
   Search,
   Clock,
-  ShieldCheck,
-  Filter,
-  Sparkles,
-  Inbox
+  Inbox,
+  CheckCircle2
 } from 'lucide-react';
-import { Badge, Button } from '../../components/UIComponents';
 import { NoticeDetailScreen } from './NoticeDetailScreen';
 import { SocietyNotice, SAMPLE_NOTICES } from './noticesData';
 export type { SocietyNotice };
@@ -33,6 +22,7 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
   const [filter, setFilter] = useState<'all' | 'urgent' | 'official' | 'general'>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedNotice, setSelectedNotice] = useState<SocietyNotice | null>(null);
+  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
   const [userVote, setUserVote] = useState<'yes' | 'no' | null>(null);
   const [toastMsg, setToastMsg] = useState<string>('');
 
@@ -44,6 +34,37 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
   const handleCastVote = (noticeId: string, choice: 'yes' | 'no') => {
     setUserVote(choice);
     showToast(`✓ Your vote (${choice.toUpperCase()}) recorded cryptographically for Flat 1204`);
+  };
+
+  const handleToggleBookmark = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setBookmarkedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+        showToast('Notice removed from marklist');
+      } else {
+        next.add(id);
+        showToast('✓ Notice added to marklist');
+      }
+      return next;
+    });
+  };
+
+  const handleShareNotice = (notice: SocietyNotice, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (navigator.share) {
+      navigator.share({
+        title: notice.title,
+        text: `Official Circular: ${notice.title}`,
+        url: window.location.href,
+      }).catch(() => {
+        showToast('✓ Circular link copied to clipboard');
+      });
+    } else {
+      navigator.clipboard?.writeText(window.location.href);
+      showToast('✓ Circular link copied to clipboard');
+    }
   };
 
   const filteredNotices = useMemo(() => {
@@ -64,7 +85,7 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
     });
   }, [filter, searchQuery]);
 
-  // If a notice is selected, show the full dedicated NoticeDetailScreen instead of a popup modal
+  // If a notice is selected, show the dedicated full-page NoticeDetailScreen
   if (selectedNotice) {
     return (
       <NoticeDetailScreen
@@ -172,128 +193,78 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
           ))}
         </div>
 
-        {/* Notices Cards Stream */}
-        <div className="flex flex-col gap-3.5">
+        {/* Minimal Notices Cards Stream (Heading, Description, Time & Date, Share & Marklist icons only) */}
+        <div className="flex flex-col gap-3">
           {filteredNotices.length > 0 ? (
             filteredNotices.map((n) => {
               const isUrgent = n.priority === 'urgent';
-              const isOfficial = n.priority === 'official';
+              const isBookmarked = bookmarkedIds.has(n.id);
 
               return (
                 <div
                   key={n.id}
                   onClick={() => setSelectedNotice(n)}
-                  className={`relative rounded-[22px] p-4 transition-all duration-200 cursor-pointer shadow-xs hover:shadow-md press-scale group overflow-hidden border ${
+                  className={`p-4 rounded-3xl bg-white dark:bg-obsidian-900 border transition-all duration-200 cursor-pointer shadow-xs hover:shadow-md press-scale group relative overflow-hidden ${
                     isUrgent
-                      ? 'bg-gradient-to-br from-red-500/[0.04] via-white to-white dark:from-red-950/25 dark:via-obsidian-900 dark:to-obsidian-900 border-crimson-200/90 dark:border-crimson-900/40 hover:border-crimson-400 dark:hover:border-crimson-600'
-                      : isOfficial
-                      ? 'bg-gradient-to-br from-emerald-500/[0.04] via-white to-white dark:from-emerald-950/25 dark:via-obsidian-900 dark:to-obsidian-900 border-emerald-200/90 dark:border-emerald-900/40 hover:border-[#04bb49]'
-                      : 'bg-white dark:bg-obsidian-900 border-slate-200/90 dark:border-obsidian-800 hover:border-slate-300 dark:hover:border-slate-700'
+                      ? 'border-crimson-200/80 dark:border-crimson-900/40 hover:border-crimson-400'
+                      : 'border-slate-200/80 dark:border-obsidian-800 hover:border-[#04bb49]/60'
                   }`}
                 >
-                  {/* Subtle top indicator bar */}
-                  <div
-                    className={`absolute top-0 left-4 right-4 h-[2px] rounded-full ${
-                      isUrgent
-                        ? 'bg-gradient-to-r from-transparent via-crimson-500 to-transparent opacity-90'
-                        : isOfficial
-                        ? 'bg-gradient-to-r from-transparent via-[#04bb49] to-transparent opacity-90'
-                        : 'hidden'
-                    }`}
-                  />
-
-                  {/* Top Row: Category Badge + Clean Single-line Timestamp */}
+                  {/* Top Row: Time & Date on Left, Share & Marklist/Bookmark on Right */}
                   <div className="flex items-center justify-between gap-2">
-                    {/* Priority Tag */}
-                    {isUrgent && (
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-crimson-500/10 dark:bg-crimson-950/60 text-crimson-600 dark:text-crimson-400 border border-crimson-500/20 text-[10.5px] font-black uppercase tracking-wider shrink-0">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson-600"></span>
-                        </span>
-                        <span>Urgent Maintenance</span>
-                      </div>
-                    )}
+                    {/* Time and Date with subtle urgency pulse indicator */}
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      {isUrgent ? (
+                        <span className="w-2 h-2 rounded-full bg-crimson-500 animate-pulse shrink-0" title="Urgent Notice" />
+                      ) : (
+                        <Clock size={12} className="text-slate-400 shrink-0" />
+                      )}
+                      <span className="text-[11px] font-mono font-medium text-slate-500 dark:text-slate-400 truncate">
+                        {n.dateStr}
+                      </span>
+                    </div>
 
-                    {isOfficial && (
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#04bb49]/10 dark:bg-emerald-950/60 text-[#04bb49] border border-[#04bb49]/20 text-[10.5px] font-black uppercase tracking-wider shrink-0">
-                        <ShieldCheck size={12} strokeWidth={2.6} />
-                        <span>Official Circular</span>
-                      </div>
-                    )}
+                    {/* Quick Action Icons: Share & Marklist */}
+                    <div className="flex items-center gap-1 shrink-0">
+                      <button
+                        type="button"
+                        onClick={(e) => handleShareNotice(n, e)}
+                        className="w-8 h-8 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-obsidian-800 transition-colors press-scale"
+                        title="Share circular"
+                        aria-label="Share circular"
+                      >
+                        <Share2 size={14} strokeWidth={2.2} />
+                      </button>
 
-                    {!isUrgent && !isOfficial && (
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300 text-[10.5px] font-bold tracking-wider shrink-0">
-                        <Sparkles size={11} className="text-slate-400" />
-                        <span>Advisory</span>
-                      </div>
-                    )}
-
-                    {/* Single-Line Timestamp Pill */}
-                    <div className="flex items-center gap-1 text-[10.5px] font-mono font-medium text-slate-500 dark:text-slate-400 bg-slate-100/70 dark:bg-obsidian-800/70 px-2.5 py-0.5 rounded-full border border-slate-200/60 dark:border-white/5 whitespace-nowrap shrink-0">
-                      <Clock size={11} className="text-slate-400 shrink-0" />
-                      <span>{n.dateStr}</span>
+                      <button
+                        type="button"
+                        onClick={(e) => handleToggleBookmark(n.id, e)}
+                        className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors press-scale ${
+                          isBookmarked
+                            ? 'text-amber-500 bg-amber-50 dark:bg-amber-950/30'
+                            : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-obsidian-800'
+                        }`}
+                        title={isBookmarked ? 'Remove from marklist' : 'Add to marklist'}
+                        aria-label={isBookmarked ? 'Remove from marklist' : 'Add to marklist'}
+                      >
+                        {isBookmarked ? (
+                          <BookmarkCheck size={14} strokeWidth={2.4} />
+                        ) : (
+                          <Bookmark size={14} strokeWidth={2.2} />
+                        )}
+                      </button>
                     </div>
                   </div>
 
-                  {/* Title & Summary */}
-                  <div className="mt-2.5">
-                    <h3 className="text-[14px] font-extrabold text-slate-900 dark:text-white leading-[1.38] tracking-tight group-hover:text-[#04bb49] transition-colors">
-                      {n.title}
-                    </h3>
-                    <p className="text-[12px] text-slate-500 dark:text-slate-400 font-normal leading-relaxed line-clamp-2 mt-1.5">
-                      {n.summary}
-                    </p>
-                  </div>
+                  {/* Heading */}
+                  <h3 className="font-extrabold text-[13.5px] sm:text-[14px] text-slate-900 dark:text-white leading-snug group-hover:text-[#04bb49] transition-colors mt-2">
+                    {n.title}
+                  </h3>
 
-                  {/* Context Micro-Badges */}
-                  <div className="flex items-center gap-1.5 flex-wrap pt-2.5">
-                    {n.impactTag && (
-                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-bold ${
-                        isUrgent
-                          ? 'bg-crimson-500/10 text-crimson-600 dark:text-crimson-400 border border-crimson-500/20'
-                          : isOfficial
-                          ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20'
-                          : 'bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300'
-                      }`}>
-                        <AlertTriangle size={11} className={isUrgent ? 'text-crimson-500' : 'text-emerald-500'} />
-                        <span>{n.impactTag}</span>
-                      </span>
-                    )}
-
-                    {n.affectedScope && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-semibold bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300">
-                        <Building2 size={11} className="text-slate-400" />
-                        <span>{n.affectedScope}</span>
-                      </span>
-                    )}
-
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-semibold bg-slate-100 dark:bg-obsidian-800 text-slate-500 dark:text-slate-400">
-                      <FileText size={11} className="text-slate-400" />
-                      <span>PDF</span>
-                    </span>
-
-                    {n.hasVoting && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-[#04bb49]/15 text-[#04bb49] border border-[#04bb49]/20">
-                        <Vote size={11} />
-                        <span>Vote Open</span>
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Card Footer: Department & Interactive CTA Button */}
-                  <div className="flex items-center justify-between pt-3 mt-3 border-t border-slate-100 dark:border-obsidian-800 text-[11px]">
-                    <div className="flex items-center gap-1.5 min-w-0 flex-1 mr-2 text-slate-500 dark:text-slate-400 truncate">
-                      <span className="font-semibold text-slate-700 dark:text-slate-300 truncate">{n.department}</span>
-                      <span className="text-slate-300 dark:text-slate-600">•</span>
-                      <span className="shrink-0">{n.readTime || '2 min read'}</span>
-                    </div>
-
-                    <div className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-slate-100 group-hover:bg-[#04bb49] dark:bg-obsidian-800 dark:group-hover:bg-[#04bb49] text-slate-700 group-hover:text-white dark:text-slate-200 dark:group-hover:text-white text-[11px] font-black shrink-0 transition-all duration-200 shadow-2xs">
-                      <span>View Notice</span>
-                      <ChevronRight size={13} strokeWidth={2.8} className="group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
+                  {/* Description */}
+                  <p className="text-[11.5px] text-slate-500 dark:text-slate-400 font-normal leading-relaxed line-clamp-2 mt-1">
+                    {n.summary}
+                  </p>
                 </div>
               );
             })
