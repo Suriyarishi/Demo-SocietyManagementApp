@@ -140,7 +140,7 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
   const generalCount = SAMPLE_NOTICES.filter((n) => n.priority === 'general').length;
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-24 text-left animate-in fade-in duration-200 bg-slate-50 dark:bg-obsidian-950">
+    <div className="w-full min-h-full flex flex-col justify-between p-4 pb-24 text-left animate-in fade-in duration-200 bg-slate-50 dark:bg-obsidian-950 no-scrollbar">
       {/* Toast Notification */}
       {toastMsg && (
         <div className="fixed top-14 left-4 right-4 z-50 p-3.5 rounded-2xl bg-slate-900/95 dark:bg-obsidian-850 text-white border border-slate-700/80 text-xs font-semibold shadow-2xl flex items-center gap-2.5 animate-in slide-in-from-top duration-200">

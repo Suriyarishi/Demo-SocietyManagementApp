@@ -13,15 +13,8 @@ import {
   AlertTriangle,
   Info,
   Vote,
-  Printer,
-  Copy,
-  ExternalLink,
-  Users,
-  Calendar,
   Sparkles,
-  Eye
 } from 'lucide-react';
-import { Badge, Button } from '../../components/UIComponents';
 import { SocietyNotice } from './NoticesCircularsScreen';
 
 interface NoticeDetailScreenProps {
@@ -88,43 +81,43 @@ export const NoticeDetailScreen: React.FC<NoticeDetailScreenProps> = ({
   const noPercent = totalVotes > 0 ? 100 - yesPercent : 0;
 
   return (
-    <div className="w-full min-h-full flex flex-col justify-between text-left animate-in fade-in duration-200 bg-slate-50 dark:bg-obsidian-950">
-      {/* Toast Notification */}
+    <div className="w-full h-full flex flex-col justify-between text-left animate-in fade-in duration-200 bg-slate-50 dark:bg-obsidian-950 overflow-hidden relative select-none">
+      {/* Toast Notification Container */}
       {toastMessage && (
-        <div className="fixed top-14 left-4 right-4 z-50 p-3.5 rounded-2xl bg-slate-900/95 dark:bg-obsidian-850 text-white border border-slate-700/80 text-xs font-semibold shadow-2xl flex items-center gap-2.5 animate-in slide-in-from-top duration-200">
+        <div className="absolute top-14 left-4 right-4 z-50 p-3.5 rounded-2xl bg-slate-900/95 dark:bg-obsidian-850 text-white border border-slate-700/80 text-xs font-semibold shadow-2xl flex items-center gap-2.5 animate-in slide-in-from-top duration-200">
           <CheckCircle2 size={16} className="text-[#04bb49] shrink-0" />
           <span className="flex-1 text-[11.5px] leading-tight font-medium">{toastMessage}</span>
         </div>
       )}
 
-      {/* Top App Bar Header */}
-      <div className="sticky top-0 z-30 bg-white/95 dark:bg-obsidian-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-obsidian-800 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      {/* Top App Bar Header (Pinned strictly at top) */}
+      <div className="shrink-0 z-20 bg-white/95 dark:bg-obsidian-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-obsidian-800 px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3 min-w-0 flex-1 mr-2">
           <button
             type="button"
             onClick={onBack}
-            className="w-10 h-10 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200/90 dark:border-white/10 press-scale"
+            className="w-10 h-10 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200/90 dark:border-white/10 press-scale shrink-0"
             title="Back to all notices"
           >
             <ArrowLeft size={19} strokeWidth={2.4} />
           </button>
-          <div>
+          <div className="min-w-0 flex-1">
             <span className="text-[10px] font-black tracking-widest text-[#04bb49] uppercase block">
               OFFICIAL CIRCULAR
             </span>
-            <h1 className="text-sm font-extrabold text-slate-900 dark:text-white truncate max-w-[190px]">
+            <h1 className="text-sm font-extrabold text-slate-900 dark:text-white truncate">
               Notice Details
             </h1>
           </div>
         </div>
 
         {/* Header Action Buttons */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0">
           <button
             type="button"
             onClick={() => {
               setIsBookmarked(!isBookmarked);
-              showToast(isBookmarked ? 'Notice removed from saved bookmarks' : '✓ Notice saved to your bookmarks');
+              showToast(isBookmarked ? 'Notice removed from bookmarks' : '✓ Notice saved to bookmarks');
             }}
             className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all press-scale border ${
               isBookmarked
@@ -147,8 +140,8 @@ export const NoticeDetailScreen: React.FC<NoticeDetailScreenProps> = ({
         </div>
       </div>
 
-      {/* Main Scrollable Content */}
-      <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4 pb-28">
+      {/* Main Scrollable Content (Sleek no-scrollbar container) */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar p-4 flex flex-col gap-4 pb-6">
         {/* Priority Banner Card */}
         <div
           className={`p-4 rounded-3xl border transition-all ${
@@ -159,9 +152,10 @@ export const NoticeDetailScreen: React.FC<NoticeDetailScreenProps> = ({
               : 'bg-white dark:bg-obsidian-900 border-slate-200/90 dark:border-obsidian-800 shadow-xs'
           }`}
         >
-          <div className="flex items-center justify-between mb-2">
+          {/* Badge & Timestamp Row with safe non-overlapping wrapping */}
+          <div className="flex items-center justify-between gap-2 mb-2.5">
             <span
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-[10.5px] font-black tracking-wide uppercase ${
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-[10px] font-black tracking-wide uppercase shrink-0 ${
                 isUrgent
                   ? 'bg-crimson-600 text-white shadow-xs'
                   : isOfficial
@@ -172,11 +166,11 @@ export const NoticeDetailScreen: React.FC<NoticeDetailScreenProps> = ({
               {isUrgent && <AlertTriangle size={12} strokeWidth={2.8} />}
               {isOfficial && <ShieldCheck size={12} strokeWidth={2.8} />}
               {!isUrgent && !isOfficial && <Info size={12} strokeWidth={2.8} />}
-              <span>{isUrgent ? 'URGENT NOTIFICATION' : isOfficial ? 'OFFICIAL CIRCULAR' : 'COMMUNITY ADVISORY'}</span>
+              <span>{isUrgent ? 'URGENT' : isOfficial ? 'OFFICIAL' : 'ADVISORY'}</span>
             </span>
 
-            <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1">
-              <Clock size={12} />
+            <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1 shrink-0 bg-black/5 dark:bg-white/5 px-2 py-0.5 rounded-lg">
+              <Clock size={11} className="text-slate-400" />
               <span>{notice.dateStr}</span>
             </span>
           </div>
@@ -298,21 +292,21 @@ export const NoticeDetailScreen: React.FC<NoticeDetailScreenProps> = ({
 
           {/* Official Signatory Authority Stamp */}
           <div className="mt-2 p-3.5 rounded-2xl bg-slate-100/80 dark:bg-obsidian-850 border border-slate-200/70 dark:border-obsidian-800 flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[#04bb49]/15 text-[#04bb49] flex items-center justify-center font-black">
+            <div className="flex items-center gap-2.5 min-w-0 flex-1 mr-2">
+              <div className="w-8 h-8 rounded-xl bg-[#04bb49]/15 text-[#04bb49] flex items-center justify-center font-black shrink-0">
                 <ShieldCheck size={17} />
               </div>
-              <div>
-                <span className="text-[9.5px] font-mono tracking-wider uppercase text-slate-400 dark:text-slate-500 block">
+              <div className="min-w-0 flex-1">
+                <span className="text-[9.5px] font-mono tracking-wider uppercase text-slate-400 dark:text-slate-500 block truncate">
                   AUTHORIZED SIGNATORY
                 </span>
-                <span className="text-xs font-black text-slate-900 dark:text-white leading-tight block">
+                <span className="text-xs font-black text-slate-900 dark:text-white leading-tight block truncate">
                   {notice.signedBy}
                 </span>
               </div>
             </div>
 
-            <div className="text-right">
+            <div className="shrink-0 text-right">
               <span className="text-[9px] font-mono font-bold text-[#04bb49] bg-emerald-500/10 px-2 py-0.5 rounded-md border border-[#04bb49]/20 inline-block">
                 VERIFIED SEAL
               </span>
@@ -320,32 +314,37 @@ export const NoticeDetailScreen: React.FC<NoticeDetailScreenProps> = ({
           </div>
         </div>
 
-        {/* Attached Document / PDF Download Card */}
+        {/* Attached Document / PDF Download Card (Zero Overlap Guaranteed via flex-1 min-w-0 + shrink-0) */}
         <div className="p-4 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-xs flex flex-col gap-3">
-          <span className="text-[10px] font-black tracking-wider uppercase text-slate-400 dark:text-slate-500">
-            OFFICIAL ATTACHMENT
-          </span>
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-black tracking-wider uppercase text-slate-400 dark:text-slate-500">
+              OFFICIAL ATTACHMENT
+            </span>
+            <span className="text-[10px] font-mono text-[#04bb49] font-bold">1 Verified PDF</span>
+          </div>
 
-          <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-obsidian-850 border border-slate-200/80 dark:border-obsidian-800">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-crimson-500/15 text-crimson-600 dark:text-crimson-400 flex items-center justify-center shrink-0">
+          <div className="flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-obsidian-850 border border-slate-200/80 dark:border-obsidian-800">
+            {/* Left Column: Icon + Truncated Text Container (min-w-0 flex-1 guarantees no text overflow) */}
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              <div className="w-11 h-11 rounded-2xl bg-crimson-500/15 text-crimson-600 dark:text-crimson-400 flex items-center justify-center shrink-0 border border-crimson-500/20">
                 <FileText size={20} strokeWidth={2.2} />
               </div>
-              <div>
-                <span className="text-xs font-black text-slate-900 dark:text-white block truncate max-w-[180px]">
+              <div className="min-w-0 flex-1">
+                <span className="text-xs font-black text-slate-900 dark:text-white block truncate" title={notice.pdfFileName}>
                   {notice.pdfFileName}
                 </span>
-                <span className="text-[10.5px] text-slate-500 block mt-0.5">
+                <span className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 block mt-0.5 truncate">
                   Official PDF • 1.4 MB • Certified
                 </span>
               </div>
             </div>
 
+            {/* Right Column: Download Button (shrink-0 guarantees button width is preserved) */}
             <button
               type="button"
               onClick={handleDownloadPdf}
               disabled={downloading}
-              className="h-9 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold flex items-center gap-1.5 transition-all press-scale shadow-xs disabled:opacity-50"
+              className="h-10 px-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 active:bg-black dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold flex items-center gap-1.5 shrink-0 transition-all press-scale shadow-xs disabled:opacity-50"
             >
               <Download size={14} />
               <span>{downloading ? 'Saving...' : 'Get PDF'}</span>
@@ -354,8 +353,8 @@ export const NoticeDetailScreen: React.FC<NoticeDetailScreenProps> = ({
         </div>
       </div>
 
-      {/* Sticky Bottom Action Bar */}
-      <div className="sticky bottom-0 z-30 bg-white/95 dark:bg-obsidian-900/95 backdrop-blur-md border-t border-slate-200/80 dark:border-obsidian-800 p-3.5 flex items-center gap-2.5">
+      {/* Sticky Bottom Dock Action Bar (Pinned cleanly at the bottom) */}
+      <div className="shrink-0 z-20 bg-white/95 dark:bg-obsidian-900/95 backdrop-blur-md border-t border-slate-200/80 dark:border-obsidian-800 p-3.5 flex items-center gap-2.5 shadow-elevated">
         <button
           type="button"
           onClick={() => {
@@ -376,7 +375,7 @@ export const NoticeDetailScreen: React.FC<NoticeDetailScreenProps> = ({
         <button
           type="button"
           onClick={handleDownloadPdf}
-          className="h-12 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 text-slate-800 dark:text-slate-100 font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-200/90 dark:border-white/10 press-scale"
+          className="h-12 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 text-slate-800 dark:text-slate-100 font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-200/90 dark:border-white/10 shrink-0 press-scale"
         >
           <Download size={15} />
           <span>PDF</span>
