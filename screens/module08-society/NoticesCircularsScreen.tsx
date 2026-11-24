@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   Calendar,
   Building,
+  Building2,
   Vote,
   X,
   Share2,
@@ -182,77 +183,115 @@ export const NoticesCircularsScreen: React.FC<NoticesCircularsScreenProps> = ({ 
                 <div
                   key={n.id}
                   onClick={() => setSelectedNotice(n)}
-                  className={`p-4 rounded-3xl bg-white dark:bg-obsidian-900 border transition-all duration-200 cursor-pointer shadow-xs hover:shadow-md press-scale group relative overflow-hidden ${
+                  className={`relative rounded-[22px] p-4 transition-all duration-200 cursor-pointer shadow-xs hover:shadow-md press-scale group overflow-hidden border ${
                     isUrgent
-                      ? 'border-crimson-200/80 dark:border-crimson-900/50 hover:border-crimson-400'
+                      ? 'bg-gradient-to-br from-red-500/[0.04] via-white to-white dark:from-red-950/25 dark:via-obsidian-900 dark:to-obsidian-900 border-crimson-200/90 dark:border-crimson-900/40 hover:border-crimson-400 dark:hover:border-crimson-600'
                       : isOfficial
-                      ? 'border-emerald-200/80 dark:border-emerald-900/50 hover:border-[#04bb49]'
-                      : 'border-slate-200/90 dark:border-obsidian-800 hover:border-slate-300 dark:hover:border-slate-700'
+                      ? 'bg-gradient-to-br from-emerald-500/[0.04] via-white to-white dark:from-emerald-950/25 dark:via-obsidian-900 dark:to-obsidian-900 border-emerald-200/90 dark:border-emerald-900/40 hover:border-[#04bb49]'
+                      : 'bg-white dark:bg-obsidian-900 border-slate-200/90 dark:border-obsidian-800 hover:border-slate-300 dark:hover:border-slate-700'
                   }`}
                 >
-                  {/* Left Priority Accent Bar */}
+                  {/* Subtle top indicator bar */}
                   <div
-                    className={`absolute left-0 top-0 bottom-0 w-1.5 ${
-                      isUrgent ? 'bg-crimson-500' : isOfficial ? 'bg-[#04bb49]' : 'bg-slate-400'
+                    className={`absolute top-0 left-4 right-4 h-[2px] rounded-full ${
+                      isUrgent
+                        ? 'bg-gradient-to-r from-transparent via-crimson-500 to-transparent opacity-90'
+                        : isOfficial
+                        ? 'bg-gradient-to-r from-transparent via-[#04bb49] to-transparent opacity-90'
+                        : 'hidden'
                     }`}
                   />
 
-                  {/* Header Row: Category Badge & Timestamp */}
-                  <div className="flex items-center justify-between pl-1">
-                    <span
-                      className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase tracking-wider ${
-                        isUrgent
-                          ? 'bg-crimson-50 dark:bg-crimson-950/40 text-crimson-600 dark:text-crimson-400 border border-crimson-200 dark:border-crimson-800/40'
-                          : isOfficial
-                          ? 'bg-emerald-50 dark:bg-emerald-950/40 text-[#04bb49] border border-emerald-200 dark:border-emerald-800/40'
-                          : 'bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300'
-                      }`}
-                    >
-                      {isUrgent && <AlertTriangle size={11} strokeWidth={2.8} />}
-                      {isOfficial && <ShieldCheck size={11} strokeWidth={2.8} />}
-                      <span>{isUrgent ? 'URGENT MAINTENANCE' : isOfficial ? 'OFFICIAL CIRCULAR' : 'COMMUNITY ADVISORY'}</span>
-                    </span>
+                  {/* Top Row: Category Badge + Clean Single-line Timestamp */}
+                  <div className="flex items-center justify-between gap-2">
+                    {/* Priority Tag */}
+                    {isUrgent && (
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-crimson-500/10 dark:bg-crimson-950/60 text-crimson-600 dark:text-crimson-400 border border-crimson-500/20 text-[10.5px] font-black uppercase tracking-wider shrink-0">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson-600"></span>
+                        </span>
+                        <span>Urgent Maintenance</span>
+                      </div>
+                    )}
 
-                    <span className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 flex items-center gap-1">
-                      <Clock size={11} />
+                    {isOfficial && (
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#04bb49]/10 dark:bg-emerald-950/60 text-[#04bb49] border border-[#04bb49]/20 text-[10.5px] font-black uppercase tracking-wider shrink-0">
+                        <ShieldCheck size={12} strokeWidth={2.6} />
+                        <span>Official Circular</span>
+                      </div>
+                    )}
+
+                    {!isUrgent && !isOfficial && (
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300 text-[10.5px] font-bold tracking-wider shrink-0">
+                        <Sparkles size={11} className="text-slate-400" />
+                        <span>Advisory</span>
+                      </div>
+                    )}
+
+                    {/* Single-Line Timestamp Pill */}
+                    <div className="flex items-center gap-1 text-[10.5px] font-mono font-medium text-slate-500 dark:text-slate-400 bg-slate-100/70 dark:bg-obsidian-800/70 px-2.5 py-0.5 rounded-full border border-slate-200/60 dark:border-white/5 whitespace-nowrap shrink-0">
+                      <Clock size={11} className="text-slate-400 shrink-0" />
                       <span>{n.dateStr}</span>
-                    </span>
+                    </div>
                   </div>
 
                   {/* Title & Summary */}
-                  <div className="pl-1 mt-2.5">
-                    <h3 className="font-extrabold text-[13px] text-slate-900 dark:text-white leading-snug group-hover:text-[#04bb49] transition-colors">
+                  <div className="mt-2.5">
+                    <h3 className="text-[14px] font-extrabold text-slate-900 dark:text-white leading-[1.38] tracking-tight group-hover:text-[#04bb49] transition-colors">
                       {n.title}
                     </h3>
-                    <p className="text-[11.5px] text-slate-500 dark:text-slate-400 font-medium mt-1 leading-relaxed line-clamp-2">
+                    <p className="text-[12px] text-slate-500 dark:text-slate-400 font-normal leading-relaxed line-clamp-2 mt-1.5">
                       {n.summary}
                     </p>
                   </div>
 
-                  {/* Resolution Voting Chip Preview (if AGM poll attached) */}
-                  {n.hasVoting && (
-                    <div className="pl-1 mt-2.5">
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-900/30 text-emerald-800 dark:text-emerald-300 text-[10.5px] font-bold">
-                        <Vote size={13} className="text-[#04bb49]" />
-                        <span>Interactive Vote Open ({((n.votesCount?.yes || 0) + (n.votesCount?.no || 0))} residents voted)</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Card Footer: Metadata & CTA Button */}
-                  <div className="flex items-center justify-between pt-3 mt-3 pl-1 border-t border-slate-100 dark:border-obsidian-800 text-[11px]">
-                    <div className="flex items-center gap-2 truncate max-w-[210px]">
-                      <div className="w-5 h-5 rounded-md bg-slate-100 dark:bg-obsidian-800 flex items-center justify-center text-slate-500 shrink-0">
-                        <Building size={11} />
-                      </div>
-                      <span className="font-bold text-slate-500 dark:text-slate-400 truncate">
-                        {n.department}
+                  {/* Context Micro-Badges */}
+                  <div className="flex items-center gap-1.5 flex-wrap pt-2.5">
+                    {n.impactTag && (
+                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-bold ${
+                        isUrgent
+                          ? 'bg-crimson-500/10 text-crimson-600 dark:text-crimson-400 border border-crimson-500/20'
+                          : isOfficial
+                          ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20'
+                          : 'bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300'
+                      }`}>
+                        <AlertTriangle size={11} className={isUrgent ? 'text-crimson-500' : 'text-emerald-500'} />
+                        <span>{n.impactTag}</span>
                       </span>
+                    )}
+
+                    {n.affectedScope && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-semibold bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300">
+                        <Building2 size={11} className="text-slate-400" />
+                        <span>{n.affectedScope}</span>
+                      </span>
+                    )}
+
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-semibold bg-slate-100 dark:bg-obsidian-800 text-slate-500 dark:text-slate-400">
+                      <FileText size={11} className="text-slate-400" />
+                      <span>PDF</span>
+                    </span>
+
+                    {n.hasVoting && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-bold bg-[#04bb49]/15 text-[#04bb49] border border-[#04bb49]/20">
+                        <Vote size={11} />
+                        <span>Vote Open</span>
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Card Footer: Department & Interactive CTA Button */}
+                  <div className="flex items-center justify-between pt-3 mt-3 border-t border-slate-100 dark:border-obsidian-800 text-[11px]">
+                    <div className="flex items-center gap-1.5 min-w-0 flex-1 mr-2 text-slate-500 dark:text-slate-400 truncate">
+                      <span className="font-semibold text-slate-700 dark:text-slate-300 truncate">{n.department}</span>
+                      <span className="text-slate-300 dark:text-slate-600">•</span>
+                      <span className="shrink-0">{n.readTime || '2 min read'}</span>
                     </div>
 
-                    <div className="flex items-center gap-1 text-[#04bb49] font-black group-hover:translate-x-0.5 transition-transform">
-                      <span>Open Notice</span>
-                      <ChevronRight size={14} strokeWidth={2.4} />
+                    <div className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-slate-100 group-hover:bg-[#04bb49] dark:bg-obsidian-800 dark:group-hover:bg-[#04bb49] text-slate-700 group-hover:text-white dark:text-slate-200 dark:group-hover:text-white text-[11px] font-black shrink-0 transition-all duration-200 shadow-2xs">
+                      <span>View Notice</span>
+                      <ChevronRight size={13} strokeWidth={2.8} className="group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>
                 </div>

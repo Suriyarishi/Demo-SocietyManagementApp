@@ -13,6 +13,8 @@ export interface SocietyNotice {
   pdfFileName: string;
   readTime?: string;
   category?: string;
+  impactTag?: string;
+  affectedScope?: string;
 }
 
 export const SAMPLE_NOTICES: SocietyNotice[] = [
@@ -28,12 +30,14 @@ export const SAMPLE_NOTICES: SocietyNotice[] = [
     pdfFileName: 'Circular-2026-WT-04.pdf',
     readTime: '2 min read',
     category: 'Facility Maintenance',
+    impactTag: 'Water Supply Suspended',
+    affectedScope: 'Tower 1 & 2',
   },
   {
     id: 'not_02',
     title: 'Notice for 12th Annual General Body Meeting (AGM 2026)',
     department: 'Executive Managing Committee',
-    dateStr: 'Sunday, 30 Nov 2026 • 10:30 AM',
+    dateStr: 'Sun, 30 Nov • 10:30 AM',
     priority: 'official',
     summary: 'Audited balance sheets, clubhouse expansion budget review, and committee election voting.',
     fullBody: 'In accordance with the Karnataka Apartment Ownership Act and Society By-Laws, the 12th AGM of Prestige Lakeside Habitat Owners Association will convene at the Main Banquet Hall. Physical attendance and verified in-app proxy voting are both supported. The audited financials for FY 2025-26 have been published in the Hunt Lockdoor Financials ledger.',
@@ -44,6 +48,8 @@ export const SAMPLE_NOTICES: SocietyNotice[] = [
     pdfFileName: 'AGM-Notice-Agenda-2026.pdf',
     readTime: '3 min read',
     category: 'Governance & AGM',
+    impactTag: 'CapEx Resolution Vote',
+    affectedScope: 'All Flat Owners',
   },
   {
     id: 'not_03',
@@ -57,5 +63,7 @@ export const SAMPLE_NOTICES: SocietyNotice[] = [
     pdfFileName: 'Pet-Guidelines-Policy-V2.pdf',
     readTime: '1 min read',
     category: 'Community Guidelines',
+    impactTag: 'New Common By-Laws',
+    affectedScope: 'All Residents',
   },
 ];
