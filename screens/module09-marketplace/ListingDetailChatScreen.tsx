@@ -129,6 +129,16 @@ export const ListingDetailChatScreen: React.FC<ListingDetailChatScreenProps> = (
 
         {/* Item Header Card */}
         <div className="p-4 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex flex-col gap-3">
+          {item.imageUrl && (
+            <div className="w-full h-44 rounded-2xl overflow-hidden relative bg-slate-100 dark:bg-obsidian-800 -mt-0.5">
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center gap-2 mb-1">

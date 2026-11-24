@@ -64,6 +64,7 @@ export const CreateListingScreen: React.FC<CreateListingScreenProps> = ({
       postedAgo: 'Just now',
       handover: handoverOption,
       description: description.trim() || 'Available for immediate campus pickup from verified resident.',
+      imageUrl: photoAdded ? 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80' : undefined,
       likes: 0,
     };
 

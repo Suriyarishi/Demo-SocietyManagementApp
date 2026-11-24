@@ -45,6 +45,7 @@ export const SAMPLE_MARKETPLACE_ITEMS: MarketplaceItem[] = [
     postedAgo: '2h ago',
     handover: 'Tower 3 Lobby or Unit 802',
     description: 'Selling because we are renovating study room into nursery. Extremely sturdy teak wood, zero scratches, drawer locks intact with key.',
+    imageUrl: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=600&q=80',
     likes: 8,
   },
   {
@@ -59,6 +60,7 @@ export const SAMPLE_MARKETPLACE_ITEMS: MarketplaceItem[] = [
     postedAgo: '4h ago',
     handover: 'Leave at Gate 1 Guard Desk or Flat Handover',
     description: 'Used for 6 months. Works flawlessly with original non-stick basket and recipe booklet. Upgrading to dual-zone model.',
+    imageUrl: 'https://images.unsplash.com/photo-1585659722983-3a675dabf23d?auto=format&fit=crop&w=600&q=80',
     likes: 14,
   },
   {
@@ -73,6 +75,7 @@ export const SAMPLE_MARKETPLACE_ITEMS: MarketplaceItem[] = [
     postedAgo: 'Today 8 AM',
     handover: 'Pick up from Tower 4 Lobby at 5 PM',
     description: '100% organic flour, 36-hour cold fermented artisan sourdough with crispy crust. Batch of 6 loaves baked fresh this morning!',
+    imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
     likes: 27,
   },
   {
@@ -87,6 +90,7 @@ export const SAMPLE_MARKETPLACE_ITEMS: MarketplaceItem[] = [
     postedAgo: '1d ago',
     handover: 'Tower 2 Podium Play Area',
     description: 'Cleaned and sanitized in storage tub. All essential building pieces intact with base plate.',
+    imageUrl: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&w=600&q=80',
     likes: 11,
   },
   {
@@ -101,6 +105,7 @@ export const SAMPLE_MARKETPLACE_ITEMS: MarketplaceItem[] = [
     postedAgo: 'Yesterday',
     handover: 'Free to good home • Collect from Unit 404',
     description: 'Healthy 3-year-old bonsai plant. Moving overseas soon so giving away to plant enthusiasts in our society.',
+    imageUrl: 'https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=600&q=80',
     likes: 35,
   },
 ];
@@ -235,62 +240,101 @@ export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
         </div>
 
         {/* Classified Listings Feed */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3.5">
           {filteredItems.map((item) => (
             <div
               key={item.id}
               onClick={() => onSelectItem(item)}
-              className="p-4 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex flex-col gap-2.5 cursor-pointer hover:border-cobalt-300 dark:hover:border-cobalt-700 transition-all press-scale"
+              className="p-3.5 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-xs flex flex-col gap-3 cursor-pointer hover:border-[#04bb49]/60 dark:hover:border-[#04bb49]/60 hover:shadow-md transition-all press-scale group overflow-hidden"
             >
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-2">
-                  <Badge
-                    variant={item.price === 0 ? 'emerald' : 'cobalt'}
-                    size="sm"
+              {/* Product Photo Banner */}
+              {item.imageUrl ? (
+                <div className="w-full h-44 rounded-2xl overflow-hidden relative bg-slate-100 dark:bg-obsidian-800">
+                  <img
+                    src={item.imageUrl}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+
+                  {/* Floating Badges on Image */}
+                  <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 z-10">
+                    <span
+                      className={`px-2.5 py-1 rounded-xl text-[10px] font-extrabold uppercase tracking-wide backdrop-blur-md shadow-xs ${
+                        item.price === 0
+                          ? 'bg-emerald-500/95 text-white'
+                          : 'bg-white/95 dark:bg-obsidian-900/95 text-slate-900 dark:text-white border border-white/20'
+                      }`}
+                    >
+                      {item.condition}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-lg text-[9.5px] font-bold uppercase tracking-wider bg-black/55 text-white backdrop-blur-md">
+                      {item.category}
+                    </span>
+                  </div>
+
+                  {/* Wishlist Heart Icon Floating Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => handleLike(item.id, e)}
+                    className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/95 dark:bg-obsidian-900/95 backdrop-blur-md text-slate-500 hover:text-rose-500 flex items-center justify-center transition-colors shadow-xs press-scale z-10"
+                    title="Save to wishlist"
+                    aria-label="Save to wishlist"
                   >
-                    {item.condition}
-                  </Badge>
-                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    {item.category}
-                  </span>
+                    <Heart size={14} className={item.likes > 0 ? 'fill-rose-500 text-rose-500' : ''} />
+                  </button>
+
+                  <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/25 to-transparent pointer-events-none" />
                 </div>
+              ) : (
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-2">
+                    <Badge variant={item.price === 0 ? 'emerald' : 'cobalt'} size="sm">
+                      {item.condition}
+                    </Badge>
+                    <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                      {item.category}
+                    </span>
+                  </div>
 
-                <button
-                  type="button"
-                  onClick={(e) => handleLike(item.id, e)}
-                  className="w-7 h-7 rounded-lg bg-slate-100 hover:bg-rose-50 dark:bg-obsidian-800 dark:hover:bg-rose-950/60 text-slate-400 hover:text-rose-500 flex items-center justify-center transition-colors"
-                >
-                  <Heart size={14} />
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    onClick={(e) => handleLike(item.id, e)}
+                    className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-rose-50 dark:bg-obsidian-800 dark:hover:bg-rose-950/60 text-slate-400 hover:text-rose-500 flex items-center justify-center transition-colors"
+                  >
+                    <Heart size={14} />
+                  </button>
+                </div>
+              )}
 
-              <div>
-                <h3 className="font-extrabold text-xs text-slate-900 dark:text-white leading-snug">
+              {/* Title & Description */}
+              <div className="px-0.5">
+                <h3 className="font-extrabold text-[13.5px] sm:text-sm text-slate-900 dark:text-white leading-snug group-hover:text-[#04bb49] transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-[11px] text-slate-500 font-medium line-clamp-2 mt-0.5 leading-relaxed">
+                <p className="text-[11.5px] text-slate-500 dark:text-slate-400 font-medium line-clamp-2 mt-1 leading-relaxed">
                   {item.description}
                 </p>
               </div>
 
               {/* Price & Seller Row */}
-              <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-obsidian-800">
+              <div className="flex items-center justify-between pt-2.5 border-t border-slate-100 dark:border-obsidian-800 px-0.5">
                 <div>
-                  <span className="text-sm font-extrabold text-slate-900 dark:text-white">
+                  <span className="text-sm font-black text-slate-900 dark:text-white block">
                     {item.price === 0 ? (
-                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">FREE GIVEAWAY</span>
+                      <span className="text-[#04bb49] font-black">FREE GIVEAWAY</span>
                     ) : (
                       `₹${item.price.toLocaleString()}`
                     )}
                   </span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium block mt-0.5">
                     {item.sellerUnit} • {item.postedAgo}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1 text-cobalt-600 dark:text-cobalt-400 font-bold text-xs">
+                <div className="flex items-center gap-1 text-[#04bb49] font-black text-xs group-hover:translate-x-0.5 transition-transform">
                   <span>Chat & Buy</span>
-                  <ChevronRight size={14} />
+                  <ChevronRight size={14} strokeWidth={2.4} />
                 </div>
               </div>
             </div>
