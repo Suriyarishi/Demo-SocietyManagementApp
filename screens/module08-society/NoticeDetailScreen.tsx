@@ -15,7 +15,7 @@ import {
   Vote,
   Sparkles,
 } from 'lucide-react';
-import { SocietyNotice } from './NoticesCircularsScreen';
+import { SocietyNotice } from './noticesData';
 
 interface NoticeDetailScreenProps {
   notice: SocietyNotice;
