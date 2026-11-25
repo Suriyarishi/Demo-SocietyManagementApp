@@ -1,6 +1,7 @@
 import React from 'react';
 import { Select } from '../../../components/UIComponents';
 import { SellItemDraft, RESIDENT_LOCATIONS } from './sellItemData';
+import { LocationPin3D, ContactPhone3D } from './SellItem3DIcons';
 
 interface DeliveryContactStepProps {
   draft: SellItemDraft;
@@ -25,8 +26,9 @@ export const DeliveryContactStep: React.FC<DeliveryContactStepProps> = ({
         <div className="flex flex-col gap-1.5">
           <label
             htmlFor="sell-location-select"
-            className="text-[11px] font-extrabold text-slate-700 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1"
+            className="text-[11px] font-extrabold text-slate-700 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1.5"
           >
+            <LocationPin3D size={16} />
             <span>Location</span>
             <span className="text-crimson-500">*</span>
           </label>
@@ -102,8 +104,9 @@ export const DeliveryContactStep: React.FC<DeliveryContactStepProps> = ({
       {/* Card 2: Contact Number Preferences */}
       <div className="p-4 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-ambient flex flex-col gap-3">
         <div>
-          <span className="text-[11px] font-extrabold text-slate-700 dark:text-slate-300 tracking-wider uppercase block">
-            Contact number
+          <span className="text-[11px] font-extrabold text-slate-700 dark:text-slate-300 tracking-wider uppercase flex items-center gap-1.5">
+            <ContactPhone3D size={16} />
+            <span>Contact number</span>
           </span>
           <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">
             Buyers can always reach you on Hunt Lockdoor chat

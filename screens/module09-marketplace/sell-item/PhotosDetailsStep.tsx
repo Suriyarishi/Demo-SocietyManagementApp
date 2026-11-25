@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { Plus, X, ImagePlus } from 'lucide-react';
 import { Input, Textarea } from '../../../components/UIComponents';
 import { SellItemDraft, QUICK_SAMPLE_PHOTOS } from './sellItemData';
+import { CameraPlus3D, PhotoStack3D, CloseOrb3D } from './SellItem3DIcons';
 
 interface PhotosDetailsStepProps {
   draft: SellItemDraft;
@@ -86,16 +86,16 @@ export const PhotosDetailsStep: React.FC<PhotosDetailsStepProps> = ({
           />
 
           <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1">
-            {/* Add Photo Tile */}
+            {/* Add Photo Tile with 3D Camera Vector Icon */}
             {draft.photos.length < 5 && (
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="w-24 h-24 rounded-2xl border-2 border-dashed border-slate-300 dark:border-obsidian-700 bg-slate-50 dark:bg-obsidian-850 hover:bg-slate-100 dark:hover:bg-obsidian-800 hover:border-primary-500 flex flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary-600 transition-all shrink-0 press-scale cursor-pointer"
+                className="w-24 h-24 rounded-2xl border-2 border-dashed border-slate-300 dark:border-obsidian-700 bg-slate-50 dark:bg-obsidian-850 hover:bg-slate-100 dark:hover:bg-obsidian-800 hover:border-primary-500 flex flex-col items-center justify-center gap-1 text-slate-600 dark:text-slate-300 hover:text-primary-600 transition-all shrink-0 press-scale cursor-pointer"
                 title="Upload item photos"
                 aria-label="Upload item photos"
               >
-                <Plus size={22} strokeWidth={2.2} />
+                <CameraPlus3D size={40} />
                 <span className="text-[10px] font-bold">Add Photo</span>
               </button>
             )}
@@ -119,11 +119,11 @@ export const PhotosDetailsStep: React.FC<PhotosDetailsStepProps> = ({
                 <button
                   type="button"
                   onClick={() => handleRemovePhoto(idx)}
-                  className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-crimson-600 transition-colors"
+                  className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full flex items-center justify-center press-scale cursor-pointer"
                   title="Remove photo"
                   aria-label="Remove photo"
                 >
-                  <X size={12} strokeWidth={2.6} />
+                  <CloseOrb3D size={20} />
                 </button>
               </div>
             ))}
@@ -137,7 +137,7 @@ export const PhotosDetailsStep: React.FC<PhotosDetailsStepProps> = ({
           {draft.photos.length === 0 && (
             <div className="flex items-center gap-1.5 flex-wrap pt-1">
               <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 flex items-center gap-1 mr-1">
-                <ImagePlus size={11} />
+                <PhotoStack3D size={16} />
                 <span>Quick attach:</span>
               </span>
               {QUICK_SAMPLE_PHOTOS.map((sample) => (

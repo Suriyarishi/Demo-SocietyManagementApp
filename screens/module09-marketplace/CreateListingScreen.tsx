@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Button } from '../../components/UIComponents';
 import { MarketplaceItem } from './MarketplaceHubScreen';
+import { BackArrow3D, CheckOrb3D } from './sell-item/SellItem3DIcons';
 import {
   SellItemDraft,
   SellWizardStep,
@@ -210,7 +210,7 @@ export const CreateListingScreen: React.FC<CreateListingScreenProps> = ({
       {/* Toast Notification */}
       {toastMsg && (
         <div className="absolute top-14 left-4 right-4 z-50 p-3 rounded-2xl bg-slate-900/95 dark:bg-obsidian-850 text-white border border-slate-700/80 text-xs font-semibold shadow-2xl flex items-center gap-2.5 animate-in slide-in-from-top duration-200">
-          <CheckCircle2 size={15} className="text-primary-500 shrink-0" />
+          <CheckOrb3D size={18} />
           <span className="flex-1 text-[11.5px] leading-tight">{toastMsg}</span>
         </div>
       )}
@@ -224,7 +224,7 @@ export const CreateListingScreen: React.FC<CreateListingScreenProps> = ({
           title="Go back"
           aria-label="Go back"
         >
-          <ArrowLeft size={18} strokeWidth={2.4} />
+          <BackArrow3D size={18} />
         </button>
 
         {stepNumber !== null && (

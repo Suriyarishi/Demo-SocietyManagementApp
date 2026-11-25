@@ -1,11 +1,11 @@
 import React from 'react';
-import { Info } from 'lucide-react';
 import { Input, Select } from '../../../components/UIComponents';
 import {
   SellItemDraft,
   PURCHASE_YEARS,
   getProductTypesForSelection,
 } from './sellItemData';
+import { InfoOrb3D } from './SellItem3DIcons';
 
 interface ItemDetailsStepProps {
   draft: SellItemDraft;
@@ -45,11 +45,11 @@ export const ItemDetailsStep: React.FC<ItemDetailsStepProps> = ({
             onClick={() =>
               onShowTip('Accurate pricing and condition help verified neighbors decide faster.')
             }
-            className="w-6 h-6 rounded-full text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 flex items-center justify-center transition-colors"
+            className="w-7 h-7 rounded-full flex items-center justify-center transition-transform press-scale cursor-pointer"
             title="Listing details tip"
             aria-label="Listing details tip"
           >
-            <Info size={16} />
+            <InfoOrb3D size={20} />
           </button>
         </div>
       </div>

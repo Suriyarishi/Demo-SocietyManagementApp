@@ -1,22 +1,24 @@
+import React from 'react';
 import {
-  Armchair,
-  Package,
-  Smartphone,
-  UserCheck,
-  Shirt,
-  Utensils,
-  Car,
-  BookOpen,
-  Baby,
-  SquareParking,
-  PawPrint,
-  Sofa,
-  Bed,
-  Flower2,
-  UtensilsCrossed,
-  LampDesk,
-  LucideIcon,
-} from 'lucide-react';
+  Icon3DProps,
+  Armchair3D,
+  ParcelBox3D,
+  Smartphone3D,
+  ServiceVerified3D,
+  FashionTee3D,
+  FoodCutlery3D,
+  VehicleCar3D,
+  Book3D,
+  BabyProduct3D,
+  Parking3D,
+  Paw3D,
+  Sofa3D,
+  Bed3D,
+  Crib3D,
+  Planter3D,
+  Dining3D,
+  DeskLamp3D,
+} from './SellItem3DIcons';
 
 export type SellWizardStep =
   | 'category'
@@ -29,17 +31,15 @@ export type SellWizardStep =
 export interface SellCategoryConfig {
   id: string;
   label: string;
-  icon: LucideIcon;
+  icon: React.FC<Icon3DProps>;
   iconBg: string;
-  iconColor: string;
 }
 
 export interface SellSubCategoryConfig {
   id: string;
   label: string;
-  icon: LucideIcon;
+  icon: React.FC<Icon3DProps>;
   iconBg: string;
-  iconColor: string;
 }
 
 export interface SellItemDraft {
@@ -67,79 +67,68 @@ export const SELL_CATEGORIES: SellCategoryConfig[] = [
   {
     id: 'Furniture & Decor',
     label: 'Furniture & Decor',
-    icon: Armchair,
-    iconBg: 'bg-orange-50 dark:bg-orange-950/40',
-    iconColor: 'text-orange-600 dark:text-orange-400',
+    icon: Armchair3D,
+    iconBg: 'bg-orange-50/90 dark:bg-orange-950/35',
   },
   {
     id: 'Others',
     label: 'Others',
-    icon: Package,
-    iconBg: 'bg-yellow-50 dark:bg-yellow-950/40',
-    iconColor: 'text-amber-700 dark:text-amber-300',
+    icon: ParcelBox3D,
+    iconBg: 'bg-amber-50/90 dark:bg-amber-950/35',
   },
   {
     id: 'Electronics & Appliances',
     label: 'Electronics & Appliances',
-    icon: Smartphone,
-    iconBg: 'bg-slate-100 dark:bg-obsidian-800',
-    iconColor: 'text-slate-700 dark:text-slate-200',
+    icon: Smartphone3D,
+    iconBg: 'bg-slate-100/90 dark:bg-obsidian-800',
   },
   {
     id: 'Services',
     label: 'Services',
-    icon: UserCheck,
-    iconBg: 'bg-primary-50 dark:bg-primary-950/40',
-    iconColor: 'text-primary-600 dark:text-primary-400',
+    icon: ServiceVerified3D,
+    iconBg: 'bg-primary-50/90 dark:bg-primary-950/35',
   },
   {
     id: 'Fashion & Accessories',
     label: 'Fashion & Accessories',
-    icon: Shirt,
-    iconBg: 'bg-rose-50 dark:bg-rose-950/40',
-    iconColor: 'text-rose-500 dark:text-rose-400',
+    icon: FashionTee3D,
+    iconBg: 'bg-rose-50/90 dark:bg-rose-950/35',
   },
   {
     id: 'Food',
     label: 'Food',
-    icon: Utensils,
-    iconBg: 'bg-stone-100 dark:bg-obsidian-800',
-    iconColor: 'text-stone-600 dark:text-stone-300',
+    icon: FoodCutlery3D,
+    iconBg: 'bg-stone-100/90 dark:bg-obsidian-800',
   },
   {
     id: 'Vehicles',
     label: 'Vehicles',
-    icon: Car,
-    iconBg: 'bg-amber-50 dark:bg-amber-950/40',
-    iconColor: 'text-amber-600 dark:text-amber-400',
+    icon: VehicleCar3D,
+    iconBg: 'bg-amber-50/90 dark:bg-amber-950/35',
   },
   {
     id: 'Books, Sports & Hobbies',
     label: 'Books, Sports & Hobbies',
-    icon: BookOpen,
-    iconBg: 'bg-crimson-50 dark:bg-crimson-950/40',
-    iconColor: 'text-crimson-600 dark:text-crimson-400',
+    icon: Book3D,
+    iconBg: 'bg-crimson-50/90 dark:bg-crimson-950/35',
   },
   {
     id: 'Kids & Baby Products',
     label: 'Kids & Baby Products',
-    icon: Baby,
-    iconBg: 'bg-sky-50 dark:bg-sky-950/40',
-    iconColor: 'text-sky-600 dark:text-sky-400',
+    icon: BabyProduct3D,
+    iconBg: 'bg-sky-50/90 dark:bg-sky-950/35',
   },
   {
     id: 'Parking',
     label: 'Parking',
-    icon: SquareParking,
-    iconBg: 'bg-blue-50 dark:bg-blue-950/40',
-    iconColor: 'text-blue-600 dark:text-blue-400',
+    icon: Parking3D,
+    iconBg: 'bg-blue-50/90 dark:bg-blue-950/35',
   },
   {
     id: 'Pets',
     label: 'Pets',
-    icon: PawPrint,
-    iconBg: 'bg-indigo-50 dark:bg-indigo-950/40',
-    iconColor: 'text-indigo-600 dark:text-indigo-400',
+    icon: Paw3D,
+    iconBg: 'bg-indigo-50/90 dark:bg-indigo-950/35',
   },
 ];
 
@@ -148,70 +137,63 @@ export const SUB_CATEGORIES_BY_CATEGORY: Record<string, SellSubCategoryConfig[]>
     {
       id: 'Living Room',
       label: 'Living Room',
-      icon: Sofa,
-      iconBg: 'bg-orange-50 dark:bg-orange-950/40',
-      iconColor: 'text-orange-600 dark:text-orange-400',
+      icon: Sofa3D,
+      iconBg: 'bg-orange-50/90 dark:bg-orange-950/35',
     },
     {
       id: 'Bedroom',
       label: 'Bedroom',
-      icon: Bed,
-      iconBg: 'bg-indigo-50 dark:bg-indigo-950/40',
-      iconColor: 'text-indigo-600 dark:text-indigo-400',
+      icon: Bed3D,
+      iconBg: 'bg-indigo-50/90 dark:bg-indigo-950/35',
     },
     {
       id: 'Kids Furniture',
       label: 'Kids Furniture',
-      icon: Baby,
-      iconBg: 'bg-amber-50 dark:bg-amber-950/40',
-      iconColor: 'text-amber-600 dark:text-amber-400',
+      icon: Crib3D,
+      iconBg: 'bg-amber-50/90 dark:bg-amber-950/35',
     },
     {
       id: 'Decor & Garden',
       label: 'Decor & Garden',
-      icon: Flower2,
-      iconBg: 'bg-primary-50 dark:bg-primary-950/40',
-      iconColor: 'text-primary-600 dark:text-primary-400',
+      icon: Planter3D,
+      iconBg: 'bg-primary-50/90 dark:bg-primary-950/35',
     },
     {
       id: 'Dining',
       label: 'Dining',
-      icon: UtensilsCrossed,
-      iconBg: 'bg-stone-100 dark:bg-obsidian-800',
-      iconColor: 'text-stone-600 dark:text-stone-300',
+      icon: Dining3D,
+      iconBg: 'bg-stone-100/90 dark:bg-obsidian-800',
     },
     {
       id: 'Study & Home Office',
       label: 'Study & Home Office',
-      icon: LampDesk,
-      iconBg: 'bg-sky-50 dark:bg-sky-950/40',
-      iconColor: 'text-sky-600 dark:text-sky-400',
+      icon: DeskLamp3D,
+      iconBg: 'bg-sky-50/90 dark:bg-sky-950/35',
     },
     {
       id: 'Other',
       label: 'Other',
-      icon: Package,
-      iconBg: 'bg-yellow-50 dark:bg-yellow-950/40',
-      iconColor: 'text-amber-700 dark:text-amber-300',
+      icon: ParcelBox3D,
+      iconBg: 'bg-amber-50/90 dark:bg-amber-950/35',
     },
   ],
   'Electronics & Appliances': [
-    { id: 'Phones & Tablets', label: 'Phones & Tablets', icon: Smartphone, iconBg: 'bg-slate-100 dark:bg-obsidian-800', iconColor: 'text-slate-700 dark:text-slate-200' },
-    { id: 'Kitchen Appliances', label: 'Kitchen Appliances', icon: UtensilsCrossed, iconBg: 'bg-orange-50 dark:bg-orange-950/40', iconColor: 'text-orange-600 dark:text-orange-400' },
-    { id: 'Workstations & Audio', label: 'Workstations & Audio', icon: LampDesk, iconBg: 'bg-indigo-50 dark:bg-indigo-950/40', iconColor: 'text-indigo-600 dark:text-indigo-400' },
-    { id: 'Other', label: 'Other', icon: Package, iconBg: 'bg-yellow-50 dark:bg-yellow-950/40', iconColor: 'text-amber-700 dark:text-amber-300' },
+    { id: 'Phones & Tablets', label: 'Phones & Tablets', icon: Smartphone3D, iconBg: 'bg-slate-100/90 dark:bg-obsidian-800' },
+    { id: 'Kitchen Appliances', label: 'Kitchen Appliances', icon: FoodCutlery3D, iconBg: 'bg-orange-50/90 dark:bg-orange-950/35' },
+    { id: 'Workstations & Audio', label: 'Workstations & Audio', icon: DeskLamp3D, iconBg: 'bg-indigo-50/90 dark:bg-indigo-950/35' },
+    { id: 'Other', label: 'Other', icon: ParcelBox3D, iconBg: 'bg-amber-50/90 dark:bg-amber-950/35' },
   ],
   'Kids & Baby Products': [
-    { id: 'Strollers & Gear', label: 'Strollers & Gear', icon: Baby, iconBg: 'bg-sky-50 dark:bg-sky-950/40', iconColor: 'text-sky-600 dark:text-sky-400' },
-    { id: 'Toys & Building Sets', label: 'Toys & Building Sets', icon: Package, iconBg: 'bg-amber-50 dark:bg-amber-950/40', iconColor: 'text-amber-600 dark:text-amber-400' },
-    { id: 'Books & Learning', label: 'Books & Learning', icon: BookOpen, iconBg: 'bg-primary-50 dark:bg-primary-950/40', iconColor: 'text-primary-600 dark:text-primary-400' },
-    { id: 'Other', label: 'Other', icon: Package, iconBg: 'bg-slate-100 dark:bg-obsidian-800', iconColor: 'text-slate-600 dark:text-slate-300' },
+    { id: 'Strollers & Gear', label: 'Strollers & Gear', icon: BabyProduct3D, iconBg: 'bg-sky-50/90 dark:bg-sky-950/35' },
+    { id: 'Toys & Building Sets', label: 'Toys & Building Sets', icon: ParcelBox3D, iconBg: 'bg-amber-50/90 dark:bg-amber-950/35' },
+    { id: 'Books & Learning', label: 'Books & Learning', icon: Book3D, iconBg: 'bg-primary-50/90 dark:bg-primary-950/35' },
+    { id: 'Other', label: 'Other', icon: ParcelBox3D, iconBg: 'bg-slate-100/90 dark:bg-obsidian-800' },
   ],
   Food: [
-    { id: 'Home Bakes & Breads', label: 'Home Bakes & Breads', icon: Utensils, iconBg: 'bg-amber-50 dark:bg-amber-950/40', iconColor: 'text-amber-600 dark:text-amber-400' },
-    { id: 'Tiffin & Meals', label: 'Tiffin & Meals', icon: UtensilsCrossed, iconBg: 'bg-primary-50 dark:bg-primary-950/40', iconColor: 'text-primary-600 dark:text-primary-400' },
-    { id: 'Snacks & Organic', label: 'Snacks & Organic', icon: Flower2, iconBg: 'bg-orange-50 dark:bg-orange-950/40', iconColor: 'text-orange-600 dark:text-orange-400' },
-    { id: 'Other', label: 'Other', icon: Package, iconBg: 'bg-slate-100 dark:bg-obsidian-800', iconColor: 'text-slate-600 dark:text-slate-300' },
+    { id: 'Home Bakes & Breads', label: 'Home Bakes & Breads', icon: FoodCutlery3D, iconBg: 'bg-amber-50/90 dark:bg-amber-950/35' },
+    { id: 'Tiffin & Meals', label: 'Tiffin & Meals', icon: Dining3D, iconBg: 'bg-primary-50/90 dark:bg-primary-950/35' },
+    { id: 'Snacks & Organic', label: 'Snacks & Organic', icon: Planter3D, iconBg: 'bg-orange-50/90 dark:bg-orange-950/35' },
+    { id: 'Other', label: 'Other', icon: ParcelBox3D, iconBg: 'bg-slate-100/90 dark:bg-obsidian-800' },
   ],
 };
 
@@ -226,21 +208,18 @@ export function getSubCategoriesForCategory(categoryId: string): SellSubCategory
       label: `${categoryId} Item`,
       icon: catMeta.icon,
       iconBg: catMeta.iconBg,
-      iconColor: catMeta.iconColor,
     },
     {
       id: 'Accessories & Add-ons',
       label: 'Accessories & Add-ons',
-      icon: Package,
-      iconBg: 'bg-slate-100 dark:bg-obsidian-800',
-      iconColor: 'text-slate-600 dark:text-slate-300',
+      icon: ParcelBox3D,
+      iconBg: 'bg-slate-100/90 dark:bg-obsidian-800',
     },
     {
       id: 'Other',
       label: 'Other',
-      icon: Package,
-      iconBg: 'bg-yellow-50 dark:bg-yellow-950/40',
-      iconColor: 'text-amber-700 dark:text-amber-300',
+      icon: ParcelBox3D,
+      iconBg: 'bg-amber-50/90 dark:bg-amber-950/35',
     },
   ];
 }

@@ -1,6 +1,12 @@
 import React from 'react';
-import { ShieldCheck, MapPin, Phone, ExternalLink, Tag } from 'lucide-react';
 import { SellItemDraft } from './sellItemData';
+import {
+  PriceTag3D,
+  LocationPin3D,
+  ContactPhone3D,
+  ExternalLink3D,
+  ShieldCheck3D,
+} from './SellItem3DIcons';
 
 interface ListingPreviewStepProps {
   draft: SellItemDraft;
@@ -87,7 +93,7 @@ export const ListingPreviewStep: React.FC<ListingPreviewStepProps> = ({ draft })
       {/* Captured Parameter Summary */}
       <div className="p-4 rounded-3xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-ambient flex flex-col gap-3 text-xs">
         <span className="text-[10px] font-black tracking-wider uppercase text-slate-400 dark:text-slate-500 flex items-center gap-1.5">
-          <Tag size={12} className="text-primary-600" />
+          <PriceTag3D size={16} />
           <span>ITEM PARAMETERS</span>
         </span>
 
@@ -120,25 +126,25 @@ export const ListingPreviewStep: React.FC<ListingPreviewStepProps> = ({ draft })
 
         <div className="p-3 rounded-2xl bg-slate-50 dark:bg-obsidian-850 border border-slate-100 dark:border-obsidian-800 flex flex-col gap-2">
           <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-semibold">
-            <MapPin size={14} className="text-primary-600 shrink-0" />
+            <LocationPin3D size={18} />
             <span className="truncate">
               {displayUnit} • {draft.deliveryMode}
             </span>
           </div>
           <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-semibold">
-            <Phone size={14} className="text-primary-600 shrink-0" />
+            <ContactPhone3D size={18} />
             <span>Contact via {draft.contactMethod} & Hunt Lockdoor Chat</span>
           </div>
           {draft.productLink && (
             <div className="flex items-center gap-2 text-primary-600 font-semibold">
-              <ExternalLink size={14} className="shrink-0" />
+              <ExternalLink3D size={18} />
               <span className="truncate">{draft.productLink}</span>
             </div>
           )}
         </div>
 
         <div className="flex items-center gap-2 p-2.5 rounded-2xl bg-primary-50/70 dark:bg-primary-950/30 border border-primary-200/70 dark:border-primary-900/40 text-[11px] text-slate-700 dark:text-slate-300 font-medium">
-          <ShieldCheck size={15} className="text-primary-600 shrink-0" />
+          <ShieldCheck3D size={18} />
           <span>Resident-verified zero-brokerage community listing</span>
         </div>
       </div>
