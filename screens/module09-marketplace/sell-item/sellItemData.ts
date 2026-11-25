@@ -1,5 +1,4 @@
 import {
-  Building2,
   Armchair,
   Package,
   Smartphone,
@@ -65,13 +64,6 @@ export interface SellItemDraft {
 }
 
 export const SELL_CATEGORIES: SellCategoryConfig[] = [
-  {
-    id: 'Property',
-    label: 'Property',
-    icon: Building2,
-    iconBg: 'bg-amber-50 dark:bg-amber-950/40',
-    iconColor: 'text-amber-600 dark:text-amber-400',
-  },
   {
     id: 'Furniture & Decor',
     label: 'Furniture & Decor',
@@ -202,12 +194,6 @@ export const SUB_CATEGORIES_BY_CATEGORY: Record<string, SellSubCategoryConfig[]>
       iconBg: 'bg-yellow-50 dark:bg-yellow-950/40',
       iconColor: 'text-amber-700 dark:text-amber-300',
     },
-  ],
-  Property: [
-    { id: 'Apartment for Rent', label: 'Apartment for Rent', icon: Building2, iconBg: 'bg-amber-50 dark:bg-amber-950/40', iconColor: 'text-amber-600 dark:text-amber-400' },
-    { id: 'Flat for Sale', label: 'Flat for Sale', icon: Building2, iconBg: 'bg-primary-50 dark:bg-primary-950/40', iconColor: 'text-primary-600 dark:text-primary-400' },
-    { id: 'Shared Room / PG', label: 'Shared Room / PG', icon: Bed, iconBg: 'bg-sky-50 dark:bg-sky-950/40', iconColor: 'text-sky-600 dark:text-sky-400' },
-    { id: 'Other', label: 'Other', icon: Package, iconBg: 'bg-slate-100 dark:bg-obsidian-800', iconColor: 'text-slate-600 dark:text-slate-300' },
   ],
   'Electronics & Appliances': [
     { id: 'Phones & Tablets', label: 'Phones & Tablets', icon: Smartphone, iconBg: 'bg-slate-100 dark:bg-obsidian-800', iconColor: 'text-slate-700 dark:text-slate-200' },

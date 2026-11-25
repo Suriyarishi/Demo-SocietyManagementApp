@@ -6,6 +6,7 @@ import {
   SellItemDraft,
   SellWizardStep,
   INITIAL_SELL_DRAFT,
+  SELL_CATEGORIES,
   getSubCategoriesForCategory,
 } from './sell-item/sellItemData';
 import { CategoryStep } from './sell-item/CategoryStep';
@@ -30,7 +31,11 @@ export const CreateListingScreen: React.FC<CreateListingScreenProps> = ({
     try {
       const saved = localStorage.getItem(DRAFT_STORAGE_KEY);
       if (saved) {
-        return { ...INITIAL_SELL_DRAFT, ...JSON.parse(saved) };
+        const parsed = JSON.parse(saved) as Partial<SellItemDraft>;
+        const validCategory = SELL_CATEGORIES.some((c) => c.id === parsed.category)
+          ? parsed.category
+          : INITIAL_SELL_DRAFT.category;
+        return { ...INITIAL_SELL_DRAFT, ...parsed, category: validCategory! };
       }
     } catch {
       // Ignore storage errors
