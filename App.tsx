@@ -127,6 +127,7 @@ export function App() {
   const [selectedTicket, setSelectedTicket] = useState<MaintenanceTicket>(SAMPLE_TICKETS[0]);
   const [selectedService, setSelectedService] = useState<ExpressServiceItem>(EXPRESS_CATALOG[0]);
   const [selectedMarketplaceItem, setSelectedMarketplaceItem] = useState<MarketplaceItem>(SAMPLE_MARKETPLACE_ITEMS[0]);
+  const [marketplaceItems, setMarketplaceItems] = useState<MarketplaceItem[]>(SAMPLE_MARKETPLACE_ITEMS);
   const [activeSosType, setActiveSosType] = useState<EmergencyType>('medical');
   const [isSosSilent, setIsSosSilent] = useState<boolean>(false);
 
@@ -345,6 +346,7 @@ export function App() {
             ======================================================== */}
         {currentScreenId === 'SCR_MKT_01' && (
           <MarketplaceHubScreen
+            items={marketplaceItems}
             onBack={goBack}
             onSelectItem={(item) => {
               setSelectedMarketplaceItem(item);
@@ -358,6 +360,7 @@ export function App() {
           <CreateListingScreen
             onBack={goBack}
             onListingCreated={(item) => {
+              setMarketplaceItems((prev) => [item, ...prev]);
               setSelectedMarketplaceItem(item);
               showToast(`✓ Published ${item.title}`);
               pushScreen('SCR_MKT_03');

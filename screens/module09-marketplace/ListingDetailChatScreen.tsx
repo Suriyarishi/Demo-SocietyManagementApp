@@ -154,16 +154,46 @@ export const ListingDetailChatScreen: React.FC<ListingDetailChatScreenProps> = (
               </h3>
             </div>
 
-            <div className="text-right">
+            <div className="text-right shrink-0">
               <span className="text-base font-extrabold text-slate-900 dark:text-white block">
                 {item.price === 0 ? 'FREE' : `₹${item.price.toLocaleString()}`}
               </span>
+              {item.originalPrice && item.originalPrice > item.price && item.price > 0 && (
+                <span className="text-[11px] text-slate-400 line-through block">
+                  ₹{item.originalPrice.toLocaleString()}
+                </span>
+              )}
+              {item.isNegotiable && item.price > 0 && (
+                <span className="text-[9.5px] font-bold text-primary-600 dark:text-primary-400 block">
+                  Negotiable
+                </span>
+              )}
             </div>
           </div>
 
           <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
             {item.description}
           </p>
+
+          {(item.brand || item.yearOfPurchase || item.productType) && (
+            <div className="flex items-center gap-2 flex-wrap">
+              {item.productType && (
+                <span className="px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-obsidian-800 text-[10px] font-bold text-slate-600 dark:text-slate-300">
+                  {item.productType}
+                </span>
+              )}
+              {item.brand && (
+                <span className="px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-obsidian-800 text-[10px] font-bold text-slate-600 dark:text-slate-300">
+                  Brand: {item.brand}
+                </span>
+              )}
+              {item.yearOfPurchase && (
+                <span className="px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-obsidian-800 text-[10px] font-bold text-slate-600 dark:text-slate-300">
+                  Purchased {item.yearOfPurchase}
+                </span>
+              )}
+            </div>
+          )}
 
           <div className="p-2.5 rounded-2xl bg-slate-50 dark:bg-obsidian-850 border border-slate-100 dark:border-obsidian-800 flex items-center gap-2 text-[11px] text-slate-600 dark:text-slate-300 font-medium">
             <MapPin size={14} className="text-cobalt-600 dark:text-cobalt-400 shrink-0" />

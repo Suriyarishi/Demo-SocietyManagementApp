@@ -18,6 +18,7 @@ export const Module09Controller: React.FC<Module09ControllerProps> = ({
   selectedItem,
   onSelectItem,
 }) => {
+  const [items, setItems] = useState<MarketplaceItem[]>(SAMPLE_MARKETPLACE_ITEMS);
   const [activeItem, setActiveItem] = useState<MarketplaceItem>(selectedItem || SAMPLE_MARKETPLACE_ITEMS[0]);
 
   switch (currentStep) {
@@ -26,6 +27,7 @@ export const Module09Controller: React.FC<Module09ControllerProps> = ({
         <CreateListingScreen
           onBack={onBack || (() => onNavigateScreen('SCR_MKT_01'))}
           onListingCreated={(item) => {
+            setItems((prev) => [item, ...prev]);
             setActiveItem(item);
             if (onSelectItem) onSelectItem(item);
             onNavigateScreen('SCR_MKT_03');
@@ -43,6 +45,7 @@ export const Module09Controller: React.FC<Module09ControllerProps> = ({
     default:
       return (
         <MarketplaceHubScreen
+          items={items}
           onBack={onBack}
           onSelectItem={(item) => {
             setActiveItem(item);

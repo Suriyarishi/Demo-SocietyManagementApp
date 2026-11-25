@@ -19,9 +19,19 @@ import { MarketplaceBox3D } from '../../components/3d/Vector3DElements';
 export interface MarketplaceItem {
   id: string;
   title: string;
-  category: 'Furniture' | 'Electronics' | 'Kids & Toys' | 'Home Bakes' | 'Freecycle';
+  category: string;
+  subCategory?: string;
   price: number;
-  condition: 'Brand New' | 'Like New' | 'Gently Used' | 'Freecycle (₹0)';
+  originalPrice?: number;
+  isNegotiable?: boolean;
+  condition: string;
+  productType?: string;
+  yearOfPurchase?: string;
+  brand?: string;
+  productLink?: string;
+  deliveryMode?: 'Buyer picks up' | 'I deliver nearby';
+  showFlatNumber?: boolean;
+  contactMethod?: 'Call' | 'Whatsapp' | 'Both';
   sellerName: string;
   sellerUnit: string;
   sellerRating: string;
@@ -29,6 +39,7 @@ export interface MarketplaceItem {
   handover: string;
   description: string;
   imageUrl?: string;
+  images?: string[];
   likes: number;
 }
 
@@ -111,20 +122,28 @@ export const SAMPLE_MARKETPLACE_ITEMS: MarketplaceItem[] = [
 ];
 
 interface MarketplaceHubScreenProps {
+  items?: MarketplaceItem[];
   onBack?: () => void;
   onSelectItem: (item: MarketplaceItem) => void;
   onCreateListing: () => void;
 }
 
 export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
+  items: externalItems,
   onBack,
   onSelectItem,
   onCreateListing,
 }) => {
-  const [items, setItems] = useState<MarketplaceItem[]>(SAMPLE_MARKETPLACE_ITEMS);
+  const [items, setItems] = useState<MarketplaceItem[]>(externalItems || SAMPLE_MARKETPLACE_ITEMS);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [toastMsg, setToastMsg] = useState<string>('');
+
+  React.useEffect(() => {
+    if (externalItems) {
+      setItems(externalItems);
+    }
+  }, [externalItems]);
 
   const showToast = (msg: string) => {
     setToastMsg(msg);
@@ -142,7 +161,14 @@ export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
   };
 
   const filteredItems = items.filter((item) => {
-    const matchesCat = selectedCategory === 'All' || item.category === selectedCategory;
+    const cat = item.category.toLowerCase();
+    const sel = selectedCategory.toLowerCase();
+    const matchesCat =
+      selectedCategory === 'All' ||
+      item.category === selectedCategory ||
+      cat.includes(sel) ||
+      (selectedCategory === 'Home Bakes' && cat === 'food') ||
+      (selectedCategory === 'Kids & Toys' && cat.includes('kids'));
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.sellerUnit.toLowerCase().includes(searchQuery.toLowerCase());
@@ -320,13 +346,25 @@ export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
               {/* Price & Seller Row */}
               <div className="flex items-center justify-between pt-2.5 border-t border-slate-100 dark:border-obsidian-800 px-0.5">
                 <div>
-                  <span className="text-sm font-black text-slate-900 dark:text-white block">
-                    {item.price === 0 ? (
-                      <span className="text-[#04bb49] font-black">FREE GIVEAWAY</span>
-                    ) : (
-                      `₹${item.price.toLocaleString()}`
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-sm font-black text-slate-900 dark:text-white">
+                      {item.price === 0 ? (
+                        <span className="text-[#04bb49] font-black">FREE GIVEAWAY</span>
+                      ) : (
+                        `₹${item.price.toLocaleString()}`
+                      )}
+                    </span>
+                    {item.originalPrice && item.originalPrice > item.price && item.price > 0 && (
+                      <span className="text-[11px] text-slate-400 line-through font-medium">
+                        ₹{item.originalPrice.toLocaleString()}
+                      </span>
                     )}
-                  </span>
+                    {item.isNegotiable && item.price > 0 && (
+                      <span className="text-[9.5px] font-bold text-[#04bb49] bg-primary-50 dark:bg-primary-950/40 px-1.5 py-0.5 rounded-md">
+                        Negotiable
+                      </span>
+                    )}
+                  </div>
                   <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium block mt-0.5">
                     {item.sellerUnit} • {item.postedAgo}
                   </span>
