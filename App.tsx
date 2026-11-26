@@ -28,6 +28,7 @@ import { NoticesCircularsScreen } from './screens/module08-society/NoticesCircul
 import { SocietyForumScreen } from './screens/module08-society/SocietyForumScreen';
 import { IntercomDirectoryScreen } from './screens/module08-society/IntercomDirectoryScreen';
 import { PinlessEntryScreen } from './screens/module08-society/PinlessEntryScreen';
+import { VisitPassScreen, VisitPassRecord } from './screens/module08-society/visit-pass/VisitPassScreen';
 
 // Module 09: Resident Marketplace & Pre-Loved Classifieds
 import { MarketplaceHubScreen, MarketplaceItem, SAMPLE_MARKETPLACE_ITEMS } from './screens/module09-marketplace/MarketplaceHubScreen';
@@ -128,6 +129,7 @@ export function App() {
   const [selectedService, setSelectedService] = useState<ExpressServiceItem>(EXPRESS_CATALOG[0]);
   const [selectedMarketplaceItem, setSelectedMarketplaceItem] = useState<MarketplaceItem>(SAMPLE_MARKETPLACE_ITEMS[0]);
   const [marketplaceItems, setMarketplaceItems] = useState<MarketplaceItem[]>(SAMPLE_MARKETPLACE_ITEMS);
+  const [givenVisitPasses, setGivenVisitPasses] = useState<VisitPassRecord[]>([]);
   const [activeSosType, setActiveSosType] = useState<EmergencyType>('medical');
   const [isSosSilent, setIsSosSilent] = useState<boolean>(false);
 
@@ -311,7 +313,7 @@ export function App() {
           <SocietyHubScreen
             onBack={navStack.length > 1 ? goBack : undefined}
             onOpenDailyStaff={() => pushScreen('SCR_STAFF_01')}
-            onOpenGatePass={() => pushScreen('SCR_GATE_01')}
+            onOpenGatePass={() => pushScreen('SCR_SOC_07')}
             onOpenAmenities={() => pushScreen('SCR_SOC_02')}
             onOpenNotices={() => pushScreen('SCR_SOC_03')}
             onOpenForum={() => pushScreen('SCR_SOC_04')}
@@ -339,6 +341,14 @@ export function App() {
 
         {currentScreenId === 'SCR_SOC_06' && (
           <PinlessEntryScreen onBack={goBack} />
+        )}
+
+        {currentScreenId === 'SCR_SOC_07' && (
+          <VisitPassScreen
+            onBack={goBack}
+            onPreApproveGuest={() => pushScreen('SCR_GATE_02')}
+            initialGivenPasses={givenVisitPasses}
+          />
         )}
 
         {/* ========================================================
@@ -512,6 +522,26 @@ export function App() {
             onBack={goBack}
             onSubmit={(data) => {
               setActiveGuestPass(data);
+              setGivenVisitPasses((prev) => [
+                {
+                  id: `vg_${Date.now()}`,
+                  direction: 'given',
+                  personName: data.guestName,
+                  unit: activeFlat.unit,
+                  purpose:
+                    data.guestType === 'party'
+                      ? 'Party / Group Pass'
+                      : data.guestType === 'contractor'
+                      ? 'Contractor Pass'
+                      : 'Guest Invite',
+                  dateStr: data.dateStr,
+                  timeSlot: data.timeSlot,
+                  vehicleNo: data.hasVehicle ? data.vehicleNo : undefined,
+                  status: 'approved',
+                  entryCode: '482 910',
+                },
+                ...prev,
+              ]);
               pushScreen('SCR_GATE_03');
             }}
           />

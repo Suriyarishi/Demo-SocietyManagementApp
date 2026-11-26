@@ -5,9 +5,10 @@ import { NoticesCircularsScreen } from './NoticesCircularsScreen';
 import { SocietyForumScreen } from './SocietyForumScreen';
 import { IntercomDirectoryScreen } from './IntercomDirectoryScreen';
 import { PinlessEntryScreen } from './PinlessEntryScreen';
+import { VisitPassScreen } from './visit-pass/VisitPassScreen';
 
 export interface Module08ControllerProps {
-  currentStep: 'SCR_SOC_01' | 'SCR_SOC_02' | 'SCR_SOC_03' | 'SCR_SOC_04' | 'SCR_SOC_05' | 'SCR_SOC_06';
+  currentStep: 'SCR_SOC_01' | 'SCR_SOC_02' | 'SCR_SOC_03' | 'SCR_SOC_04' | 'SCR_SOC_05' | 'SCR_SOC_06' | 'SCR_SOC_07';
   onBack?: () => void;
   onNavigateScreen: (screenId: string) => void;
   onOpenDailyStaff: () => void;
@@ -34,6 +35,13 @@ export const Module08Controller: React.FC<Module08ControllerProps> = ({
       return <IntercomDirectoryScreen onBack={onBack || (() => onNavigateScreen('SCR_SOC_01'))} />;
     case 'SCR_SOC_06':
       return <PinlessEntryScreen onBack={onBack || (() => onNavigateScreen('SCR_SOC_01'))} />;
+    case 'SCR_SOC_07':
+      return (
+        <VisitPassScreen
+          onBack={onBack || (() => onNavigateScreen('SCR_SOC_01'))}
+          onPreApproveGuest={onOpenGatePass}
+        />
+      );
     case 'SCR_SOC_01':
     default:
       return (
