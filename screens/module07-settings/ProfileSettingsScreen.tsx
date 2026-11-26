@@ -27,6 +27,18 @@ import {
 import { Badge, Button } from '../../components/UIComponents';
 import { FlatEntity } from '../module02-home/MultiFlatSelectorSheet';
 import { DigitalLock3D, ResidentSmartPass3D } from '../../components/3d/Vector3DElements';
+import { QrPass3D } from '../module08-society/VisitPass3DAssets';
+import {
+  BellAlert3D,
+  PinlessPhone3D,
+  VehicleFastag3D,
+  FamilyUsers3D,
+  PrivacyShield3D,
+  VerifyDoc3D,
+  PaymentCard3D,
+  MeterRecharge3D,
+  FlatHome3D,
+} from '../../components/3d/Module3DIcons';
 
 interface ProfileSettingsScreenProps {
   activeFlat: FlatEntity;
@@ -143,8 +155,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             title="Open Gate QR Pass & Access Key"
           >
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-8 h-8 rounded-xl bg-[#E8FBF0] dark:bg-[#0A2E18] text-[#04BB49] dark:text-[#0ECD5A] flex items-center justify-center border border-[#04BB49]/25 shrink-0 group-hover:scale-105 transition-transform">
-                <QrCode size={17} strokeWidth={2.2} />
+              <div className="w-8 h-8 rounded-xl bg-[#E8FBF0] dark:bg-[#0A2E18] flex items-center justify-center border border-[#04BB49]/25 shrink-0 group-hover:scale-105 transition-transform">
+                <QrPass3D size={22} />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
@@ -204,8 +216,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             {/* Toggle 1: Gate Knock VoIP */}
             <div className="p-3.5 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 text-cobalt-600 dark:text-cobalt-400 flex items-center justify-center shrink-0">
-                  <Bell size={16} />
+                <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200/60 dark:border-amber-800/40 flex items-center justify-center shrink-0">
+                  <BellAlert3D size={20} />
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white">
@@ -230,8 +242,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             {/* Toggle 2: Auto-Clear Deliveries */}
             <div className="p-3.5 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
-                  <Smartphone size={16} />
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+                  <PinlessPhone3D size={20} />
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white">
@@ -256,8 +268,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             {/* Toggle 3: Boom Barrier Fastag */}
             <div className="p-3.5 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
-                  <Car size={16} />
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+                  <VehicleFastag3D size={20} />
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white">
@@ -295,8 +307,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               className="w-full p-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-obsidian-850 transition-colors text-left"
             >
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-                  <Users size={16} />
+                <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200/60 dark:border-blue-800/40 flex items-center justify-center shrink-0">
+                  <FamilyUsers3D size={20} />
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white">
@@ -317,8 +329,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               className="w-full p-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-obsidian-850 transition-colors text-left"
             >
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 text-cobalt-600 dark:text-cobalt-400 flex items-center justify-center shrink-0">
-                  <ShieldCheck size={16} />
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+                  <PrivacyShield3D size={20} />
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white">
@@ -339,8 +351,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               className="w-full p-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-obsidian-850 transition-colors text-left"
             >
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-obsidian-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0">
-                  <FileText size={16} />
+                <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-obsidian-800 border border-slate-200/60 dark:border-obsidian-700 flex items-center justify-center shrink-0">
+                  <VerifyDoc3D size={20} />
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white">
@@ -369,8 +381,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
               className="w-full p-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-obsidian-850 transition-colors text-left"
             >
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
-                  <CreditCard size={16} />
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+                  <PaymentCard3D size={20} />
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white">
@@ -386,8 +398,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
 
             <div className="p-3.5 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-                  <Zap size={16} />
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+                  <MeterRecharge3D size={20} />
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white">
@@ -419,8 +431,8 @@ export const ProfileSettingsScreen: React.FC<ProfileSettingsScreenProps> = ({
             className="w-full p-3.5 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 shadow-sm flex items-center justify-between text-left press-scale hover:border-cobalt-500 transition-colors text-xs"
           >
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 text-cobalt-600 dark:text-cobalt-400 flex items-center justify-center shrink-0">
-                <Home size={16} />
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+                <FlatHome3D size={20} />
               </div>
               <div>
                 <h4 className="font-bold text-slate-900 dark:text-white">

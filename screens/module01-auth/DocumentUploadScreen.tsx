@@ -14,6 +14,7 @@ import {
   Eye
 } from 'lucide-react';
 import { Button, StepProgress } from '../../components/UIComponents';
+import { VerifyDoc3D, UploadCloud3D } from '../../components/3d/Module3DIcons';
 
 export type ResidentRole = 'owner_residing' | 'tenant' | 'owner_non_residing';
 
@@ -161,8 +162,8 @@ export const DocumentUploadScreen: React.FC<DocumentUploadScreenProps> = ({
           {uploadedFile ? (
             <div className="p-4 rounded-2xl border border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/20 flex items-center justify-between shadow-ambient">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
-                  <FileText size={20} />
+                <div className="w-11 h-11 rounded-2xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/40 flex items-center justify-center shrink-0 shadow-sm">
+                  <VerifyDoc3D size={26} />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
@@ -191,8 +192,8 @@ export const DocumentUploadScreen: React.FC<DocumentUploadScreenProps> = ({
                 onClick={() => setUploadedFile({ name: 'Rental_Agreement_2026.pdf', size: '2.4 MB', preview: true })}
                 className="p-6 rounded-3xl border-2 border-dashed border-slate-300 dark:border-obsidian-750 bg-white dark:bg-obsidian-900 text-center flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-cobalt-500 dark:hover:border-cobalt-500 transition-colors shadow-ambient"
               >
-                <div className="w-12 h-12 rounded-2xl bg-cobalt-50 dark:bg-cobalt-950/60 text-cobalt-600 dark:text-cobalt-400 flex items-center justify-center">
-                  <UploadCloud size={24} />
+                <div className="w-12 h-12 rounded-2xl bg-cobalt-50 dark:bg-cobalt-950/60 border border-cobalt-200/60 dark:border-cobalt-800/40 flex items-center justify-center">
+                  <UploadCloud3D size={28} />
                 </div>
                 <div>
                   <p className="text-xs font-bold text-slate-800 dark:text-slate-200">

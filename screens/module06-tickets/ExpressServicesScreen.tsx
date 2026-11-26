@@ -14,6 +14,14 @@ import {
   Search
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
+import {
+  PlumbingWrench3D,
+  MeterRecharge3D,
+  CarpentryHammer3D,
+  BathroomDroplet3D,
+  CleaningSparkle3D,
+  SearchOrb3D,
+} from '../../components/3d/Module3DIcons';
 
 export interface ExpressServiceItem {
   id: string;
@@ -145,7 +153,7 @@ export const ExpressServicesScreen: React.FC<ExpressServicesScreenProps> = ({
           <div className="p-4 rounded-3xl glass-card-elevated flex flex-col gap-2 relative overflow-hidden">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-bold text-amber-500 uppercase tracking-widest flex items-center gap-1.5">
-                <Sparkles size={14} />
+                <CleaningSparkle3D size={16} />
                 <span>Society Verified Cooperative</span>
               </span>
               <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
@@ -164,8 +172,8 @@ export const ExpressServicesScreen: React.FC<ExpressServicesScreenProps> = ({
         {/* Search Input */}
         <div className="px-4">
           <div className="relative flex items-center h-[54px] rounded-2xl border border-slate-300/80 dark:border-obsidian-750 bg-slate-50/90 dark:bg-obsidian-900/90 hover:bg-slate-100/70 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15 shadow-2xs transition-all group">
-            <div className="w-9 h-9 rounded-xl bg-white dark:bg-obsidian-800 text-slate-500 dark:text-slate-400 border border-slate-200/90 dark:border-obsidian-700 shadow-2xs flex items-center justify-center shrink-0 ml-2 mr-2.5 group-focus-within:text-cobalt-600 dark:group-focus-within:text-cobalt-400 pointer-events-none transition-colors">
-              <Search size={16} />
+            <div className="w-9 h-9 rounded-xl bg-white dark:bg-obsidian-800 border border-slate-200/90 dark:border-obsidian-700 shadow-2xs flex items-center justify-center shrink-0 ml-2 mr-2.5 pointer-events-none transition-colors">
+              <SearchOrb3D size={18} />
             </div>
             <input
               type="text"
@@ -206,56 +214,74 @@ export const ExpressServicesScreen: React.FC<ExpressServicesScreenProps> = ({
 
         {/* Service Cards Catalog */}
         <div className="px-4 flex flex-col gap-3">
-          {filteredServices.map((service) => (
-            <div
-              key={service.id}
-              onClick={() => onSelectService(service)}
-              className="p-4 rounded-3xl glass-card hover:border-cobalt-500/60 transition-all cursor-pointer flex flex-col gap-2.5 press-scale shadow-sm"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
-                    {service.title}
-                  </h4>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    {service.description}
-                  </p>
+          {filteredServices.map((service) => {
+            const ServiceIcon =
+              service.category === 'plumbing'
+                ? PlumbingWrench3D
+                : service.category === 'electrical'
+                  ? MeterRecharge3D
+                  : service.category === 'carpentry'
+                    ? CarpentryHammer3D
+                    : service.category === 'appliance'
+                      ? BathroomDroplet3D
+                      : CleaningSparkle3D;
+
+            return (
+              <div
+                key={service.id}
+                onClick={() => onSelectService(service)}
+                className="p-4 rounded-3xl glass-card hover:border-cobalt-500/60 transition-all cursor-pointer flex flex-col gap-2.5 press-scale shadow-sm"
+              >
+                <div className="flex items-start justify-between gap-2.5">
+                  <div className="flex items-start gap-3 min-w-0 flex-1">
+                    <div className="w-11 h-11 rounded-2xl bg-white dark:bg-obsidian-850 border border-slate-200/80 dark:border-obsidian-750 shadow-2xs flex items-center justify-center shrink-0 mt-0.5">
+                      <ServiceIcon size={26} />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
+                        {service.title}
+                      </h4>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <span className="text-base font-extrabold font-mono text-slate-900 dark:text-white block">
+                      ₹{service.price}
+                    </span>
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">fixed rate</span>
+                  </div>
                 </div>
-                <div className="text-right shrink-0">
-                  <span className="text-base font-extrabold font-mono text-slate-900 dark:text-white block">
-                    ₹{service.price}
-                  </span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">fixed rate</span>
+
+                <div className="pt-2.5 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-3 text-[11px] text-slate-500">
+                    <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold">
+                      <Clock size={12} />
+                      <span>~{service.etaMinutes}m Arrival</span>
+                    </span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1 text-amber-500 font-bold">
+                      <Star size={11} className="fill-current" />
+                      <span>{service.rating} ({service.jobsCompleted})</span>
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onSelectService(service);
+                    }}
+                    className="px-3 py-1 rounded-xl bg-cobalt-600 hover:bg-cobalt-700 active:bg-cobalt-800 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-transform press-scale"
+                  >
+                    <span>Book</span>
+                    <ChevronRight size={13} />
+                  </button>
                 </div>
               </div>
-
-              <div className="pt-2.5 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-3 text-[11px] text-slate-500">
-                  <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold">
-                    <Clock size={12} />
-                    <span>~{service.etaMinutes}m Arrival</span>
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1 text-amber-500 font-bold">
-                    <Star size={11} className="fill-current" />
-                    <span>{service.rating} ({service.jobsCompleted})</span>
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onSelectService(service);
-                  }}
-                  className="px-3 py-1 rounded-xl bg-cobalt-600 hover:bg-cobalt-700 active:bg-cobalt-800 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-transform press-scale"
-                >
-                  <span>Book</span>
-                  <ChevronRight size={13} />
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

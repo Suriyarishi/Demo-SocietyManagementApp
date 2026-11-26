@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Building, Home, Check, ChevronRight, Info, ShieldAlert } from 'lucide-react';
 import { Button, StepProgress } from '../../components/UIComponents';
+import { FlatHome3D } from '../../components/3d/Module3DIcons';
 import { SocietyItem } from './SocietySearchScreen';
 
 interface FlatSelectionScreenProps {
@@ -62,8 +63,8 @@ export const FlatSelectionScreen: React.FC<FlatSelectionScreenProps> = ({
         {/* Selected Society Summary Card */}
         <div className="p-3.5 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/80 dark:border-obsidian-800 flex items-center justify-between shadow-ambient">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-cobalt-50 dark:bg-cobalt-950/60 text-cobalt-600 dark:text-cobalt-400 flex items-center justify-center">
-              <Building size={18} strokeWidth={2.2} />
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200/70 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+              <FlatHome3D size={24} />
             </div>
             <div>
               <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">

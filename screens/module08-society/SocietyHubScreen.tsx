@@ -26,6 +26,15 @@ import {
 import { Badge, Button } from '../../components/UIComponents';
 import { Clubhouse3D } from '../../components/3d/Vector3DElements';
 import { VisitPassTicket3D } from './VisitPass3DAssets';
+import {
+  AmenitiesCoffee3D,
+  ForumChat3D,
+  DirectoryBook3D,
+  DailyHelpHelmet3D,
+  NoticesMegaphone3D,
+  PinlessPhone3D,
+  MarketplaceStore3D,
+} from '../../components/3d/Module3DIcons';
 
 interface SocietyHubScreenProps {
   onBack?: () => void;
@@ -174,8 +183,8 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 onClick={onOpenAmenities}
                 className="flex flex-col items-center text-center gap-1.5 press-scale"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                  <Coffee size={20} strokeWidth={2.0} />
+                <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-orange-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                  <AmenitiesCoffee3D size={28} />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                   Amenities
@@ -188,8 +197,8 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 onClick={onOpenForum}
                 className="flex flex-col items-center text-center gap-1.5 press-scale"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                  <MessagesSquare size={19} strokeWidth={2.0} />
+                <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                  <ForumChat3D size={28} />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                   Society Forum
@@ -202,8 +211,8 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 onClick={onOpenDirectory}
                 className="flex flex-col items-center text-center gap-1.5 press-scale"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                  <BookUser size={20} strokeWidth={2.0} />
+                <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-indigo-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                  <DirectoryBook3D size={28} />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                   Directory
@@ -216,8 +225,8 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 onClick={onOpenDailyStaff}
                 className="flex flex-col items-center text-center gap-1.5 press-scale"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                  <HardHat size={20} strokeWidth={2.0} />
+                <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-amber-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                  <DailyHelpHelmet3D size={28} />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                   Daily Helps
@@ -230,8 +239,8 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 onClick={onOpenNotices}
                 className="flex flex-col items-center text-center gap-1.5 press-scale"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                  <Megaphone size={19} strokeWidth={2.0} />
+                <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-rose-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                  <NoticesMegaphone3D size={28} />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                   Notices
@@ -258,8 +267,8 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 onClick={onOpenPinlessEntry}
                 className="flex flex-col items-center text-center gap-1.5 press-scale"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                  <Smartphone size={20} strokeWidth={2.0} />
+                <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                  <PinlessPhone3D size={28} />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                   Pinless Entry
@@ -272,8 +281,8 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 onClick={onOpenMarketplace}
                 className="flex flex-col items-center text-center gap-1.5 press-scale"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                  <Store size={19} strokeWidth={2.0} />
+                <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                  <MarketplaceStore3D size={28} />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                   Market Place

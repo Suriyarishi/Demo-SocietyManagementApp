@@ -16,6 +16,13 @@ import {
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { SmartMeter3D } from '../../components/3d/Vector3DElements';
+import {
+  MaintenanceBill3D,
+  MeterRecharge3D,
+  UtilityReceipt3D,
+  PrivacyShield3D,
+  PaymentCard3D,
+} from '../../components/3d/Module3DIcons';
 
 interface FinancialHubScreenProps {
   onBack?: () => void;
@@ -71,7 +78,7 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
             onClick={onOpenLedger}
             className="h-8 px-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-800 dark:hover:bg-obsidian-750 flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition-colors border border-slate-200 dark:border-obsidian-700 shrink-0"
           >
-            <Receipt size={13} />
+            <UtilityReceipt3D size={15} />
             <span className="text-[11px]">Ledger</span>
           </button>
         </div>
@@ -101,8 +108,8 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
 
             {/* Early Bird Rebate Callout */}
             <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-between text-xs relative z-10">
-              <span className="text-emerald-300 font-semibold flex items-center gap-1.5">
-                <Sparkles size={13} className="text-emerald-400" />
+              <span className="text-emerald-300 font-semibold flex items-center gap-2">
+                <MeterRecharge3D size={18} />
                 <span>Early Bird Rebate: Save ₹150 if paid by Nov 28</span>
               </span>
               <span className="text-emerald-400 font-bold font-mono text-[11px]">-₹150</span>
@@ -126,14 +133,14 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
 
         {/* Primary Pay Action */}
         <div className="px-4">
-          <Button
+          <button
+            type="button"
             onClick={() => onPayNow(maintenanceDue)}
-            icon={CreditCard}
-            iconPosition="left"
-            size="lg"
+            className="w-full h-12 rounded-2xl bg-cobalt-600 hover:bg-cobalt-700 active:bg-cobalt-800 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-cobalt-600/20 transition-all press-scale"
           >
-            Pay ₹{maintenanceDue.toLocaleString()} via UPI (Instant Receipt)
-          </Button>
+            <PaymentCard3D size={20} />
+            <span>Pay ₹{maintenanceDue.toLocaleString()} via UPI (Instant Receipt)</span>
+          </button>
         </div>
 
         {/* Smart Prepaid Sub-Meter Card with 3D Smart Meter Visual */}
@@ -205,8 +212,8 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
 
           <div className="p-3.5 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/80 dark:border-obsidian-800 shadow-ambient flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-obsidian-800 text-slate-700 dark:text-slate-300 flex items-center justify-center">
-                <Receipt size={17} />
+              <div className="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200/70 dark:border-teal-800/40 flex items-center justify-center shrink-0">
+                <UtilityReceipt3D size={24} />
               </div>
               <div>
                 <span className="text-xs font-bold text-slate-900 dark:text-white block">
@@ -232,7 +239,7 @@ export const FinancialHubScreen: React.FC<FinancialHubScreenProps> = ({
         {/* Association Trust Notice */}
         <div className="px-4">
           <div className="p-3.5 rounded-xl bg-slate-100/70 dark:bg-obsidian-900/60 border border-slate-200/60 dark:border-obsidian-800 flex items-start gap-2.5 text-[11px] text-slate-500 dark:text-slate-400">
-            <ShieldCheck size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+            <PrivacyShield3D size={20} className="mt-0.5" />
             <span>
               100% of your payment is deposited directly into the Prestige Lakeside Habitat Association Account at HDFC Bank. Hunt Lockdoor charges 0% convenience markups.
             </span>

@@ -19,6 +19,15 @@ import {
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { EmergencyBeacon3D } from '../../components/3d/Vector3DElements';
+import {
+  MedicalCross3D,
+  FireFlame3D,
+  LiftRescue3D,
+  SecurityPolice3D,
+  SilentAlarm3D,
+  SosBeaconOrb3D,
+  HelplinePhone3D,
+} from '../../components/3d/Module3DIcons';
 
 export type EmergencyType = 'medical' | 'fire' | 'lift' | 'intruder' | 'animal';
 
@@ -49,8 +58,8 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
       id: 'medical' as EmergencyType,
       title: 'Medical Emergency',
       subtext: 'Ambulance, elderly fall, cardiac trauma',
-      icon: HeartPulse,
-      color: 'from-rose-500 to-crimson-600',
+      icon: MedicalCross3D,
+      color: 'from-rose-500/15 to-crimson-600/10',
       badge: 'Immediate Paramedic',
       border: 'border-rose-300 dark:border-rose-900',
     },
@@ -58,8 +67,8 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
       id: 'fire' as EmergencyType,
       title: 'Fire & Gas Leak',
       subtext: 'Kitchen flame, LPG odor, corridor smoke',
-      icon: Flame,
-      color: 'from-amber-500 to-orange-600',
+      icon: FireFlame3D,
+      color: 'from-amber-500/15 to-orange-600/10',
       badge: 'Hydrant Team',
       border: 'border-amber-300 dark:border-amber-900',
     },
@@ -67,8 +76,8 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
       id: 'lift' as EmergencyType,
       title: 'Lift Stuck (24/7)',
       subtext: 'Trapped in elevator cab with passenger',
-      icon: Building,
-      color: 'from-cobalt-500 to-blue-600',
+      icon: LiftRescue3D,
+      color: 'from-cobalt-500/15 to-blue-600/10',
       badge: 'Otis Tech On-Site',
       border: 'border-blue-300 dark:border-blue-900',
     },
@@ -76,8 +85,8 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
       id: 'intruder' as EmergencyType,
       title: 'Intruder / Security Threat',
       subtext: 'Physical aggression, trespasser at door',
-      icon: ShieldAlert,
-      color: 'from-purple-600 to-slate-900',
+      icon: SecurityPolice3D,
+      color: 'from-purple-600/15 to-indigo-600/10',
       badge: 'Armed Gate Guards',
       border: 'border-purple-300 dark:border-purple-900',
     },
@@ -165,9 +174,9 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
                 >
                   <div className="flex items-center justify-between">
                     <div
-                      className={`w-9 h-9 rounded-2xl bg-gradient-to-br ${cat.color} text-white flex items-center justify-center shadow-sm`}
+                      className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${cat.color} border border-slate-200/70 dark:border-white/10 flex items-center justify-center shadow-sm`}
                     >
-                      <Icon size={18} />
+                      <Icon size={26} />
                     </div>
                     {isSelected && (
                       <span className="w-4 h-4 rounded-full bg-crimson-600 text-white flex items-center justify-center text-[10px] font-bold">
@@ -193,8 +202,8 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
         {/* Silent Alarm Toggle */}
         <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-obsidian-900 border border-slate-200 dark:border-obsidian-800 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-slate-200 dark:bg-obsidian-800 text-slate-700 dark:text-slate-200 flex items-center justify-center shrink-0">
-              {isSilentAlarm ? <VolumeX size={16} /> : <Volume2 size={16} />}
+            <div className="w-9 h-9 rounded-xl bg-slate-200/70 dark:bg-obsidian-800 border border-slate-300/60 dark:border-obsidian-700 flex items-center justify-center shrink-0">
+              <SilentAlarm3D size={20} muted={isSilentAlarm} />
             </div>
             <div>
               <h4 className="font-bold text-slate-900 dark:text-white">
@@ -224,7 +233,7 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
             onClick={() => onTriggerSos(selectedType, isSilentAlarm)}
             className="w-full h-16 rounded-3xl bg-gradient-to-r from-crimson-600 via-rose-600 to-crimson-700 hover:from-crimson-700 hover:to-crimson-800 text-white font-extrabold text-base flex items-center justify-center gap-3 shadow-lg shadow-crimson-600/30 transition-transform active:scale-[0.98] press-scale border border-white/20"
           >
-            <ShieldAlert size={26} className="animate-bounce" />
+            <SosBeaconOrb3D size={28} className="animate-bounce" />
             <span>TRIGGER EMERGENCY SOS</span>
           </button>
           <span className="text-[10px] text-slate-500 dark:text-slate-400 text-center block mt-1.5 font-medium">
@@ -244,8 +253,8 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
               onClick={onOpenIntercom}
               className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 flex items-center gap-2.5 hover:bg-slate-50 dark:hover:bg-obsidian-850 transition-colors text-left"
             >
-              <div className="w-8 h-8 rounded-xl bg-crimson-50 dark:bg-crimson-950/60 text-crimson-600 flex items-center justify-center shrink-0">
-                <PhoneCall size={16} />
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+                <HelplinePhone3D size={20} />
               </div>
               <div className="min-w-0">
                 <span className="font-bold text-slate-900 dark:text-white block truncate">Gate 1 Guard</span>
@@ -258,8 +267,8 @@ export const EmergencyHubScreen: React.FC<EmergencyHubScreenProps> = ({
               onClick={onOpenHelplines}
               className="p-3 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/90 dark:border-obsidian-800 flex items-center gap-2.5 hover:bg-slate-50 dark:hover:bg-obsidian-850 transition-colors text-left"
             >
-              <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center shrink-0">
-                <Ambulance size={16} />
+              <div className="w-9 h-9 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200/60 dark:border-rose-800/40 flex items-center justify-center shrink-0">
+                <MedicalCross3D size={20} />
               </div>
               <div className="min-w-0">
                 <span className="font-bold text-slate-900 dark:text-white block truncate">Hospital & Police</span>

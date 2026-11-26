@@ -17,6 +17,16 @@ import {
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { ExpressToolbox3D } from '../../components/3d/Vector3DElements';
+import {
+  CleaningSparkle3D,
+  SearchOrb3D,
+  PlumbingWrench3D,
+  MeterRecharge3D,
+  LiftRescue3D,
+  CarpentryHammer3D,
+  PrivacyShield3D,
+  TicketSla3D,
+} from '../../components/3d/Module3DIcons';
 
 export interface MaintenanceTicket {
   id: string;
@@ -163,7 +173,7 @@ export const HelpdeskHubScreen: React.FC<HelpdeskHubScreenProps> = ({
             onClick={onOpenExpressServices}
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl glass-pill text-xs font-bold text-cobalt-600 dark:text-cobalt-400 hover:scale-105 transition-all press-scale shadow-sm shrink-0"
           >
-            <Sparkles size={13} className="text-amber-500" />
+            <CleaningSparkle3D size={16} />
             <span className="text-[11px]">15m Services</span>
           </button>
         </div>
@@ -243,8 +253,8 @@ export const HelpdeskHubScreen: React.FC<HelpdeskHubScreenProps> = ({
         <div className="px-4 flex flex-col gap-2.5">
           {/* Glass Search Input */}
           <div className="relative flex items-center h-[54px] rounded-2xl border border-slate-300/80 dark:border-obsidian-750 bg-slate-50/90 dark:bg-obsidian-900/90 hover:bg-slate-100/70 focus-within:bg-white dark:focus-within:bg-obsidian-900 focus-within:border-cobalt-600 dark:focus-within:border-cobalt-500 focus-within:ring-4 focus-within:ring-cobalt-500/15 shadow-2xs transition-all group">
-            <div className="w-9 h-9 rounded-xl bg-white dark:bg-obsidian-800 text-slate-500 dark:text-slate-400 border border-slate-200/90 dark:border-obsidian-700 shadow-2xs flex items-center justify-center shrink-0 ml-2 mr-2.5 group-focus-within:text-cobalt-600 dark:group-focus-within:text-cobalt-400 pointer-events-none transition-colors">
-              <Search size={16} />
+            <div className="w-9 h-9 rounded-xl bg-white dark:bg-obsidian-800 border border-slate-200/90 dark:border-obsidian-700 shadow-2xs flex items-center justify-center shrink-0 ml-2 mr-2.5 pointer-events-none transition-colors">
+              <SearchOrb3D size={18} />
             </div>
             <input
               type="text"
@@ -303,6 +313,18 @@ export const HelpdeskHubScreen: React.FC<HelpdeskHubScreenProps> = ({
               const isInProgress = ticket.status === 'in_progress';
               const isAssigned = ticket.status === 'assigned';
               const isResolved = ticket.status === 'resolved';
+              const CategoryIcon3D =
+                ticket.category === 'plumbing'
+                  ? PlumbingWrench3D
+                  : ticket.category === 'electrical'
+                    ? MeterRecharge3D
+                    : ticket.category === 'lift'
+                      ? LiftRescue3D
+                      : ticket.category === 'carpentry'
+                        ? CarpentryHammer3D
+                        : ticket.category === 'security'
+                          ? PrivacyShield3D
+                          : TicketSla3D;
 
               return (
                 <div
@@ -314,6 +336,9 @@ export const HelpdeskHubScreen: React.FC<HelpdeskHubScreenProps> = ({
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
+                      <span className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-obsidian-850 border border-slate-200/80 dark:border-obsidian-750 flex items-center justify-center shrink-0">
+                        <CategoryIcon3D size={18} />
+                      </span>
                       <span className="font-mono text-xs font-bold px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-obsidian-850 text-cobalt-600 dark:text-cobalt-400 border border-slate-200 dark:border-obsidian-750">
                         #{ticket.id}
                       </span>

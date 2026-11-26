@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { Badge, Button, Input } from '../../components/UIComponents';
 import { MarketplaceBox3D } from '../../components/3d/Vector3DElements';
+import { MarketplaceStore3D, DeliveryBox3D } from '../../components/3d/Module3DIcons';
 
 export interface MarketplaceItem {
   id: string;
@@ -214,7 +215,7 @@ export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
             onClick={onCreateListing}
             className="h-9 px-3 rounded-2xl bg-cobalt-600 hover:bg-cobalt-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-colors press-scale"
           >
-            <Plus size={15} strokeWidth={2.5} />
+            <MarketplaceStore3D size={16} />
             <span>Sell Item</span>
           </button>
         </div>
@@ -260,7 +261,14 @@ export const MarketplaceHubScreen: React.FC<MarketplaceHubScreenProps> = ({
                   : 'bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-900 dark:hover:bg-obsidian-800 text-slate-600 dark:text-slate-300'
               }`}
             >
-              {cat === 'Freecycle' ? '🎁 Freecycle (₹0)' : cat}
+              {cat === 'Freecycle' ? (
+                <span className="inline-flex items-center gap-1.5">
+                  <DeliveryBox3D size={15} />
+                  <span>Freecycle (₹0)</span>
+                </span>
+              ) : (
+                cat
+              )}
             </button>
           ))}
         </div>

@@ -1,5 +1,11 @@
 import React from 'react';
-import { Search, PieChart, LayoutGrid, User } from 'lucide-react';
+import {
+  NavHome3D,
+  NavSearch3D,
+  NavSociety3D,
+  NavServices3D,
+  NavProfile3D,
+} from './3d/Module3DIcons';
 
 export type RootTabType = 'home' | 'search' | 'society' | 'services' | 'profile' | 'activity' | 'bills';
 
@@ -7,22 +13,6 @@ interface AppBottomNavProps {
   activeTab: RootTabType;
   onTabChange: (tab: RootTabType) => void;
 }
-
-const HomeGlyph: React.FC<{ active: boolean; className?: string }> = ({ active, className = '' }) => {
-  if (active) {
-    return (
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M11 20v-5a1 1 0 0 1 2 0v5h5a2 2 0 0 0 2-2V9.6a2 2 0 0 0-.74-1.55l-6-4.8a2 2 0 0 0-2.52 0l-6 4.8A2 2 0 0 0 4 9.6V18a2 2 0 0 0 2 2h5z" />
-      </svg>
-    );
-  }
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  );
-};
 
 export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChange }) => {
   // Normalize legacy tabs to our 5 primary icons in requested order: home, search, society, services, profile
@@ -61,19 +51,19 @@ export const AppBottomNav: React.FC<AppBottomNavProps> = ({ activeTab, onTabChan
               }`}
             >
               {tab.id === 'home' && (
-                <HomeGlyph active={isActive} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
+                <NavHome3D size={isActive ? 22 : 20} active={isActive} className="transition-transform duration-200" />
               )}
               {tab.id === 'search' && (
-                <Search size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
+                <NavSearch3D size={isActive ? 22 : 20} active={isActive} className="transition-transform duration-200" />
               )}
               {tab.id === 'society' && (
-                <PieChart size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
+                <NavSociety3D size={isActive ? 22 : 20} active={isActive} className="transition-transform duration-200" />
               )}
               {tab.id === 'services' && (
-                <LayoutGrid size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
+                <NavServices3D size={isActive ? 22 : 20} active={isActive} className="transition-transform duration-200" />
               )}
               {tab.id === 'profile' && (
-                <User size={20} strokeWidth={isActive ? 2.4 : 1.9} className={isActive ? 'text-[#04BB49] dark:text-[#0ECD5A]' : 'text-current'} />
+                <NavProfile3D size={isActive ? 22 : 20} active={isActive} className="transition-transform duration-200" />
               )}
 
               {/* Expanding Label for Active Tab */}

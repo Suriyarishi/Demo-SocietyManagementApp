@@ -14,6 +14,15 @@ import {
   Users,
   Compass
 } from 'lucide-react';
+import {
+  ChefCook3D,
+  MaidBroom3D,
+  DriverWheel3D,
+  CarWash3D,
+  NannyBottle3D,
+  GardenerPlant3D,
+  CompassDirectory3D,
+} from '../../components/3d/Module3DIcons';
 
 export interface DomesticStaffMember {
   id: string;
@@ -100,12 +109,12 @@ export const SAMPLE_HOUSEHOLD_STAFF: DomesticStaffMember[] = [
 ];
 
 const QUICK_CATEGORIES = [
-  { id: 'cat_cook', name: 'Cook', icon: '👨‍🍳', count: 9 },
-  { id: 'cat_maid', name: 'Maid', icon: '🧹', count: 706 },
-  { id: 'cat_driver', name: 'Driver', icon: '🚘', count: 7 },
-  { id: 'cat_cleaner', name: 'Car Cleaner', icon: '🚗', count: 16 },
-  { id: 'cat_nanny', name: 'Nanny', icon: '🍼', count: 4 },
-  { id: 'cat_gardener', name: 'Gardener', icon: '🪴', count: 3 },
+  { id: 'cat_cook', name: 'Cook', Icon3D: ChefCook3D, count: 9 },
+  { id: 'cat_maid', name: 'Maid', Icon3D: MaidBroom3D, count: 706 },
+  { id: 'cat_driver', name: 'Driver', Icon3D: DriverWheel3D, count: 7 },
+  { id: 'cat_cleaner', name: 'Car Cleaner', Icon3D: CarWash3D, count: 16 },
+  { id: 'cat_nanny', name: 'Nanny', Icon3D: NannyBottle3D, count: 4 },
+  { id: 'cat_gardener', name: 'Gardener', Icon3D: GardenerPlant3D, count: 3 },
 ];
 
 interface StaffDashboardScreenProps {
@@ -207,7 +216,7 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
           onClick={onBrowseDirectory}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#E8FBF0] dark:bg-emerald-950/60 border border-[#04BB49]/20 text-xs font-bold text-[#03963B] dark:text-[#0ECD5A] hover:bg-[#d4f8e1] transition-all press-scale shadow-2xs"
         >
-          <Compass size={13} className="text-[#03963B] dark:text-[#0ECD5A]" />
+          <CompassDirectory3D size={16} />
           <span>Find daily help</span>
         </button>
       </div>
@@ -270,22 +279,25 @@ export const StaffDashboardScreen: React.FC<StaffDashboardScreenProps> = ({
           </div>
 
           <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1">
-            {QUICK_CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={onBrowseDirectory}
-                className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 hover:border-[#04BB49]/40 hover:bg-[#E8FBF0]/40 transition-all press-scale shadow-2xs"
-              >
-                <span className="text-sm">{cat.icon}</span>
-                <span className="text-xs font-bold text-slate-800 dark:text-white">
-                  {cat.name}
-                </span>
-                <span className="px-1.5 py-0.2 rounded-full bg-slate-100 dark:bg-white/10 text-[9px] font-bold text-slate-500 dark:text-slate-400">
-                  {cat.count}
-                </span>
-              </button>
-            ))}
+            {QUICK_CATEGORIES.map((cat) => {
+              const Icon3D = cat.Icon3D;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={onBrowseDirectory}
+                  className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 hover:border-[#04BB49]/40 hover:bg-[#E8FBF0]/40 transition-all press-scale shadow-2xs"
+                >
+                  <Icon3D size={18} />
+                  <span className="text-xs font-bold text-slate-800 dark:text-white">
+                    {cat.name}
+                  </span>
+                  <span className="px-1.5 py-0.2 rounded-full bg-slate-100 dark:bg-white/10 text-[9px] font-bold text-slate-500 dark:text-slate-400">
+                    {cat.count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 

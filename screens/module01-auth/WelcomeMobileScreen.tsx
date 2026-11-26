@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Shield, Lock, CheckCircle2, ChevronRight, Phone, Info, ArrowLeft, Sparkles } from 'lucide-react';
 import { Button, Input, Badge } from '../../components/UIComponents';
 import { ShieldKey3D } from '../../components/3d/Vector3DElements';
+import { PrivacyShield3D } from '../../components/3d/Module3DIcons';
 
 interface WelcomeMobileScreenProps {
   onContinue: (phone: string) => void;
@@ -73,8 +74,8 @@ export const WelcomeMobileScreen: React.FC<WelcomeMobileScreenProps> = ({
                 <ArrowLeft size={18} strokeWidth={2.4} />
               </button>
             )}
-            <div className="w-10 h-10 rounded-2xl bg-cobalt-600 dark:bg-cobalt-600 flex items-center justify-center text-white shadow-md shadow-cobalt-600/30">
-              <Shield size={22} strokeWidth={2.4} />
+            <div className="w-10 h-10 rounded-2xl bg-[#E8FBF0] dark:bg-[#0A2E18] flex items-center justify-center shadow-md shadow-[#04BB49]/20 border border-[#04BB49]/25">
+              <PrivacyShield3D size={26} />
             </div>
             <div>
               <h1 className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white leading-none">

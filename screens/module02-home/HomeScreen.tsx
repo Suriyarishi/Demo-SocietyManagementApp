@@ -46,6 +46,37 @@ import { Badge, Button } from '../../components/UIComponents';
 import { FlatEntity } from './MultiFlatSelectorSheet';
 import { TowerResidence3D, GateBarrier3D, SmartMeter3D } from '../../components/3d/Vector3DElements';
 import { VisitPassTicket3D } from '../module08-society/VisitPass3DAssets';
+import {
+  FlatHome3D,
+  SearchOrb3D,
+  BellAlert3D,
+  SosBeaconOrb3D,
+  TabVisitors3D,
+  TabBills3D,
+  TabSociety3D,
+  TabServices3D,
+  PreApproveGuest3D,
+  GateHistory3D,
+  MaintenanceBill3D,
+  MeterRecharge3D,
+  UtilityReceipt3D,
+  RentHome3D,
+  ConsumptionGauge3D,
+  AmenitiesCoffee3D,
+  ForumChat3D,
+  DirectoryBook3D,
+  DailyHelpHelmet3D,
+  NoticesMegaphone3D,
+  PinlessPhone3D,
+  MarketplaceStore3D,
+  CleaningSparkle3D,
+  PaintRoller3D,
+  MoverTruck3D,
+  PlumbingWrench3D,
+  CarpentryHammer3D,
+  BathroomDroplet3D,
+  LegalAgreement3D,
+} from '../../components/3d/Module3DIcons';
 
 interface HomeScreenProps {
   activeFlat: FlatEntity;
@@ -135,8 +166,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             className="flex items-center gap-2 px-2.5 py-1 rounded-2xl bg-slate-50 hover:bg-slate-100 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 transition-all border border-slate-200/80 dark:border-white/10 text-left flex-1 min-w-0 press-scale shadow-2xs group"
             title="Switch Residence Unit"
           >
-            <div className="w-7 h-7 rounded-xl bg-[#E8FBF0] dark:bg-[#0A2E18] text-[#04BB49] dark:text-[#0ECD5A] flex items-center justify-center shrink-0 border border-[#04BB49]/20 group-hover:scale-105 transition-transform">
-              <Building2 size={15} strokeWidth={2.4} />
+            <div className="w-7 h-7 rounded-xl bg-[#E8FBF0] dark:bg-[#0A2E18] flex items-center justify-center shrink-0 border border-[#04BB49]/20 group-hover:scale-105 transition-transform">
+              <FlatHome3D size={19} />
             </div>
             <div className="min-w-0 flex-1">
               <span className="text-xs font-extrabold text-slate-900 dark:text-white block leading-tight truncate">
@@ -158,7 +189,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200/80 dark:border-white/10 press-scale shrink-0"
               title="Search community, bills, & services"
             >
-              <Search size={15} strokeWidth={2.2} />
+              <SearchOrb3D size={18} />
             </button>
 
             {/* Notification Alerts */}
@@ -168,7 +199,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               className="relative w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-obsidian-850 dark:hover:bg-obsidian-800 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors border border-slate-200/80 dark:border-white/10 press-scale shrink-0"
               title="Gate & Society Alerts"
             >
-              <Bell size={15} strokeWidth={2.2} />
+              <BellAlert3D size={18} />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#04BB49] ring-2 ring-white dark:ring-obsidian-900 animate-pulse" />
             </button>
 
@@ -179,7 +210,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               className="h-8 px-2 rounded-xl bg-crimson-600 hover:bg-crimson-700 active:bg-crimson-800 text-white flex items-center gap-1 text-[10.5px] font-black tracking-wide shadow-xs transition-transform press-scale shrink-0"
               title="Emergency SOS Alarm"
             >
-              <ShieldAlert size={13} strokeWidth={2.6} />
+              <SosBeaconOrb3D size={15} />
               <span>SOS</span>
             </button>
           </div>
@@ -308,7 +339,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 font-semibold'
               }`}
             >
-              <Shield size={18} strokeWidth={2.4} />
+              <TabVisitors3D size={20} />
               <span className="text-[11px] leading-tight">Visitors</span>
             </button>
 
@@ -322,7 +353,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 font-semibold'
               }`}
             >
-              <CreditCard size={18} strokeWidth={2.2} />
+              <TabBills3D size={20} />
               <span className="text-[11px] leading-tight">My Bills</span>
             </button>
 
@@ -336,7 +367,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 font-semibold'
               }`}
             >
-              <Building2 size={18} strokeWidth={2.2} />
+              <TabSociety3D size={20} />
               <span className="text-[11px] leading-tight">Society</span>
             </button>
 
@@ -351,7 +382,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               }`}
             >
               <div className="flex items-center gap-1">
-                <Wrench size={16} strokeWidth={2.2} />
+                <TabServices3D size={18} />
                 <span className="px-1.5 py-0.5 rounded-full bg-emerald-500 text-white text-[8px] font-extrabold leading-none">
                   15m ⚡
                 </span>
@@ -380,8 +411,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onPreApproveGuest}
                   className="bg-white dark:bg-obsidian-900 rounded-2xl p-2.5 flex flex-col items-center justify-between gap-1.5 border border-slate-100 dark:border-obsidian-800 shadow-sm hover:border-emerald-500 transition-all press-scale h-28"
                 >
-                  <div className="w-11 h-11 rounded-full border border-slate-200 dark:border-obsidian-700 flex items-center justify-center text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-obsidian-850 mt-1">
-                    <UserPlus size={19} />
+                  <div className="w-11 h-11 rounded-full border border-emerald-200/80 dark:border-emerald-800/50 flex items-center justify-center bg-[#E8FBF0]/80 dark:bg-emerald-950/40 mt-1 shadow-2xs">
+                    <PreApproveGuest3D size={26} />
                   </div>
                   <span className="text-[11.5px] font-bold text-slate-800 dark:text-slate-200 text-center leading-tight">
                     Pre-Approve
@@ -432,8 +463,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenActivityHistory}
                   className="bg-white dark:bg-obsidian-900 rounded-2xl p-2.5 flex flex-col items-center justify-between gap-1.5 border border-slate-100 dark:border-obsidian-800 shadow-sm hover:border-emerald-500 transition-all press-scale h-28"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-obsidian-800 border border-slate-200 dark:border-obsidian-750 flex items-center justify-center text-slate-700 dark:text-slate-200 mt-1">
-                    <ArrowUpRight size={18} />
+                  <div className="w-11 h-11 rounded-full bg-emerald-50/80 dark:bg-emerald-950/35 border border-emerald-200/80 dark:border-emerald-800/50 flex items-center justify-center mt-1 shadow-2xs">
+                    <GateHistory3D size={26} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400 text-center leading-tight">
                     Gate Log History
@@ -455,8 +486,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <FileText size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <MaintenanceBill3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Maintenance Bill
@@ -469,8 +500,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenSmartMeter || onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <RefreshCw size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <MeterRecharge3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Meter Recharge
@@ -483,8 +514,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenItemizedBill || onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Receipt size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-teal-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <UtilityReceipt3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Utility
@@ -497,8 +528,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Home size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-amber-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <RentHome3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Pay Rent
@@ -511,8 +542,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenSmartMeter || onPayBills}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Gauge size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-blue-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <ConsumptionGauge3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Meter Consumption
@@ -549,8 +580,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenAmenities}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Coffee size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-orange-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <AmenitiesCoffee3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Amenities
@@ -563,8 +594,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenForum}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <MessagesSquare size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <ForumChat3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Society Forum
@@ -577,8 +608,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenDirectory}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <BookUser size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-indigo-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <DirectoryBook3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Directory
@@ -591,8 +622,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onDailyHelp}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <HardHat size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-amber-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <DailyHelpHelmet3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Daily Helps
@@ -605,8 +636,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenNotices}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Megaphone size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-rose-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <NoticesMegaphone3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Notices
@@ -633,8 +664,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenPinless}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Smartphone size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <PinlessPhone3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Pinless Entry
@@ -647,8 +678,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   onClick={onOpenMarketplace}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Store size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <MarketplaceStore3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Market Place
@@ -677,8 +708,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Sparkles size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <CleaningSparkle3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Full House Cleaning
@@ -698,8 +729,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Paintbrush size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-teal-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <PaintRoller3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Painting
@@ -719,8 +750,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Truck size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-amber-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <MoverTruck3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Packers & Movers
@@ -740,8 +771,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Wrench size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-blue-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <PlumbingWrench3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Plumbing
@@ -761,8 +792,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Hammer size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-amber-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <CarpentryHammer3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Carpenter
@@ -782,8 +813,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Droplets size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-sky-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <BathroomDroplet3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Bathroom Cleaning
@@ -803,8 +834,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   }
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <FileSignature size={19} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-white/95 dark:bg-obsidian-900 border border-emerald-200/70 dark:border-obsidian-750 flex items-center justify-center shadow-sm">
+                    <LegalAgreement3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Rental Agreement
@@ -925,8 +956,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
         {/* Recent Notice Banner */}
         <div className="p-3.5 rounded-2xl bg-white dark:bg-obsidian-900 border border-slate-200/80 dark:border-obsidian-800 shadow-ambient flex items-start gap-3">
-          <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-            <FileText size={18} />
+          <div className="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/40 flex items-center justify-center shrink-0 border border-rose-200/60 dark:border-rose-800/40">
+            <NoticesMegaphone3D size={24} />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
