@@ -507,3 +507,40 @@ export const QrMatrixVector: React.FC<{ seed: string; size?: number }> = ({ seed
     </svg>
   );
 };
+
+/**
+ * 14. 3D Time Window Clock Icon (Emerald beveled clock housing with active time-window wedge)
+ */
+export const TimeWindowClock3D: React.FC<VisitPassAssetProps> = ({ size = 16, className = '' }) => {
+  const id = useUid('twclk');
+  return (
+    <svg viewBox="0 0 64 64" width={size} height={size} fill="none" className={`shrink-0 select-none ${className}`}>
+      <defs>
+        <linearGradient id={`${id}-ring`} x1="12" y1="8" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#34D399" />
+          <stop offset="55%" stopColor="#04BB49" />
+          <stop offset="100%" stopColor="#047857" />
+        </linearGradient>
+        <linearGradient id={`${id}-dial`} x1="18" y1="14" x2="46" y2="48" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#ECFDF5" />
+        </linearGradient>
+      </defs>
+      {/* Grounding contact shadow */}
+      <ellipse cx="32" cy="56" rx="18" ry="3.8" fill="#064E3B" fillOpacity="0.22" />
+      {/* 3D extruded housing depth */}
+      <circle cx="32" cy="33.5" r="22.5" fill="#065F46" />
+      {/* Main beveled outer ring */}
+      <circle cx="32" cy="30.5" r="22.5" fill={`url(#${id}-ring)`} />
+      {/* Inner recessed white dial */}
+      <circle cx="32" cy="30.5" r="16.5" fill={`url(#${id}-dial)`} />
+      {/* Highlighted Time Window Sector (12 to 4 o'clock) */}
+      <path d="M32 30.5V16.5C39.8 16.5 46 22.8 46 30.5C46 33.4 45.1 36.1 43.5 38.3L32 30.5Z" fill="#04BB49" fillOpacity="0.22" />
+      {/* Clock hands */}
+      <path d="M32 20V30.5L39.5 35.5" stroke="#0F172A" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="32" cy="30.5" r="2.6" fill="#04BB49" />
+      {/* Soft upper-left studio highlight */}
+      <path d="M17 19C19.5 15 23.5 12.5 28 11.5" stroke="#FFFFFF" strokeOpacity="0.6" strokeWidth="2.4" strokeLinecap="round" />
+    </svg>
+  );
+};

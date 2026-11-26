@@ -20,6 +20,7 @@ import {
   SharePass3D,
   ShieldGate3D,
   QrMatrixVector,
+  TimeWindowClock3D,
 } from './VisitPass3DAssets';
 
 export type { VisitPassRecord };
@@ -239,7 +240,10 @@ export const VisitPassScreen: React.FC<VisitPassScreenProps> = ({
               </div>
 
               <div className="flex items-center justify-between gap-2">
-                <span className="text-slate-500 dark:text-slate-400 pl-6">Time Window</span>
+                <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                  <TimeWindowClock3D size={16} />
+                  <span>Time Window</span>
+                </span>
                 <span className="font-semibold text-slate-700 dark:text-slate-200 text-right">
                   {selectedTicket.timeSlot}
                 </span>
@@ -695,8 +699,9 @@ export const VisitPassScreen: React.FC<VisitPassScreenProps> = ({
                           <CalendarClock3D size={16} />
                           <span>{pass.dateStr}</span>
                         </span>
-                        <span className="font-mono text-[10.5px] font-semibold text-slate-500 dark:text-slate-400">
-                          {pass.timeSlot}
+                        <span className="flex items-center gap-1 font-mono text-[10.5px] font-semibold text-slate-500 dark:text-slate-400">
+                          <TimeWindowClock3D size={14} />
+                          <span>{pass.timeSlot}</span>
                         </span>
                       </div>
 
