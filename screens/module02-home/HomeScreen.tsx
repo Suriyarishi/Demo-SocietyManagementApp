@@ -45,6 +45,7 @@ import {
 import { Badge, Button } from '../../components/UIComponents';
 import { FlatEntity } from './MultiFlatSelectorSheet';
 import { TowerResidence3D, GateBarrier3D, SmartMeter3D } from '../../components/3d/Vector3DElements';
+import { VisitPassTicket3D } from '../module08-society/VisitPass3DAssets';
 
 interface HomeScreenProps {
   activeFlat: FlatEntity;
@@ -63,6 +64,7 @@ interface HomeScreenProps {
   onOpenForum?: () => void;
   onOpenDirectory?: () => void;
   onOpenPinless?: () => void;
+  onOpenVisitPass?: () => void;
   onOpenMarketplace?: () => void;
   onOpenSmartMeter?: () => void;
   onOpenItemizedBill?: () => void;
@@ -86,6 +88,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onOpenForum,
   onOpenDirectory,
   onOpenPinless,
+  onOpenVisitPass,
   onOpenMarketplace,
   onOpenSmartMeter,
   onOpenItemizedBill,
@@ -613,11 +616,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 {/* 6. Visit Pass */}
                 <button
                   type="button"
-                  onClick={onPreApproveGuest}
+                  onClick={onOpenVisitPass || onPreApproveGuest}
                   className="flex flex-col items-center text-center gap-1.5 press-scale"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                    <Ticket size={20} strokeWidth={2.0} />
+                  <div className="w-12 h-12 rounded-full bg-primary-50/90 dark:bg-primary-950/35 border border-primary-200/80 dark:border-primary-800/40 flex items-center justify-center shadow-sm">
+                    <VisitPassTicket3D size={28} />
                   </div>
                   <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                     Visit Pass

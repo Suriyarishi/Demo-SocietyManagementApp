@@ -5,7 +5,7 @@ import { NoticesCircularsScreen } from './NoticesCircularsScreen';
 import { SocietyForumScreen } from './SocietyForumScreen';
 import { IntercomDirectoryScreen } from './IntercomDirectoryScreen';
 import { PinlessEntryScreen } from './PinlessEntryScreen';
-import { VisitPassScreen } from './visit-pass/VisitPassScreen';
+import { VisitPassScreen } from './VisitPassScreen';
 
 export interface Module08ControllerProps {
   currentStep: 'SCR_SOC_01' | 'SCR_SOC_02' | 'SCR_SOC_03' | 'SCR_SOC_04' | 'SCR_SOC_05' | 'SCR_SOC_06' | 'SCR_SOC_07';
@@ -48,7 +48,7 @@ export const Module08Controller: React.FC<Module08ControllerProps> = ({
         <SocietyHubScreen
           onBack={onBack}
           onOpenDailyStaff={onOpenDailyStaff}
-          onOpenGatePass={onOpenGatePass}
+          onOpenGatePass={() => onNavigateScreen('SCR_SOC_07')}
           onOpenAmenities={() => onNavigateScreen('SCR_SOC_02')}
           onOpenNotices={() => onNavigateScreen('SCR_SOC_03')}
           onOpenForum={() => onNavigateScreen('SCR_SOC_04')}

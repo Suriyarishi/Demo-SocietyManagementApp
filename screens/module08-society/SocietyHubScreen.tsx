@@ -6,6 +6,7 @@ import {
   BookUser,
   HardHat,
   Megaphone,
+  Ticket,
   Smartphone,
   Store,
   ArrowUpRight,
@@ -24,7 +25,7 @@ import {
 } from 'lucide-react';
 import { Badge, Button } from '../../components/UIComponents';
 import { Clubhouse3D } from '../../components/3d/Vector3DElements';
-import { TicketPass3D } from './visit-pass/VisitPassVectorGraphics';
+import { VisitPassTicket3D } from './VisitPass3DAssets';
 
 interface SocietyHubScreenProps {
   onBack?: () => void;
@@ -243,8 +244,8 @@ export const SocietyHubScreen: React.FC<SocietyHubScreenProps> = ({
                 onClick={onOpenGatePass}
                 className="flex flex-col items-center text-center gap-1.5 press-scale"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FFF5F5] dark:bg-[#1C1822] border border-[#FFE3E3] dark:border-[#382633] flex items-center justify-center text-slate-800 dark:text-slate-100 shadow-sm">
-                  <TicketPass3D size={24} />
+                <div className="w-12 h-12 rounded-full bg-primary-50/90 dark:bg-primary-950/35 border border-primary-200/80 dark:border-primary-800/40 flex items-center justify-center shadow-sm">
+                  <VisitPassTicket3D size={28} />
                 </div>
                 <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
                   Visit Pass
