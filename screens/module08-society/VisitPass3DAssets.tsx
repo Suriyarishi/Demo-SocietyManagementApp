@@ -398,3 +398,112 @@ export const BackArrow3D: React.FC<VisitPassAssetProps> = ({ size = 18, classNam
     </svg>
   );
 };
+
+/**
+ * 10. 3D Copy PIN Layers Icon
+ */
+export const CopyPin3D: React.FC<VisitPassAssetProps> = ({ size = 16, className = '' }) => {
+  const id = useUid('cpy');
+  return (
+    <svg viewBox="0 0 64 64" width={size} height={size} fill="none" className={`shrink-0 select-none ${className}`}>
+      <defs>
+        <linearGradient id={`${id}-fg`} x1="18" y1="18" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#34D399" />
+          <stop offset="100%" stopColor="#04BB49" />
+        </linearGradient>
+      </defs>
+      <rect x="10" y="10" width="32" height="36" rx="8" fill="#CBD5E1" />
+      <rect x="20" y="18" width="32" height="36" rx="8" fill={`url(#${id}-fg)`} stroke="#FFFFFF" strokeWidth="2" />
+      <path d="M29 31H43M29 39H39" stroke="#FFFFFF" strokeWidth="3.5" strokeLinecap="round" />
+    </svg>
+  );
+};
+
+/**
+ * 11. 3D Share Pass Nodes Icon
+ */
+export const SharePass3D: React.FC<VisitPassAssetProps> = ({ size = 16, className = '' }) => {
+  const id = useUid('shr');
+  return (
+    <svg viewBox="0 0 64 64" width={size} height={size} fill="none" className={`shrink-0 select-none ${className}`}>
+      <defs>
+        <linearGradient id={`${id}-orb`} x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#34D399" />
+          <stop offset="100%" stopColor="#04BB49" />
+        </linearGradient>
+      </defs>
+      <path d="M21 32L43 18M21 32L43 46" stroke="#059669" strokeWidth="4.5" strokeLinecap="round" />
+      <circle cx="44" cy="18" r="8" fill={`url(#${id}-orb)`} />
+      <circle cx="19" cy="32" r="9" fill={`url(#${id}-orb)`} />
+      <circle cx="44" cy="46" r="8" fill={`url(#${id}-orb)`} />
+    </svg>
+  );
+};
+
+/**
+ * 12. 3D Security Gate Barrier Icon
+ */
+export const ShieldGate3D: React.FC<VisitPassAssetProps> = ({ size = 18, className = '' }) => {
+  const id = useUid('sgate');
+  return (
+    <svg viewBox="0 0 64 64" width={size} height={size} fill="none" className={`shrink-0 select-none ${className}`}>
+      <defs>
+        <linearGradient id={`${id}-sh`} x1="14" y1="8" x2="50" y2="54" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#34D399" />
+          <stop offset="100%" stopColor="#04BB49" />
+        </linearGradient>
+      </defs>
+      <path d="M32 55L14 45C12 32 12 19 13 12L32 6L51 12C52 19 52 32 50 45L32 55Z" fill={`url(#${id}-sh)`} />
+      <path d="M23 30L29 36L41 24" stroke="#FFFFFF" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+};
+
+/**
+ * 13. Crisp Vector QR Code Matrix for Pass Ticket Detail View
+ */
+export const QrMatrixVector: React.FC<{ seed: string; size?: number }> = ({ seed, size = 148 }) => {
+  const bits = seed.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+  const cells: boolean[] = [];
+  for (let i = 0; i < 49; i++) {
+    const r = Math.floor(i / 7);
+    const c = i % 7;
+    const isCorner = (r < 2 && c < 2) || (r < 2 && c > 4) || (r > 4 && c < 2);
+    cells.push(isCorner || ((bits + i * 17) % 3 !== 0));
+  }
+
+  return (
+    <svg viewBox="0 0 98 98" width={size} height={size} fill="none" className="select-none">
+      <rect width="98" height="98" rx="14" fill="#FFFFFF" />
+      {/* Corner finder squares */}
+      <rect x="8" y="8" width="22" height="22" rx="5" stroke="#0F172A" strokeWidth="4" />
+      <rect x="15" y="15" width="8" height="8" rx="2" fill="#04BB49" />
+
+      <rect x="68" y="8" width="22" height="22" rx="5" stroke="#0F172A" strokeWidth="4" />
+      <rect x="75" y="15" width="8" height="8" rx="2" fill="#04BB49" />
+
+      <rect x="8" y="68" width="22" height="22" rx="5" stroke="#0F172A" strokeWidth="4" />
+      <rect x="15" y="75" width="8" height="8" rx="2" fill="#04BB49" />
+
+      {/* Deterministic data matrix dots */}
+      {cells.map((on, idx) => {
+        if (!on) return null;
+        const r = Math.floor(idx / 7);
+        const c = idx % 7;
+        const inFinder = (r < 3 && c < 3) || (r < 3 && c > 3) || (r > 3 && c < 3);
+        if (inFinder) return null;
+        return (
+          <rect
+            key={idx}
+            x={10 + c * 11.5}
+            y={10 + r * 11.5}
+            width="8.5"
+            height="8.5"
+            rx="2.5"
+            fill={(r + c) % 4 === 0 ? '#04BB49' : '#0F172A'}
+          />
+        );
+      })}
+    </svg>
+  );
+};
